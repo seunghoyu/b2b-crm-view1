@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>B2B CRM 고객조회</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-blue-50 flex min-h-screen">
+  <!-- ✅ 좌측 사이드 메뉴 -->
+  <aside class="w-56 bg-blue-800 text-white flex-shrink-0 fixed h-screen top-0 left-0">
+    <div class="p-5 text-lg font-semibold border-b border-blue-700">
+      기능 메뉴
+    </div>
+
+    <nav class="p-3 space-y-2">
+      <div>
+        <button id="menuUserInfo" class="w-full text-left px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+          회원 정보
+        </button>
+      </div>
+
+      <div>
+        <button id="menuDeliveryInfo" class="w-full text-left px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+          배송지 정보
+        </button>
+      </div>
+
+      <div>
+        <button id="menuAdminSite" class="w-full text-left px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+          사이트 이동 [관리자]
+        </button>
+      </div>
+
+      <div>
+        <button id="menuUserSite" class="w-full text-left px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+          사이트 이동 [학습자]
+        </button>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- ✅ 본문 전체 -->
+  <div class="flex-1 flex flex-col ml-56">
+    <!-- ✅ 상단: 고객정보 + 응대입력 -->
+    <header class="sticky top-0 bg-white shadow p-5 flex justify-between items-start z-10">
+      <div class="w-1/2">
+        <h2 class="text-lg font-semibold">
+          상담 건: LG화학 (2025-09-25 17:30:56)
+        </h2>
+        <p class="text-sm text-gray-500 mb-2">상담자: 홍길동 (영업팀)</p>
+        <table class="table-auto text-sm border-collapse w-full text-gray-700">
+          <tbody>
+            <tr class="border-b">
+              <td class="p-2 font-semibold w-32">아이디</td>
+              <td class="p-2">lgchem01</td>
+              <td class="p-2 font-semibold w-32">이름</td>
+              <td class="p-2">김해커</td>
+            </tr>
+            <tr class="border-b">
+              <td class="p-2 font-semibold">구분</td>
+              <td class="p-2">기업관리자</td>
+              <td class="p-2 font-semibold">직책</td>
+              <td class="p-2">팀장</td>
+            </tr>
+            <tr>
+              <td class="p-2 font-semibold">연락처</td>
+              <td class="p-2">010-1234-5678</td>
+              <td class="p-2 font-semibold">영업담당자</td>
+              <td class="p-2">박지현</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="w-1/2 flex flex-col items-end">
+        <div class="flex space-x-3 mb-3">
+          <select class="border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400">
+            <option>홍길동</option>
+            <option>이현우</option>
+            <option>박지현</option>
+          </select>
+          <input type="text" placeholder="제목을 입력하세요"
+            class="border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 w-[700px]" />
+        </div>
+        <div class="flex w-full justify-end">
+          <textarea placeholder="응대 내용을 입력하세요..."
+            class="border border-gray-350 rounded-l-lg px-3 py-2 w-[800px] h-32 focus:ring-blue-400 focus:outline-none"></textarea>
+          <button class="bg-blue-600 text-white px-5 py-2 rounded-r-lg hover:bg-blue-700 transition">
+            저장
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1 overflow-hidden p-6 space-y-8 flex-col">
+      <!-- ✅ 상담이력 -->
+      <section class="bg-white rounded-xl shadow p-5 flex space-x-6">
+        <!-- ✅ 좌측: 상담 목록 -->
+        <div class="w-1/2 overflow-x-auto">
+          <h3 class="font-semibold text-lg mb-3 text-blue-700">상담이력</h3>
+          <table class="min-w-[600px] w-full text-sm table-auto border-collapse">
+            <thead class="bg-blue-100 text-gray-700">
+              <tr>
+                <th class="p-3">상담채널</th>
+                <th class="p-3">제목</th>
+                <th class="p-3">진행상태</th>
+                <th class="p-3">담당자</th>
+              </tr>
+            </thead>
+            <tbody id="history-body"></tbody>
+          </table>
+          <button id="history-more"
+            class="hidden mt-3 bg-blue-100 text-blue-600 px-3 py-1 rounded hover:bg-blue-200 text-sm">
+            더보기
+          </button>
+        </div>
+
+        <!-- ✅ 우측: 상담 상세보기 -->
+        <div id="history-detail"
+          class="w-1/2 hidden bg-blue-50 rounded-lg p-4 border border-blue-200 overflow-auto max-h-[400px]">
+          <p class="text-gray-500 text-sm text-center">상담 내역을 선택하세요.</p>
+        </div>
+      </section>
+
+
+
+      <!-- ✅ 학습관리 -->
+      <section class="bg-white rounded-xl shadow p-5">
+        <h3 class="font-semibold text-lg mb-3 text-blue-700">학습관리</h3>
+
+        <div class="overflow-x-auto">
+          <table class="min-w-[1000px] w-full text-sm table-auto border-collapse">
+            <thead class="bg-blue-100 text-gray-700">
+              <tr>
+                <th class="p-3">학습차수</th>
+                <th class="p-3">강의코드</th>
+                <th class="p-3">강의명</th>
+                <th class="p-3">교육기간</th>
+                <th class="p-3">복습기간</th>
+                <th class="p-3">출석률</th>
+                <th class="p-3">출석점수</th>
+                <th class="p-3">시험점수</th>
+                <th class="p-3">모의고사 점수</th>
+                <th class="p-3">레벨점수</th>
+                <th class="p-3">등급</th>
+                <th class="p-3">수료여부</th>
+                <th class="p-3">기준수료점수</th>
+                <th class="p-3">강의제공업체</th>
+                <th class="p-3">등록일</th>
+              </tr>
+            </thead>
+            <tbody id="study-body"></tbody>
+          </table>
+        </div>
+
+        <p id="study-empty" class="hidden text-gray-500 text-sm mt-4 text-center">
+          데이터가 없습니다.
+        </p>
+
+        <button id="study-more"
+          class="hidden mt-3 bg-blue-100 text-blue-600 px-3 py-1 rounded hover:bg-blue-200 text-sm">
+          더보기
+        </button>
+      </section>
+
+
+
+
+      <!-- ✅ 배송관리 -->
+      <section class="bg-white rounded-xl shadow p-5">
+        <h3 class="font-semibold text-lg mb-3 text-blue-700">배송관리</h3>
+
+        <!-- ✅ 가로 스크롤 감싸기 -->
+        <div class="overflow-x-auto">
+          <table class="min-w-[1000px] w-full text-sm table-auto border-collapse">
+            <thead class="bg-blue-100 text-gray-700">
+              <tr>
+                <th class="p-3">주문일</th>
+                <th class="p-3">주문번호</th>
+                <th class="p-3">교재명</th>
+                <th class="p-3">주문액</th>
+                <th class="p-3">서점 주문번호</th>
+                <th class="p-3">택배사</th>
+                <th class="p-3">송장번호</th>
+                <th class="p-3">주문상태</th>
+                <th class="p-3">결제일</th>
+                <th class="p-3">배송방법</th>
+              </tr>
+            </thead>
+            <tbody id="delivery-body"></tbody>
+          </table>
+        </div>
+
+        <!-- ✅ 데이터 없을 때 표시 -->
+        <p id="delivery-empty" class="hidden text-gray-500 text-sm mt-4 text-center">
+          데이터가 없습니다.
+        </p>
+
+        <button id="delivery-more"
+          class="hidden mt-3 bg-blue-100 text-blue-600 px-3 py-1 rounded hover:bg-blue-200 text-sm">
+          더보기
+        </button>
+      </section>
+
+
+      <!-- ✅ 모달 구조 -->
+      <div id="modalOverlay" class="hidden fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
+        <div class="bg-white rounded-xl shadow-lg w-[700px] p-6 relative border-2 border-blue-200">
+          <h3 id="modalTitle" class="text-lg font-semibold text-blue-700 mb-4">
+            정보 보기
+          </h3>
+          <div id="modalContent" class="text-sm text-gray-700"></div>
+          <div class="flex justify-end mt-4 space-x-2">
+            <button id="saveBtn" class="hidden bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">
+              저장
+            </button>
+            <button id="closeBtn" class="bg-gray-200 text-gray-700 px-3 py-1 rounded hover:bg-gray-300">
+              닫기
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        // 1️⃣ --- 더미데이터 (맨 위로 이동해야 함) ---
+        const historyData = Array.from({ length: 10 }, (_, i) => ({
+          channel: i % 2 === 0 ? "1:1 문의게시판" : "전화상담",
+          categoryMain: ["수강·결제", "수강환경·접속", "학습진행·평가", "강의·강사", "기타·제휴"][i % 5],
+          categorySub: ["결제오류", "로그인문제", "진도율문의", "강사평가", "제휴문의"][i % 5],
+          date: `2025-09-${10 + i}`,
+          title: `상담 테스트 ${i + 1}`,
+          status: i % 2 === 0 ? "처리완료" : "처리대기",
+          manager: ["홍길동", "이현우", "박지현"][i % 3],
+          detail: {
+            reply: i === 0 ? "안녕하세요. 상담 테스트 1번의 답변 내용입니다.\n문의주신 결제 오류는 현재 정상 처리되었습니다.\n아래 결제오류 해결하는 방법입니다.\nB2B관리자단 > 수강결제내역 > 이름으로 검색하여 취소" : "",
+          },
+        }));
+
+        const studyData = Array.from({ length: 10 }, (_, i) => ({
+          round: `2025${10 + i}`,
+          code: `LGC${100 + i}`,
+          subject: `산업안전교육 ${i + 1}`,
+          period: `2025-09-${1 + i} ~ 2025-09-${10 + i}`,
+          reviewPeriod: `2025-10-${1 + i} ~ 2025-10-${10 + i}`,
+          attend: `${80 + i}%`,
+          test: `${70 + i}%`,
+          mock: `${75 + i}%`,
+          reset: i % 3,
+          level: i + 1,
+          grade: ["A", "B", "C"][i % 3],
+          complete: i % 2 === 0 ? "수료" : "미수료",
+          baseScore: 80,
+          provider: "해커스",
+          regDate: `2025-09-${15 + i}`,
+        }));
+
+        const newDeliveryData = Array.from({ length: 10 }, (_, i) => ({
+          orderDate: `2025-09-${10 + i}`,
+          orderNo: `ORD${1000 + i}`,
+          book: `산업안전 교재 ${i + 1}`,
+          amount: `${12000 + i * 500}원`,
+          storeOrder: `BOOK${200 + i}`,
+          courier: "CJ대한통운",
+          tracking: `12345${i}`,
+          status: i % 2 === 0 ? "배송완료" : "배송중",
+          payDate: `2025-09-${5 + i}`,
+          deliveryMethod: i % 2 === 0 ? "택배" : "직접수령",
+        }));
+
+
+        // ✅ 모달 제어
+        const modalOverlay = document.getElementById("modalOverlay");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalContent = document.getElementById("modalContent");
+        const saveBtn = document.getElementById("saveBtn");
+        const closeBtn = document.getElementById("closeBtn");
+
+        closeBtn.addEventListener("click", () => modalOverlay.classList.add("hidden"));
+
+        function openModal(title, data, editable = false) {
+          modalTitle.textContent = title;
+          modalContent.innerHTML = `
+          <table class='w-full border-collapse text-sm'>
+            <tbody>
+              ${Object.entries(data)
+              .map(
+                ([key, val]) => `
+                <tr>
+                  <td class='p-2 bg-blue-50 font-semibold w-32'>${key}</td>
+                  <td class='p-2 border ${editable ? "editable" : ""
+                  }' contenteditable="${editable}">${val}</td>
+                </tr>`
+              )
+              .join("")}
+            </tbody>
+          </table>
+          ${editable
+              ? `<div class='flex justify-end mt-3'>
+                  <button id='editBtn' class='bg-blue-100 text-blue-600 px-3 py-1 rounded hover:bg-blue-200'>수정</button>
+                </div>`
+              : ""
+            }
+        `;
+          modalOverlay.classList.remove("hidden");
+          if (editable) {
+            const editBtn = document.getElementById("editBtn");
+            editBtn.addEventListener("click", () => {
+              document.querySelectorAll(".editable").forEach((td) => {
+                td.contentEditable = "true";
+                td.classList.add("bg-blue-50");
+              });
+              saveBtn.classList.remove("hidden");
+              editBtn.classList.add("hidden");
+            });
+          }
+        }
+
+        document.getElementById("menuUserInfo").addEventListener("click", () => {
+          openModal("회원 정보", memberData, true);
+        });
+
+        document.getElementById("menuDeliveryInfo").addEventListener("click", () => {
+          openModal("배송지 정보", deliveryData, false);
+          saveBtn.classList.add("hidden");
+        });
+
+        document.getElementById("menuAdminSite").addEventListener("click", () => {
+          alert("관리자 사이트로 이동합니다.");
+        });
+
+        document.getElementById("menuUserSite").addEventListener("click", () => {
+          alert("학습자 사이트로 이동합니다.");
+        });
+
+        saveBtn.onclick = () => {
+          document.querySelectorAll(".editable").forEach((td) => {
+            td.contentEditable = "false";
+            td.classList.remove("bg-blue-50");
+          });
+          saveBtn.classList.add("hidden");
+          alert("저장되었습니다 ✅");
+        };
+
+        // 3️⃣ --- 테이블 렌더링 (상담이력, 학습관리, 배송관리) ---
+        const historyBody = document.getElementById("history-body");
+        if (historyData.length === 0) {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `<td colspan="7" class="text-center p-4 text-gray-500">데이터가 없습니다.</td>`;
+          historyBody.appendChild(tr);
+        } else {
+          historyData.forEach((h) => {
+            const tr = document.createElement("tr");
+            tr.className = "border-b hover:bg-blue-50 cursor-pointer";
+            tr.innerHTML = `
+        <td class="p-3">${h.channel}</td>
+        <td class="p-3">${h.categoryMain}</td>
+        <td class="p-3">${h.categorySub}</td>
+        <td class="p-3">${h.date}</td>
+        <td class="p-3">${h.title}</td>
+        <td class="p-3 font-semibold ${h.status === "처리완료" ? "text-green-600" : "text-red-600"}">${h.status}</td>
+        <td class="p-3">${h.manager}</td>`;
+            historyBody.appendChild(tr);
+          });
+        }
+
+        // ✅ 상담이력 더보기 버튼 표시
+        const historyMore = document.getElementById("history-more");
+
+        if (historyData.length > 5) {
+          historyMore.classList.remove("hidden");
+        }
+
+        let shownCount = 5;
+        function renderHistory(limit) {
+          historyBody.innerHTML = "";
+          historyData
+            .slice(0, limit)
+            .forEach((h) => {
+              const tr = document.createElement("tr");
+              tr.className = "border-b hover:bg-blue-50 cursor-pointer";
+              tr.innerHTML = `
+        <td class="p-3">${h.channel}</td>
+        <td class="p-3">${h.title}</td>
+        <td class="p-3 font-semibold ${h.status === "처리완료" ? "text-green-600" : "text-red-600"}">${h.status}</td>
+        <td class="p-3">${h.manager}</td>`;
+              historyBody.appendChild(tr);
+            });
+        }
+
+
+        // 처음 5개만 렌더링
+        renderHistory(shownCount);
+
+        // 더보기 버튼 클릭 시 5개씩 추가 표시
+        historyMore.addEventListener("click", () => {
+          shownCount += 5;
+          renderHistory(shownCount);
+          if (shownCount >= historyData.length) {
+            historyMore.classList.add("hidden");
+          }
+        });
+
+
+        // ✅ 상담 클릭 시 상세 정보 표시 (선택행 하이라이트 포함)
+        const historyDetail = document.getElementById("history-detail");
+
+        historyBody.addEventListener("click", (e) => {
+          const row = e.target.closest("tr");
+          if (!row) return;
+
+          // 🔹 기존 선택된 행 색상 초기화
+          Array.from(historyBody.querySelectorAll("tr")).forEach((r) =>
+            r.classList.remove("bg-blue-100")
+          );
+
+          // 🔹 현재 클릭된 행만 하이라이트
+          row.classList.add("bg-blue-100");
+
+          // 🔹 선택된 데이터 찾기
+          const index = Array.from(historyBody.children).indexOf(row);
+          const h = historyData[index];
+          if (!h) return;
+
+          // 🔹 상세내용 표시
+          historyDetail.classList.remove("hidden");
+          historyDetail.innerHTML = `
+            <h4 class="font-semibold text-blue-700 text-md mb-3">${h.title}</h4>
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+              <table class="w-full border-separate border-spacing-y-2 text-sm">
+                <tbody>
+                  <tr>
+                    <td class="p-2 bg-gray-50 w-32 font-semibold rounded-l-lg">상담채널</td>
+                    <td class="p-2 rounded-r-lg border border-gray-100">${h.channel}</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 bg-gray-50 font-semibold rounded-l-lg">대분류</td>
+                    <td class="p-2 rounded-r-lg border border-gray-100">${h.categoryMain}</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 bg-gray-50 font-semibold rounded-l-lg">중분류</td>
+                    <td class="p-2 rounded-r-lg border border-gray-100">${h.categorySub}</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 bg-gray-50 font-semibold rounded-l-lg">상담일시</td>
+                    <td class="p-2 rounded-r-lg border border-gray-100">${h.date}</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 bg-gray-50 font-semibold rounded-l-lg">담당자</td>
+                    <td class="p-2 rounded-r-lg border border-gray-100">${h.manager}</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 bg-gray-50 font-semibold rounded-l-lg">진행상태</td>
+                    <td class="p-2 rounded-r-lg border border-gray-100">${h.status}</td>
+                  </tr>
+                  <tr>
+                    <td class="p-2 bg-gray-50 font-semibold rounded-l-lg">답변내용</td>
+                    <td class="p-2 rounded-r-lg border border-gray-100 whitespace-pre-wrap text-gray-700">${h.detail?.reply || "내용 없음"}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            `;
+        }); 
+
+
+        const studyBody = document.getElementById("study-body");
+        if (studyData.length === 0) {
+          document.getElementById("study-empty").classList.remove("hidden");
+        } else {
+          studyData.forEach((s) => {
+            const tr = document.createElement("tr");
+            tr.className = "border-b hover:bg-blue-50";
+            tr.innerHTML = `
+        <td class="p-3">${s.round}</td>
+        <td class="p-3">${s.code}</td>
+        <td class="p-3">${s.subject}</td>
+        <td class="p-3">${s.period}</td>
+        <td class="p-3">${s.reviewPeriod}</td>
+        <td class="p-3">${s.attend}</td>
+        <td class="p-3">${s.test}</td>
+        <td class="p-3">${s.mock}</td>
+        <td class="p-3">${s.reset}</td>
+        <td class="p-3">${s.level}</td>
+        <td class="p-3">${s.grade}</td>
+        <td class="p-3">${s.complete}</td>
+        <td class="p-3">${s.baseScore}</td>
+        <td class="p-3">${s.provider}</td>
+        <td class="p-3">${s.regDate}</td>`;
+            studyBody.appendChild(tr);
+          });
+        }
+
+        // ✅ 학습관리 더보기 버튼 표시
+        const studyMore = document.getElementById("study-more");
+
+        if (studyData.length > 5) {
+          studyMore.classList.remove("hidden");
+        }
+
+        let studyShown = 5;
+        function renderStudy(limit) {
+          studyBody.innerHTML = "";
+          studyData
+            .slice(0, limit)
+            .forEach((s) => {
+              const tr = document.createElement("tr");
+              tr.className = "border-b hover:bg-blue-50";
+              tr.innerHTML = `
+        <td class="p-3">${s.round}</td>
+        <td class="p-3">${s.code}</td>
+        <td class="p-3">${s.subject}</td>
+        <td class="p-3">${s.period}</td>
+        <td class="p-3">${s.reviewPeriod}</td>
+        <td class="p-3">${s.attend}</td>
+        <td class="p-3">${s.test}</td>
+        <td class="p-3">${s.mock}</td>
+        <td class="p-3">${s.reset}</td>
+        <td class="p-3">${s.level}</td>
+        <td class="p-3">${s.grade}</td>
+        <td class="p-3">${s.complete}</td>
+        <td class="p-3">${s.baseScore}</td>
+        <td class="p-3">${s.provider}</td>
+        <td class="p-3">${s.regDate}</td>`;
+              studyBody.appendChild(tr);
+            });
+        }
+
+        // ✅ 처음 5개만 렌더링
+        renderStudy(studyShown);
+
+        // ✅ 더보기 클릭 시 5개씩 추가 표시
+        studyMore.addEventListener("click", () => {
+          studyShown += 5;
+          renderStudy(studyShown);
+          if (studyShown >= studyData.length) {
+            studyMore.classList.add("hidden");
+          }
+        });
+
+
+        // ✅ 배송관리 표시 (최근 5개만 + 더보기)
+        const deliveryBody2 = document.getElementById("delivery-body");
+        const deliveryMore = document.getElementById("delivery-more");
+        const deliveryEmpty = document.getElementById("delivery-empty");
+
+        if (newDeliveryData.length === 0) {
+          deliveryEmpty.classList.remove("hidden");
+        } else {
+          // 최신순 정렬
+          newDeliveryData.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
+
+          let deliveryShown = 5;
+
+          function renderDelivery(limit) {
+            deliveryBody2.innerHTML = "";
+            newDeliveryData.slice(0, limit).forEach((d) => {
+              const tr = document.createElement("tr");
+              tr.className = "border-b hover:bg-blue-50";
+              tr.innerHTML = `
+        <td class="p-3">${d.orderDate}</td>
+        <td class="p-3">${d.orderNo}</td>
+        <td class="p-3">${d.book}</td>
+        <td class="p-3">${d.amount}</td>
+        <td class="p-3">${d.storeOrder}</td>
+        <td class="p-3">${d.courier}</td>
+        <td class="p-3">${d.tracking}</td>
+        <td class="p-3">${d.status}</td>
+        <td class="p-3">${d.payDate}</td>
+        <td class="p-3">${d.deliveryMethod}</td>`;
+              deliveryBody2.appendChild(tr);
+            });
+          }
+
+          // ✅ 초기 렌더링
+          renderDelivery(deliveryShown);
+
+          // ✅ 5개 초과면 더보기 버튼 표시
+          if (newDeliveryData.length > 5) {
+            deliveryMore.classList.remove("hidden");
+          }
+
+          // ✅ 더보기 클릭 시 5개씩 추가
+          deliveryMore.addEventListener("click", () => {
+            deliveryShown += 5;
+            renderDelivery(deliveryShown);
+            if (deliveryShown >= newDeliveryData.length) {
+              deliveryMore.classList.add("hidden");
+            }
+          });
+        }
+      </script>
+</body>
+
+</html>

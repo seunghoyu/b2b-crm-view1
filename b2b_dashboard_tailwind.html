@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>B2B CRM 상담현황</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-gray-50 min-h-screen flex">
+    <!-- ✅ 좌측 사이드 메뉴 -->
+    <aside class="w-[230px] bg-blue-800 text-white flex-shrink-0">
+      <div class="p-5 text-lg font-semibold border-b border-blue-700">
+        B2B CRM 메뉴
+      </div>
+
+      <nav class="p-3 space-y-2">
+        <!-- 통합메뉴 -->
+        <div>
+          <button
+            id="menuToggle1"
+            class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+          >
+            <span>발송관리</span>
+            <span>▼</span>
+          </button>
+          <div id="menu1" class="hidden ml-4 mt-2 space-y-1 text-sm">
+            <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">SMS 발송</a>
+            <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">E-Mail 발송</a>
+            <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">알림톡 발송</a>
+          </div>
+        </div>
+
+        <!-- 관리메뉴 -->
+        <div>
+          <button
+            id="menuToggle2"
+            class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+          >
+            <span>관리메뉴</span>
+            <span>▼</span>
+          </button>
+          <div id="menu2" class="hidden ml-4 mt-2 space-y-1 text-sm">
+            <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">기업코드</a>
+            <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">수강시간 조회</a>
+            <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">학습상담·CS 관리</a>
+            <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">신규회원 등록</a>
+          </div>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- ✅ 메인 영역 -->
+    <div class="flex-1">
+      <!-- 상단 헤더 -->
+      <header class="bg-blue-700 text-white py-4 shadow">
+        <div class="w-full px-10 flex justify-between items-center">
+          <h1 class="text-2xl font-semibold">B2B CRM 상담현황</h1>
+          <span class="text-sm opacity-90">관리자용 대시보드</span>
+        </div>
+      </header>
+
+      <main class="w-full px-10 py-8">
+        <!-- 필터 영역 -->
+        <section class="bg-white p-6 rounded-xl shadow mb-8">
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+            <div>
+              <label class="text-sm font-medium text-gray-700">시작일</label>
+              <input
+                type="date"
+                class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label class="text-sm font-medium text-gray-700">종료일</label>
+              <input
+                type="date"
+                class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none"
+              />
+            </div>
+
+            <!-- 상담구분 검색 드롭다운 -->
+            <div class="relative">
+              <label class="text-sm font-medium text-gray-700">상담구분</label>
+              <button
+                id="dropdownButton"
+                class="mt-1 w-full flex justify-between items-center border border-gray-300 rounded-lg px-3 py-2 bg-white text-gray-700 hover:bg-gray-50 focus:ring-blue-400 focus:outline-none"
+              >
+                <span id="selectedText">전체</span>
+                <svg
+                  class="w-5 h-5 text-gray-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div
+                id="dropdownMenu"
+                class="hidden absolute z-10 mt-1 w-full bg-white rounded-lg shadow-lg border border-gray-200"
+              >
+                <ul class="py-1 text-sm text-gray-700">
+                  <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer">전체</li>
+                  <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer">수강·결제</li>
+                  <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer">수강환경·접속</li>
+                  <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer">학습진행·평가</li>
+                  <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer">강의·강사</li>
+                  <li class="px-4 py-2 hover:bg-blue-50 cursor-pointer">기타·제휴</li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <label class="text-sm font-medium text-gray-700">처리상태</label>
+              <select
+                class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none"
+              >
+                <option>전체</option>
+                <option>처리대기</option>
+                <option>처리완료</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="text-sm font-medium text-gray-700">검색어</label>
+              <div class="flex mt-1">
+                <input
+                  type="text"
+                  placeholder="기업명 또는 담당자 검색"
+                  class="w-full border border-gray-300 rounded-l-lg px-3 py-2 focus:ring-blue-400 focus:outline-none"
+                />
+                <button
+                  class="bg-blue-600 text-white px-4 py-2 rounded-r-lg hover:bg-blue-700 transition"
+                >
+                  검색
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 테이블 영역 -->
+        <section class="bg-white p-6 rounded-xl shadow overflow-x-auto">
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-lg font-semibold text-gray-800">상담 목록</h2>
+            <span id="count" class="text-sm text-gray-500"></span>
+          </div>
+
+          <table class="w-full table-auto border-collapse text-sm text-gray-700">
+            <thead>
+              <tr class="bg-gray-100 border-b text-left text-gray-600">
+                <th class="p-4">상담일시</th>
+                <th class="p-4">기업명</th>
+                <th class="p-4">직책</th>
+                <th class="p-4">이름</th>
+                <th class="p-4">아이디</th>
+                <th class="p-4">담당자</th>
+                <th class="p-4">회원구분</th>
+                <th class="p-4">처리상태</th>
+              </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      // ✅ 사이드메뉴 토글
+      const menuToggle1 = document.getElementById("menuToggle1");
+      const menu1 = document.getElementById("menu1");
+      const menuToggle2 = document.getElementById("menuToggle2");
+      const menu2 = document.getElementById("menu2");
+
+      menuToggle1.addEventListener("click", () => menu1.classList.toggle("hidden"));
+      menuToggle2.addEventListener("click", () => menu2.classList.toggle("hidden"));
+
+      // ✅ 상담구분 드롭다운
+      const dropdownButton = document.getElementById("dropdownButton");
+      const dropdownMenu = document.getElementById("dropdownMenu");
+      const selectedText = document.getElementById("selectedText");
+
+      dropdownButton.addEventListener("click", () => {
+        dropdownMenu.classList.toggle("hidden");
+      });
+
+      dropdownMenu.querySelectorAll("li").forEach((item) => {
+        item.addEventListener("click", () => {
+          selectedText.textContent = item.textContent;
+          dropdownMenu.classList.add("hidden");
+        });
+      });
+
+      window.addEventListener("click", (e) => {
+        if (!dropdownButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
+          dropdownMenu.classList.add("hidden");
+        }
+      });
+
+      // ✅ 상담목록 데이터
+      const dummyData = [
+        {
+          date: "2025-09-25 17:30:56",
+          company: "LG화학",
+          position: "팀장",
+          name: "김해커",
+          id: "lgchem01",
+          manager: "박지현",
+          type: "기업관리자",
+          status: "처리대기",
+        },
+        {
+          date: "2025-10-02 14:22:33",
+          company: "CJ푸드빌",
+          position: "매니저",
+          name: "홍길동",
+          id: "cjfood02",
+          manager: "이현우",
+          type: "교육담당자",
+          status: "처리완료",
+        },
+        {
+          date: "2025-10-05 09:10:01",
+          company: "대한항공",
+          position: "인사담당",
+          name: "김철수",
+          id: "koreanair03",
+          manager: "김영희",
+          type: "기업운영자",
+          status: "처리대기",
+        },
+        {
+          date: "2025-10-06 10:45:55",
+          company: "다우오피스",
+          position: "과장",
+          name: "이슬기",
+          id: "bankpay04",
+          manager: "이하윤",
+          type: "기업 자체 고객사",
+          status: "처리완료",
+        },
+      ];
+
+      const tbody = document.getElementById("table-body");
+
+      dummyData.forEach((d) => {
+        const row = document.createElement("tr");
+        row.setAttribute("onclick", "window.location.href='customer_view.html'");
+        row.className = "border-b hover:bg-blue-50 cursor-pointer transition";
+        row.innerHTML = `
+          <td class='p-4'>${d.date}</td>
+          <td class='p-4 font-medium'>${d.company}</td>
+          <td class='p-4'>${d.position}</td>
+          <td class='p-4'>${d.name}</td>
+          <td class='p-4'>${d.id}</td>
+          <td class='p-4'>${d.manager}</td>
+          <td class='p-4'>${d.type}</td>
+          <td class='p-4 font-semibold ${
+            d.status === "처리완료"
+              ? "text-green-600"
+              : d.status === "처리대기"
+              ? "text-red-600"
+              : "text-gray-500"
+          }'>${d.status}</td>`;
+        tbody.appendChild(row);
+      });
+
+      document.getElementById("count").innerText = `총 ${dummyData.length}건`;
+    </script>
+  </body>
+</html>
