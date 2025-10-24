@@ -6,12 +6,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
-  <body class="bg-gray-50 min-h-screen flex">
+  <body class="bg-gray-50 h-screen flex overflow-hidden">
     <!-- ✅ 좌측 사이드 메뉴 -->
     <aside class="w-[230px] bg-blue-800 text-white flex-shrink-0">
-      <div class="p-5 text-lg font-semibold border-b border-blue-700">
+      <a href="b2b_dashboard_tailwind.html" class="block p-5 text-lg font-semibold border-b border-blue-700 hover:bg-blue-700 transition">
         B2B CRM 메뉴
-      </div>
+      </a>
 
       <nav class="p-3 space-y-2">
         <!-- 통합메뉴 -->
@@ -39,18 +39,19 @@
             <span>관리메뉴</span>
             <span>▼</span>
           </button>
-          <div id="menu2" class="hidden ml-4 mt-2 space-y-1 text-sm">
-            <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">기업코드</a>
+          <div id="menu2" class="ml-4 mt-2 space-y-1 text-sm">
+            <a href="b2b_dashboard_tailwind.html" class="block px-3 py-1 bg-blue-900 rounded font-semibold">상담 현황</a>
+            <a href="customer_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">고객 목록</a>
             <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">수강시간 조회</a>
             <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">학습상담·CS 관리</a>
-            <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">신규회원 등록</a>
+            <a href="customer_registration.html" class="block px-3 py-1 hover:bg-blue-700 rounded">신규 고객 등록</a>
           </div>
         </div>
       </nav>
     </aside>
 
     <!-- ✅ 메인 영역 -->
-    <div class="flex-1">
+    <div class="flex-1 flex flex-col">
       <!-- 상단 헤더 -->
       <header class="bg-blue-700 text-white py-4 shadow">
         <div class="w-full px-10 flex justify-between items-center">
@@ -59,7 +60,7 @@
         </div>
       </header>
 
-      <main class="w-full px-10 py-8">
+      <main class="flex-1 w-full px-10 py-8 overflow-y-auto">
         <!-- 필터 영역 -->
         <section class="bg-white p-6 rounded-xl shadow mb-8">
           <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
@@ -144,7 +145,13 @@
         <section class="bg-white p-6 rounded-xl shadow overflow-x-auto">
           <div class="flex justify-between items-center mb-4">
             <h2 class="text-lg font-semibold text-gray-800">상담 목록</h2>
-            <span id="count" class="text-sm text-gray-500"></span>
+            <div class="flex items-center space-x-4">
+              <button
+                onclick="window.location.href='customer_registration.html'"
+                class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm font-semibold"
+              >고객 등록</button>
+              <span id="count" class="text-sm text-gray-500"></span>
+            </div>
           </div>
 
           <table class="w-full table-auto border-collapse text-sm text-gray-700">
@@ -175,6 +182,7 @@
 
       menuToggle1.addEventListener("click", () => menu1.classList.toggle("hidden"));
       menuToggle2.addEventListener("click", () => menu2.classList.toggle("hidden"));
+      menu2.classList.remove("hidden"); // 관리메뉴는 기본으로 열어둠
 
       // ✅ 상담구분 드롭다운
       const dropdownButton = document.getElementById("dropdownButton");
@@ -243,6 +251,9 @@
       ];
 
       const tbody = document.getElementById("table-body");
+
+      // ✅ 상담일시 기준으로 내림차순 정렬 (최신순)
+      dummyData.sort((a, b) => new Date(b.date) - new Date(a.date));
 
       dummyData.forEach((d) => {
         const row = document.createElement("tr");
