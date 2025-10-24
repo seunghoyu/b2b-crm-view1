@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>B2B CRM 고객 목록</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50 h-screen flex overflow-hidden">
+  <!-- ✅ 좌측 사이드 메뉴 (공통) -->
+  <aside class="w-[230px] bg-blue-800 text-white flex-shrink-0">
+    <a href="b2b_dashboard_tailwind.html" class="block p-5 text-lg font-semibold border-b border-blue-700 hover:bg-blue-700 transition">
+      B2B CRM 메뉴
+    </a>
+
+    <nav class="p-3 space-y-2">
+      <!-- 통합메뉴 -->
+      <div>
+        <button id="menuToggle1" class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+          <span>발송관리</span>
+          <span>▼</span>
+        </button>
+        <div id="menu1" class="hidden ml-4 mt-2 space-y-1 text-sm">
+          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">SMS 발송</a>
+          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">E-Mail 발송</a>
+          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">알림톡 발송</a>
+        </div>
+      </div>
+
+      <!-- 관리메뉴 -->
+      <div>
+        <button id="menuToggle2" class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+          <span>관리메뉴</span>
+          <span>▼</span>
+        </button>
+        <div id="menu2" class="ml-4 mt-2 space-y-1 text-sm">
+          <a href="b2b_dashboard_tailwind.html" class="block px-3 py-1 hover:bg-blue-700 rounded">상담 현황</a>
+          <a href="customer_list.html" class="block px-3 py-1 bg-blue-900 rounded font-semibold">고객 목록</a>
+          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">수강시간 조회</a>
+          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">학습상담·CS 관리</a>
+          <a href="customer_registration.html" class="block px-3 py-1 hover:bg-blue-700 rounded">신규회원 등록</a>
+        </div>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- ✅ 메인 영역 -->
+  <div class="flex-1 flex flex-col">
+    <!-- 상단 헤더 -->
+    <header class="bg-blue-700 text-white py-4 shadow">
+      <div class="w-full px-10 flex justify-between items-center">
+        <h1 class="text-2xl font-semibold">고객 목록</h1>
+        <span class="text-sm opacity-90">관리자용</span>
+      </div>
+    </header>
+
+    <main class="flex-1 w-full px-10 py-8 overflow-y-auto">
+      <!-- 테이블 영역 -->
+      <section class="bg-white p-6 rounded-xl shadow overflow-x-auto">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-lg font-semibold text-gray-800">전체 고객</h2>
+          <div class="flex items-center space-x-4">
+            <button onclick="window.location.href='customer_registration.html'" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm font-semibold">
+              신규 고객 등록
+            </button>
+            <span id="count" class="text-sm text-gray-500"></span>
+          </div>
+        </div>
+
+        <table class="w-full table-auto border-collapse text-sm text-gray-700">
+          <thead>
+            <tr class="bg-gray-100 border-b text-left text-gray-600">
+              <th class="p-4">가입일</th>
+              <th class="p-4">기업명</th>
+              <th class="p-4">아이디</th>
+              <th class="p-4">담당자 이름</th>
+              <th class="p-4">직책</th>
+              <th class="p-4">연락처</th>
+              <th class="p-4">영업담당자</th>
+              <th class="p-4">회원구분</th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+
+        <div class="mt-6 flex justify-center">
+            <button id="load-more" class="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-300 transition font-semibold">
+                더보기
+            </button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // ✅ 사이드메뉴 토글
+    const menuToggle1 = document.getElementById("menuToggle1");
+    const menu1 = document.getElementById("menu1");
+    const menuToggle2 = document.getElementById("menuToggle2");
+    const menu2 = document.getElementById("menu2");
+
+    menuToggle1.addEventListener("click", () => menu1.classList.toggle("hidden"));
+    menuToggle2.addEventListener("click", () => menu2.classList.toggle("hidden"));
+    menu2.classList.remove("hidden"); // 관리메뉴는 기본으로 열어둠
+
+    // ✅ 고객 목록 더미 데이터 (30개)
+    const dummyCustomers = [
+        { company: "삼성전자", id: "samsung01", name: "이재용", position: "부장", phone: "010-1111-2222", manager: "박지현", type: "기업관리자", regDate: "2025-10-20" },
+        { company: "SK하이닉스", id: "skhynix01", name: "최태원", position: "과장", phone: "010-2222-3333", manager: "이현우", type: "교육담당자", regDate: "2025-10-19" },
+        { company: "LG화학", id: "lgchem01", name: "김해커", position: "팀장", phone: "010-1234-5678", manager: "박지현", type: "기업관리자", regDate: "2025-10-18" },
+        { company: "현대자동차", id: "hyundai01", name: "정의선", position: "대리", phone: "010-3333-4444", manager: "김영희", type: "기업운영자", regDate: "2025-10-17" },
+        { company: "카카오", id: "kakao01", name: "김범수", position: "사원", phone: "010-4444-5555", manager: "이하윤", type: "기업 자체 고객사", regDate: "2025-10-16" },
+        { company: "네이버", id: "naver01", name: "이해진", position: "팀장", phone: "010-5555-6666", manager: "박지현", type: "기업관리자", regDate: "2025-10-15" },
+        { company: "CJ푸드빌", id: "cjfood02", name: "홍길동", position: "매니저", phone: "010-9876-5432", manager: "이현우", type: "교육담당자", regDate: "2025-10-14" },
+        { company: "대한항공", id: "koreanair03", name: "김철수", position: "인사담당", phone: "010-1122-3344", manager: "김영희", type: "기업운영자", regDate: "2025-10-13" },
+        { company: "다우오피스", id: "daou04", name: "이슬기", position: "과장", phone: "010-5566-7788", manager: "이하윤", type: "기업 자체 고객사", regDate: "2025-10-12" },
+        { company: "포스코", id: "posco01", name: "최정우", position: "부장", phone: "010-6666-7777", manager: "박지현", type: "기업관리자", regDate: "2025-10-11" },
+        { company: "롯데케미칼", id: "lottechem01", name: "신동빈", position: "과장", phone: "010-7777-8888", manager: "이현우", type: "교육담당자", regDate: "2025-10-10" },
+        { company: "한화솔루션", id: "hanwha01", name: "김동관", position: "대리", phone: "010-8888-9999", manager: "김영희", type: "기업운영자", regDate: "2025-10-09" },
+        { company: "GS칼텍스", id: "gsenergy01", name: "허세홍", position: "사원", phone: "010-9999-0000", manager: "이하윤", type: "기업 자체 고객사", regDate: "2025-10-08" },
+        { company: "두산에너빌리티", id: "doosan01", name: "박정원", position: "팀장", phone: "010-1212-3434", manager: "박지현", type: "기업관리자", regDate: "2025-10-07" },
+        { company: "셀트리온", id: "celltrion01", name: "서정진", position: "매니저", phone: "010-3434-5656", manager: "이현우", type: "교육담당자", regDate: "2025-10-06" },
+        { company: "아모레퍼시픽", id: "amore01", name: "서경배", position: "인사담당", phone: "010-5656-7878", manager: "김영희", type: "기업운영자", regDate: "2025-10-05" },
+        { company: "쿠팡", id: "coupang01", name: "김범석", position: "과장", phone: "010-7878-9090", manager: "이하윤", type: "기업 자체 고객사", regDate: "2025-10-04" },
+        { company: "배달의민족", id: "baemin01", name: "김봉진", position: "부장", phone: "010-9090-1212", manager: "박지현", type: "기업관리자", regDate: "2025-10-03" },
+        { company: "토스", id: "toss01", name: "이승건", position: "과장", phone: "010-1010-2929", manager: "이현우", type: "교육담당자", regDate: "2025-10-02" },
+        { company: "야놀자", id: "yanolja01", name: "이수진", position: "대리", phone: "010-2929-3838", manager: "김영희", type: "기업운영자", regDate: "2025-10-01" },
+        { company: "직방", id: "zigbang01", name: "안성우", position: "사원", phone: "010-3838-4747", manager: "이하윤", type: "기업 자체 고객사", regDate: "2025-09-30" },
+        { company: "무신사", id: "musinsa01", name: "조만호", position: "팀장", phone: "010-4747-5656", manager: "박지현", type: "기업관리자", regDate: "2025-09-29" },
+        { company: "크래프톤", id: "krafton01", name: "장병규", position: "매니저", phone: "010-5656-6565", manager: "이현우", type: "교육담당자", regDate: "2025-09-28" },
+        { company: "엔씨소프트", id: "ncsoft01", name: "김택진", position: "인사담당", phone: "010-6565-7474", manager: "김영희", type: "기업운영자", regDate: "2025-09-27" },
+        { company: "넷마블", id: "netmarble01", name: "방준혁", position: "과장", phone: "010-7474-8383", manager: "이하윤", type: "기업 자체 고객사", regDate: "2025-09-26" },
+        { company: "하이브", id: "hybe01", name: "방시혁", position: "부장", phone: "010-8383-9292", manager: "박지현", type: "기업관리자", regDate: "2025-09-25" },
+        { company: "SM엔터테인먼트", id: "sm01", name: "이수만", position: "과장", phone: "010-9292-1010", manager: "이현우", type: "교육담당자", regDate: "2025-09-24" },
+        { company: "JYP엔터테인먼트", id: "jyp01", name: "박진영", position: "대리", phone: "010-1029-3847", manager: "김영희", type: "기업운영자", regDate: "2025-09-23" },
+        { company: "YG엔터테인먼트", id: "yg01", name: "양현석", position: "사원", phone: "010-5678-1234", manager: "이하윤", type: "기업 자체 고객사", regDate: "2025-09-22" },
+        { company: "안랩", id: "ahnlab01", name: "안철수", position: "팀장", phone: "010-8765-4321", manager: "박지현", type: "기업관리자", regDate: "2025-09-21" },
+    ];
+
+    const tbody = document.getElementById("table-body");
+    const loadMoreBtn = document.getElementById("load-more");
+    const itemsPerPage = 10;
+    let itemsShown = 0;
+
+    function renderTable() {
+        const toShow = dummyCustomers.slice(itemsShown, itemsShown + itemsPerPage);
+
+        toShow.forEach((d) => {
+            const row = document.createElement("tr");
+            row.setAttribute("onclick", "window.location.href='customer_view.html'");
+            row.className = "border-b hover:bg-blue-50 cursor-pointer transition";
+            row.innerHTML = `
+                <td class='p-4'>${d.regDate}</td>
+                <td class='p-4 font-medium'>${d.company}</td>
+                <td class='p-4'>${d.id}</td>
+                <td class='p-4'>${d.name}</td>
+                <td class='p-4'>${d.position}</td>
+                <td class='p-4'>${d.phone}</td>
+                <td class='p-4'>${d.manager}</td>
+                <td class='p-4'>${d.type}</td>`;
+            tbody.appendChild(row);
+        });
+
+        itemsShown += toShow.length;
+
+        if (itemsShown >= dummyCustomers.length) {
+            loadMoreBtn.style.display = 'none';
+        }
+    }
+
+    loadMoreBtn.addEventListener('click', renderTable);
+
+    // 초기 데이터 로드
+    renderTable();
+    document.getElementById("count").innerText = `총 ${dummyCustomers.length}건`;
+
+  </script>
+</body>
+
+</html>
