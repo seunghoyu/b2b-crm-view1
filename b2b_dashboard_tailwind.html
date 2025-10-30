@@ -41,6 +41,7 @@
           </button>
           <div id="menu2" class="ml-4 mt-2 space-y-1 text-sm">
             <a href="b2b_dashboard_tailwind.html" class="block px-3 py-1 bg-blue-900 rounded font-semibold">상담 현황</a>
+            <a href="company_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">기업 목록</a>
             <a href="customer_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">고객 목록</a>
             <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">수강시간 조회</a>
             <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">학습상담·CS 관리</a>
@@ -158,12 +159,14 @@
             <thead>
               <tr class="bg-gray-100 border-b text-left text-gray-600">
                 <th class="p-4">상담일시</th>
+                <th class="p-4">기업코드</th>
                 <th class="p-4">기업명</th>
-                <th class="p-4">직책</th>
                 <th class="p-4">이름</th>
-                <th class="p-4">아이디</th>
-                <th class="p-4">담당자</th>
                 <th class="p-4">회원구분</th>
+                <th class="p-4">아이디</th>
+                <th class="p-4">대분류</th>
+                <th class="p-4">중분류</th>
+                <th class="p-4">담당자</th>
                 <th class="p-4">처리상태</th>
               </tr>
             </thead>
@@ -207,66 +210,69 @@
       });
 
       // ✅ 상담목록 데이터
-      const dummyData = [
-        {
-          date: "2025-09-25 17:30:56",
-          company: "LG화학",
-          position: "팀장",
-          name: "김해커",
-          id: "lgchem01",
-          manager: "박지현",
-          type: "기업관리자",
-          status: "처리대기",
-        },
-        {
-          date: "2025-10-02 14:22:33",
-          company: "CJ푸드빌",
-          position: "매니저",
-          name: "홍길동",
-          id: "cjfood02",
-          manager: "이현우",
-          type: "교육담당자",
-          status: "처리완료",
-        },
-        {
-          date: "2025-10-05 09:10:01",
-          company: "대한항공",
-          position: "인사담당",
-          name: "김철수",
-          id: "koreanair03",
-          manager: "김영희",
-          type: "기업운영자",
-          status: "처리대기",
-        },
-        {
-          date: "2025-10-06 10:45:55",
-          company: "다우오피스",
-          position: "과장",
-          name: "이슬기",
-          id: "bankpay04",
-          manager: "이하윤",
-          type: "기업 자체 고객사",
-          status: "처리완료",
-        },
+      // customer_list.html의 데이터 생성 로직과 유사하게 구성하여 데이터 일관성 확보
+      const companies = [
+          { name: "삼성전자", code: "samsung" }, { name: "SK하이닉스", code: "skhynix" },
+          { name: "LG화학", code: "lgchem" }, { name: "현대자동차", code: "hyundai" },
+          { name: "카카오", code: "kakao" }, { name: "네이버", code: "naver" },
+          { name: "CJ푸드빌", code: "cjfood" }, { name: "대한항공", code: "koreanair" },
+          { name: "다우오피스", code: "daou" }, { name: "포스코", code: "posco" }
       ];
+      const memberTypes = ["기업관리자", "교육담당자", "기업운영자", "학습자"];
+      const managers = ["박지현", "이현우", "김영희", "이하윤"];
+      const mainCategories = ["수강·결제", "수강환경·접속", "학습진행·평가", "강의·강사", "기타·제휴"];
+      const subCategories = {
+        "수강·결제": ["결제오류", "환불문의", "영수증발급"],
+        "수강환경·접속": ["로그인문제", "비밀번호찾기", "접속불가"],
+        "학습진행·평가": ["진도율문의", "시험응시", "수료증발급"],
+        "강의·강사": ["강의내용", "강의자료", "강의오류"],
+        "기타·제휴": ["제휴문의", "견적문의", "기타"]
+      };
+
+      const dummyData = [];
+      companies.forEach((company, companyIndex) => {
+        for (let i = 0; i < 3; i++) {
+            const firstNames = ["김", "이", "박", "최", "정", "강", "조", "윤", "장", "임"];
+            const lastNames = ["민준", "서연", "도윤", "서윤", "시우", "지우", "하준", "지유", "주원", "서현"];
+            const name = firstNames[(companyIndex + i) % firstNames.length] + lastNames[(companyIndex + i) % lastNames.length];
+            const id = `${company.code}_user${i + 1}`;
+            const mainCategory = mainCategories[i % mainCategories.length];
+
+            dummyData.push({
+                date: `2025-10-${String(20 - (companyIndex + i)).padStart(2, '0')} ${String(10+i).padStart(2, '0')}:${String(30+i*5).padStart(2, '0')}`,
+                companyCode: company.code,
+                companyName: company.name,
+                name: name,
+                memberType: memberTypes[i % memberTypes.length],
+                id: id,
+                mainCategory: mainCategory,
+                subCategory: subCategories[mainCategory][i % subCategories[mainCategory].length],
+                manager: managers[(companyIndex + i) % managers.length],
+                status: i % 2 === 0 ? "처리완료" : "처리대기",
+            });
+        }
+      });
 
       const tbody = document.getElementById("table-body");
 
       // ✅ 상담일시 기준으로 내림차순 정렬 (최신순)
       dummyData.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-      dummyData.forEach((d) => {
+      // 상위 15개만 표시
+      dummyData.slice(0, 15).forEach((d) => {
         const row = document.createElement("tr");
         row.setAttribute("onclick", "window.location.href='customer_view.html'");
         row.className = "border-b hover:bg-blue-50 cursor-pointer transition";
         row.innerHTML = `
           <td class='p-4'>${d.date}</td>
-          <td class='p-4 font-medium'>${d.company}</td>
-          <td class='p-4'>${d.position}</td>
+          <td class='p-4'>${d.companyCode}</td>
+          <td class='p-4 font-medium'>${d.companyName}</td>
           <td class='p-4'>${d.name}</td>
+          <td class='p-4'>${d.memberType}</td>
           <td class='p-4'>${d.id}</td>
+          <td class='p-4'>${d.mainCategory}</td>
+          <td class='p-4'>${d.subCategory}</td>
           <td class='p-4'>${d.manager}</td>
-          <td class='p-4'>${d.type}</td>
           <td class='p-4 font-semibold ${
             d.status === "처리완료"
               ? "text-green-600"
@@ -277,7 +283,7 @@
         tbody.appendChild(row);
       });
 
-      document.getElementById("count").innerText = `총 ${dummyData.length}건`;
+      document.getElementById("count").innerText = `총 ${dummyData.slice(0, 15).length}건`;
     </script>
   </body>
 </html>
