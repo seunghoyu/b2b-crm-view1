@@ -15,16 +15,42 @@
     </a>
 
     <nav class="p-3 space-y-2">
-      <!-- 통합메뉴 -->
+      <!-- 문자관리 -->
       <div>
         <button id="menuToggle1" class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition">
-          <span>발송관리</span>
+          <span>문자관리</span>
           <span>▼</span>
         </button>
         <div id="menu1" class="hidden ml-4 mt-2 space-y-1 text-sm">
-          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">SMS 발송</a>
-          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">E-Mail 발송</a>
-          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">알림톡 발송</a>
+          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">문자발송</a>
+          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">문자설정</a>
+          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회</a>
+        </div>
+      </div>
+
+      <!-- 이메일 관리 -->
+      <div>
+        <button id="menuToggleEmail" class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+          <span>이메일 관리</span>
+          <span>▼</span>
+        </button>
+        <div id="menuEmail" class="hidden ml-4 mt-2 space-y-1 text-sm">
+          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">웹메일(Biz)</a>
+          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">패스메일(fnBiz)</a>
+        </div>
+      </div>
+
+      <!-- 비즈톡 관리 -->
+      <div>
+        <button id="menuToggleBiztalk" class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+          <span>비즈톡 관리</span>
+          <span>▼</span>
+        </button>
+        <div id="menuBiztalk" class="hidden ml-4 mt-2 space-y-1 text-sm">
+          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">비즈톡발송(강의)</a>
+          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">비즈톡발송(회원)</a>
+          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회(강의)</a>
+          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회(회원)</a>
         </div>
       </div>
 
@@ -158,8 +184,11 @@
               <button id="menuUserSite" class="w-full text-center px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition">
                 학습자ID 로그인
               </button>
+              </div>
+              <div class="grid grid-cols-3 gap-2">
               <button id="menuSendSms" class="w-full text-center px-4 py-2 rounded-lg bg-blue-50 hover:bg-blue-100 transition">문자 전송</button>
               <button id="menuSendEmail" class="w-full text-center px-4 py-2 rounded-lg bg-blue-50 hover:bg-blue-100 transition">이메일 전송</button>
+              <button id="menuSendBiztalk" class="w-full text-center px-4 py-2 rounded-lg bg-blue-50 hover:bg-blue-100 transition">알림톡 전송</button>
             </div>
           </div>
         </div>
@@ -326,8 +355,8 @@
       <div id="smsModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
         <div class="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[80vh] overflow-y-auto p-6 relative border-4 border-blue-300 flex space-x-6">
           <!-- 좌측: 템플릿 목록 -->
-          <div class="w-1/2 flex flex-col">
-            <h3 class="text-xl font-bold text-blue-700 mb-4">문자 템플릿</h3>
+          <div class="w-1/2 flex flex-col" id="templateSection">
+            <h3 class="text-xl font-bold text-blue-700 mb-4" id="templateTitle">문자 템플릿</h3>
             <input type="text" id="templateSearch" placeholder="템플릿 제목 검색..." class="w-full border border-gray-300 rounded-lg px-3 py-2 mb-3 text-sm focus:ring-blue-400 focus:outline-none">
             <div class="flex-1 overflow-y-auto border rounded-lg">
               <table class="w-full text-sm">
@@ -343,12 +372,12 @@
             <div id="templatePagination" class="flex justify-center items-center mt-3 space-x-2 text-sm"></div>
           </div>
           <!-- 우측: 발송 정보 -->
-          <div class="w-1/2">
-            <h3 class="text-xl font-bold text-blue-700 mb-4">발송 내용</h3>
+          <div class="w-1/2" id="contentSection">
+            <h3 class="text-xl font-bold text-blue-700 mb-4" id="contentTitle">발송 내용</h3>
             <div class="space-y-4 text-sm">
-              <div><label class="font-semibold">발신번호</label><input type="text" id="smsSender" value="02-000-0000" class="w-full mt-1 bg-gray-100 border border-gray-300 rounded-lg px-3 py-2" readonly></div>
-              <div><label class="font-semibold">수신번호</label><input type="text" id="smsReceiver" class="w-full mt-1 bg-gray-100 border border-gray-300 rounded-lg px-3 py-2" readonly></div>
-              <div><label class="font-semibold">내용</label><textarea id="smsContent" rows="10" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" placeholder="문자 내용을 입력하거나 템플릿을 선택하세요."></textarea></div>
+              <div id="senderNumberField"><label class="font-semibold">발신번호</label><input type="text" id="smsSender" value="02-000-0000" class="w-full mt-1 bg-gray-100 border border-gray-300 rounded-lg px-3 py-2" readonly></div>
+              <div><label class="font-semibold" id="receiverLabel">수신번호</label><input type="text" id="smsReceiver" class="w-full mt-1 bg-gray-100 border border-gray-300 rounded-lg px-3 py-2" readonly></div>
+              <div><label class="font-semibold" id="contentLabel">내용</label><textarea id="smsContent" rows="10" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" placeholder="문자 내용을 입력하거나 템플릿을 선택하세요."></textarea></div>
             </div>
             <div class="flex justify-end mt-6 space-x-3"><button id="sendSmsBtn" class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition font-semibold">발송하기</button><button id="closeSmsModalBtn" class="bg-gray-400 text-white px-5 py-2 rounded-lg hover:bg-gray-500 transition font-semibold">닫기</button></div>
           </div>
@@ -377,9 +406,15 @@
         const menu1 = document.getElementById("menu1");
         const menuToggle2 = document.getElementById("menuToggle2");
         const menu2 = document.getElementById("menu2");
+        const menuToggleEmail = document.getElementById("menuToggleEmail");
+        const menuEmail = document.getElementById("menuEmail");
+        const menuToggleBiztalk = document.getElementById("menuToggleBiztalk");
+        const menuBiztalk = document.getElementById("menuBiztalk");
 
         menuToggle1.addEventListener("click", () => menu1.classList.toggle("hidden"));
         menuToggle2.addEventListener("click", () => menu2.classList.toggle("hidden"));
+        menuToggleEmail.addEventListener("click", () => menuEmail.classList.toggle("hidden"));
+        menuToggleBiztalk.addEventListener("click", () => menuBiztalk.classList.toggle("hidden"));
         menu2.classList.remove("hidden"); // 관리메뉴는 기본으로 열어둠
 
         // 🔹 대분류-중분류 연동 기능
@@ -655,12 +690,20 @@
         // 4️⃣ --- 문자 발송 모달 로직 ---
         const smsModal = document.getElementById("smsModal");
         const menuSendSms = document.getElementById("menuSendSms");
+        const menuSendBiztalk = document.getElementById("menuSendBiztalk");
         const closeSmsModalBtn = document.getElementById("closeSmsModalBtn");
         const sendSmsBtn = document.getElementById("sendSmsBtn");
         const smsTemplateBody = document.getElementById("smsTemplateBody");
         const templateSearch = document.getElementById("templateSearch");
         const smsContent = document.getElementById("smsContent");
         const templatePagination = document.getElementById("templatePagination");
+
+        // 모달 내부 요소들
+        const templateTitle = document.getElementById("templateTitle");
+        const contentTitle = document.getElementById("contentTitle");
+        const receiverLabel = document.getElementById("receiverLabel");
+        const contentLabel = document.getElementById("contentLabel");
+
 
         let currentTemplates = [...smsTemplates];
         const templatesPerPage = 10;
@@ -715,25 +758,43 @@
             renderSmsTemplates();
         });
 
-        // 모달 열기
-        menuSendSms.addEventListener("click", () => {
+        // 모달 열기 함수
+        function openSendModal(type) { // 'sms' or 'biztalk'
             const customerPhone = document.getElementById("customer-phone").textContent;
             document.getElementById("smsReceiver").value = customerPhone;
-            
+
+            // 타입에 따라 모달 내용 변경
+            if (type === 'biztalk') {
+                templateTitle.textContent = "알림톡 템플릿";
+                contentTitle.textContent = "알림톡 발송 내용";
+                smsContent.placeholder = "좌측에서 템플릿을 선택해주세요.";
+                document.getElementById("senderNumberField").classList.add("hidden");
+                smsContent.readOnly = true;
+            } else { // sms
+                templateTitle.textContent = "문자 템플릿";
+                contentTitle.textContent = "발송 내용";
+                smsContent.placeholder = "문자 내용을 입력하거나 템플릿을 선택하세요.";
+                document.getElementById("senderNumberField").classList.remove("hidden");
+                smsContent.readOnly = false;
+            }
+
             // 모달 열 때 초기화
             templateSearch.value = "";
             currentTemplates = [...smsTemplates];
             currentPage = 1;
             smsContent.value = "";
             renderSmsTemplates();
-
             smsModal.classList.remove("hidden");
-        });
+        }
 
         // 모달 닫기
         function closeSmsModal() {
             smsModal.classList.add("hidden");
         }
+
+        // 각 버튼에 이벤트 리스너 연결
+        menuSendSms.addEventListener("click", () => openSendModal('sms'));
+        menuSendBiztalk.addEventListener("click", () => openSendModal('biztalk'));
         closeSmsModalBtn.addEventListener("click", closeSmsModal);
         smsModal.addEventListener('click', (e) => {
             if (e.target === smsModal) {
