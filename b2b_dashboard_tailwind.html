@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <title>B2B CRM 상담현황</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <style>
+      body { font-family: 'Pretendard', sans-serif; }
+    </style>
   </head>
 
   <body class="bg-gray-50 h-screen flex overflow-hidden">
@@ -24,9 +28,9 @@
             <span>▼</span>
           </button>
           <div id="menu1" class="hidden ml-4 mt-2 space-y-1 text-sm">
-            <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">문자발송</a>
-            <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">문자설정</a>
-            <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회</a>
+            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">문자발송</a>
+            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">문자설정</a>
+            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회</a>
           </div>
         </div>
 
@@ -49,10 +53,10 @@
             <span>▼</span>
           </button>
           <div id="menuBiztalk" class="hidden ml-4 mt-2 space-y-1 text-sm">
-            <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">비즈톡발송(강의)</a>
-            <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">비즈톡발송(회원)</a>
-            <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회(강의)</a>
-            <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회(회원)</a>
+            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">비즈톡발송(강의)</a>
+            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">비즈톡발송(회원)</a>
+            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회(강의)</a>
+            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회(회원)</a>
           </div>
         </div>
 
@@ -69,8 +73,9 @@
             <a href="b2b_dashboard_tailwind.html" class="block px-3 py-1 bg-blue-900 rounded font-semibold">상담 현황</a>
             <a href="company_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">기업 목록</a>
             <a href="customer_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">고객 목록</a>
-            <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">수강시간 조회</a>
-            <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">학습상담·CS 관리</a>
+            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">수강시간 조회</a>
+            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">학습상담·CS 관리</a>
+            <a href="manual_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">메뉴얼 관리</a>
             <a href="customer_registration.html" class="block px-3 py-1 hover:bg-blue-700 rounded">신규 고객 등록</a>
           </div>
         </div>
@@ -100,18 +105,30 @@
                 <input type="date" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" />
               </div>
             </div>
-            <div>
-              <label class="font-medium text-gray-700">상담구분 [대분류]</label>
-              <select id="categoryMain" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none">
+            <div class="md:col-span-2">
+              <label class="font-medium text-gray-700">분류</label>
+              <select id="categorySelect" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none">
                 <option value="">전체</option>
-                <!-- JS로 채워짐 -->
-              </select>
-            </div>
-            <div>
-              <label class="font-medium text-gray-700">상담구분 [중분류]</label>
-              <select id="categorySub" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none disabled:bg-gray-100" disabled>
-                <option value="">전체</option>
-                <!-- JS로 채워짐 -->
+                <option>수강신청 기간/방법</option>
+                <option>결제 방법/오류</option>
+                <option>과정 취소/변경</option>
+                <option>수강방법 문의</option>
+                <option>수강/복습 기간</option>
+                <option>아이디/비밀번호 문의</option>
+                <option>교재배송</option>
+                <option>모바일 수강</option>
+                <option>동영상 오류</option>
+                <option>MP3 관련 문의</option>
+                <option>PMP/PC 다운로드</option>
+                <option>학습자료 다운로드</option>
+                <option>출석체크/진도율</option>
+                <option>평가시험</option>
+                <option>수료여부 및 기준</option>
+                <option>온라인 모의고사(대학생)</option>
+                <option>강의 내용</option>
+                <option>선생님께 질문하기</option>
+                <option>기타문의</option>
+                <option>제휴문의</option>
               </select>
             </div>
             <div>
@@ -187,8 +204,7 @@
                 <th class="p-4">이름</th>
                 <th class="p-4">회원구분</th>
                 <th class="p-4">아이디</th>
-                <th class="p-4">대분류</th>
-                <th class="p-4">중분류</th>
+                <th class="p-4">분류</th>
                 <th class="p-4">담당자</th>
                 <th class="p-4">처리상태</th>
               </tr>
@@ -215,48 +231,6 @@
       menuToggleEmail.addEventListener("click", () => menuEmail.classList.toggle("hidden"));
       menuToggleBiztalk.addEventListener("click", () => menuBiztalk.classList.toggle("hidden"));
       menu2.classList.remove("hidden"); // 관리메뉴는 기본으로 열어둠
-
-      // ✅ 상담구분 [대분류] - [중분류] 연동
-      const categoryMap = {
-        "수강·결제": ["결제오류", "환불문의", "영수증발급", "할인문의", "결제방법"],
-        "수강환경·접속": ["로그인문제", "비밀번호찾기", "계정오류", "접속불가", "브라우저문제"],
-        "학습진행·평가": ["진도율문의", "시험응시", "과제제출", "수료증발급", "성적문의"],
-        "강의·강사": ["강의내용", "강의자료", "강의오류", "강의요청"],
-        "기타·제휴": ["제휴문의", "견적문의", "단체문의", "기타", "건의사항"]
-      };
-
-      const categoryMainSelect = document.getElementById("categoryMain");
-      const categorySubSelect = document.getElementById("categorySub");
-
-      // 대분류 옵션 채우기
-      Object.keys(categoryMap).forEach(mainCat => {
-        const option = document.createElement("option");
-        option.value = mainCat;
-        option.textContent = mainCat;
-        categoryMainSelect.appendChild(option);
-      });
-
-      // 대분류 선택 시 중분류 업데이트
-      categoryMainSelect.addEventListener("change", function() {
-        const selectedMain = this.value;
-        // 중분류 초기화
-        categorySubSelect.innerHTML = '<option value="">전체</option>'; 
-        
-        if (selectedMain && categoryMap[selectedMain]) {
-          // 선택된 대분류에 해당하는 중분류 옵션 추가
-          categoryMap[selectedMain].forEach(sub => {
-            const option = document.createElement("option");
-            option.value = sub;
-            option.textContent = sub;
-            categorySubSelect.appendChild(option);
-          });
-          // 중분류 활성화
-          categorySubSelect.disabled = false;
-        } else {
-          // 대분류가 '전체'일 경우 중분류 비활성화
-          categorySubSelect.disabled = true;
-        }
-      });
 
       // ✅ 기업명 검색 기능 (customer_registration.html과 유사하게)
       const companyDB = [
@@ -375,14 +349,13 @@
       ];
       const memberTypes = ["기업관리자", "교육담당자", "기업운영자", "학습자"];
       const managers = ["박지현", "이현우", "김영희", "이하윤"];
-      const mainCategories = ["수강·결제", "수강환경·접속", "학습진행·평가", "강의·강사", "기타·제휴"];
-      const subCategories = {
-        "수강·결제": ["결제오류", "환불문의", "영수증발급"],
-        "수강환경·접속": ["로그인문제", "비밀번호찾기", "접속불가"],
-        "학습진행·평가": ["진도율문의", "시험응시", "수료증발급"],
-        "강의·강사": ["강의내용", "강의자료", "강의오류"],
-        "기타·제휴": ["제휴문의", "견적문의", "기타"]
-      };
+      const categories = [
+        "수강신청 기간/방법", "결제 방법/오류", "과정 취소/변경", "수강방법 문의",
+        "수강/복습 기간", "아이디/비밀번호 문의", "교재배송", "모바일 수강",
+        "동영상 오류", "MP3 관련 문의", "PMP/PC 다운로드", "학습자료 다운로드",
+        "출석체크/진도율", "평가시험", "수료여부 및 기준", "온라인 모의고사(대학생)",
+        "강의 내용", "선생님께 질문하기", "기타문의", "제휴문의"
+      ];
 
       const dummyData = [];
       companies.forEach((company, companyIndex) => {
@@ -391,7 +364,6 @@
             const lastNames = ["민준", "서연", "도윤", "서윤", "시우", "지우", "하준", "지유", "주원", "서현"];
             const name = firstNames[(companyIndex + i) % firstNames.length] + lastNames[(companyIndex + i) % lastNames.length];
             const id = `${company.code}_user${i + 1}`;
-            const mainCategory = mainCategories[i % mainCategories.length];
 
             dummyData.push({
                 date: `2025-10-${String(20 - (companyIndex + i)).padStart(2, '0')} ${String(10+i).padStart(2, '0')}:${String(30+i*5).padStart(2, '0')}`,
@@ -400,8 +372,7 @@
                 name: name,
                 memberType: memberTypes[i % memberTypes.length],
                 id: id,
-                mainCategory: mainCategory,
-                subCategory: subCategories[mainCategory][i % subCategories[mainCategory].length],
+                category: categories[(companyIndex * 3 + i) % categories.length],
                 manager: managers[(companyIndex + i) % managers.length],
                 status: i % 2 === 0 ? "처리완료" : "처리대기",
             });
@@ -425,8 +396,7 @@
           <td class='p-4'>${d.name}</td>
           <td class='p-4'>${d.memberType}</td>
           <td class='p-4'>${d.id}</td>
-          <td class='p-4'>${d.mainCategory}</td>
-          <td class='p-4'>${d.subCategory}</td>
+          <td class='p-4'>${d.category}</td>
           <td class='p-4'>${d.manager}</td>
           <td class='p-4 font-semibold ${
             d.status === "처리완료"

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>B2B CRM 메뉴얼 관리</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    body { font-family: 'Pretendard', sans-serif; }
+  </style>
+</head>
+
+<body class="bg-gray-50 h-screen flex overflow-hidden">
+  <!-- ✅ 좌측 사이드 메뉴 (공통) -->
+  <aside class="w-[230px] bg-blue-800 text-white flex-shrink-0">
+    <a href="b2b_dashboard_tailwind.html" class="block p-5 text-lg font-semibold border-b border-blue-700 hover:bg-blue-700 transition">
+      B2B CRM 메뉴
+    </a>
+
+    <nav class="p-3 space-y-2">
+      <!-- 문자관리 -->
+      <div>
+        <button id="menuToggle1" class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+          <span>문자관리</span>
+          <span>▼</span>
+        </button>
+        <div id="menu1" class="hidden ml-4 mt-2 space-y-1 text-sm">
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">문자발송</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">문자설정</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회</a>
+        </div>
+      </div>
+
+      <!-- 이메일 관리 -->
+      <div>
+        <button id="menuToggleEmail" class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+          <span>이메일 관리</span>
+          <span>▼</span>
+        </button>
+        <div id="menuEmail" class="hidden ml-4 mt-2 space-y-1 text-sm">
+          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">웹메일(Biz)</a>
+          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">패스메일(fnBiz)</a>
+        </div>
+      </div>
+
+      <!-- 비즈톡 관리 -->
+      <div>
+        <button id="menuToggleBiztalk" class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+          <span>비즈톡 관리</span>
+          <span>▼</span>
+        </button>
+        <div id="menuBiztalk" class="hidden ml-4 mt-2 space-y-1 text-sm">
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">비즈톡발송(강의)</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">비즈톡발송(회원)</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회(강의)</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회(회원)</a>
+        </div>
+      </div>
+
+      <!-- 관리메뉴 -->
+      <div>
+        <button id="menuToggle2" class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+          <span>관리메뉴</span>
+          <span>▼</span>
+        </button>
+        <div id="menu2" class="ml-4 mt-2 space-y-1 text-sm">
+          <a href="b2b_dashboard_tailwind.html" class="block px-3 py-1 hover:bg-blue-700 rounded">상담 현황</a>
+          <a href="company_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">기업 목록</a>
+          <a href="customer_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">고객 목록</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">수강시간 조회</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">학습상담·CS 관리</a>
+          <a href="manual_list.html" class="block px-3 py-1 bg-blue-900 rounded font-semibold">메뉴얼 관리</a>
+          <a href="customer_registration.html" class="block px-3 py-1 hover:bg-blue-700 rounded">신규 고객 등록</a>
+        </div>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- ✅ 메인 영역 -->
+  <div class="flex-1 flex flex-col">
+    <!-- 상단 헤더 -->
+    <header class="bg-blue-700 text-white py-4 shadow">
+      <div class="w-full px-10 flex justify-between items-center">
+        <h1 class="text-2xl font-semibold">메뉴얼 관리</h1>
+        <span class="text-sm opacity-90">관리자용</span>
+      </div>
+    </header>
+
+    <main class="flex-1 w-full px-10 py-8 overflow-y-auto">
+      <!-- 필터 영역 -->
+      <section class="bg-white p-6 rounded-xl shadow mb-8 text-sm">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-x-6 gap-y-4 items-end">
+          <div class="relative">
+            <label for="search-company-name" class="font-medium text-gray-700">기업명</label>
+            <input type="text" id="search-company-name" placeholder="기업명으로 검색" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" />
+            <div id="company-suggestions" class="hidden absolute z-20 mt-1 w-full bg-white rounded-lg shadow-lg border border-gray-200 max-h-60 overflow-y-auto"></div>
+          </div>
+          <div>
+            <label for="search-company-code" class="font-medium text-gray-700">기업코드</label>
+            <input type="text" id="search-company-code" placeholder="기업 선택 시 자동 입력" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none bg-gray-100" readonly />
+          </div>
+          <div class="md:col-span-2">
+            <label for="search-title" class="font-medium text-gray-700">제목</label>
+            <input type="text" id="search-title" placeholder="제목으로 검색" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" />
+          </div>
+          <div class="md:col-span-2">
+            <label for="search-inquiry" class="font-medium text-gray-700">상황개요</label>
+            <input type="text" id="search-inquiry" placeholder="상황개요로 검색" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" />
+          </div>
+          <div>
+            <label for="search-author" class="font-medium text-gray-700">작성자</label>
+            <input type="text" id="search-author" placeholder="작성자로 검색" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" />
+          </div>
+          <div class="flex space-x-2 justify-end">
+            <button id="reset-search-btn" class="bg-gray-500 text-white w-full md:w-auto px-6 h-[42px] rounded-lg hover:bg-gray-600 transition font-semibold">
+              초기화
+            </button>
+            <button id="search-btn" class="bg-blue-600 text-white w-full md:w-auto px-8 h-[42px] rounded-lg hover:bg-blue-700 transition font-semibold">
+              검색
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ✅ 메뉴얼 상세 보기 모달 -->
+      <div id="manualDetailModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto p-8 relative border-4 border-blue-300">
+          <h3 class="text-2xl font-bold text-blue-700 mb-6 pb-2 border-b-2 border-blue-200">메뉴얼 상세 보기</h3>
+          <div id="manualDetailContentArea" class="text-sm text-gray-700 space-y-4">
+            <!-- 상세 내용이 여기에 동적으로 로드됩니다. -->
+          </div>
+          <div class="flex justify-end mt-8 space-x-3">
+            <button id="editManualBtn" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-semibold shadow-md">
+              수정
+            </button>
+            <button id="saveManualBtn" class="hidden bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition font-semibold shadow-md">
+              저장
+            </button>
+            <button id="closeManualModalBtn" class="bg-gray-400 text-white px-6 py-2 rounded-lg hover:bg-gray-500 transition font-semibold shadow-md">
+              닫기
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <section class="bg-white p-6 rounded-xl shadow">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-lg font-semibold text-gray-800">등록된 메뉴얼 목록</h2>
+          <div class="flex items-center space-x-4">
+            <button onclick="window.location.href='manual_registration.html'" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm font-semibold">
+              메뉴얼 등록
+            </button>
+            <span id="count" class="text-sm text-gray-500"></span>
+          </div>
+        </div>
+
+        <!-- 테이블을 감싸는 div에서 overflow-x-auto 제거 -->
+        <div>
+          <!-- table-fixed를 추가하여 열 너비를 고정 -->
+          <table class="w-full table-fixed border-collapse text-sm text-gray-700">
+            <thead>
+              <tr class="bg-gray-100 border-b text-left text-gray-600">
+                <th class="p-4 w-[140px]">등록일시</th>
+                <th class="p-4 w-[100px]">기업코드</th>
+                <th class="p-4 w-[120px]">기업명</th>
+                <th class="p-4 w-[350px]">제목</th>
+                <th class="p-4 w-[250px]">상황개요</th>
+                <th class="p-4 w-[100px]">작성자</th>
+                <th class="p-4 w-[120px]">관련문서/링크</th>
+              </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </div>
+
+        <div class="mt-6 flex justify-center">
+            <button id="load-more" class="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-300 transition font-semibold">
+                더보기
+            </button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // ✅ 사이드메뉴 토글
+    const menuToggle1 = document.getElementById("menuToggle1");
+    const menu1 = document.getElementById("menu1");
+    const menuToggle2 = document.getElementById("menuToggle2");
+    const menu2 = document.getElementById("menu2");
+    const menuToggleEmail = document.getElementById("menuToggleEmail");
+    const menuEmail = document.getElementById("menuEmail");
+    const menuToggleBiztalk = document.getElementById("menuToggleBiztalk");
+    const menuBiztalk = document.getElementById("menuBiztalk");
+
+    menuToggle1.addEventListener("click", () => menu1.classList.toggle("hidden"));
+    menuToggle2.addEventListener("click", () => menu2.classList.toggle("hidden"));
+    menuToggleEmail.addEventListener("click", () => menuEmail.classList.toggle("hidden"));
+    menuToggleBiztalk.addEventListener("click", () => menuBiztalk.classList.toggle("hidden"));
+    menu2.classList.remove("hidden"); // 관리메뉴는 기본으로 열어둠
+
+    // ✅ 메뉴얼 더미 데이터 (20개)
+    const inquiryExamples = [
+        "비밀번호 초기화 문의", "수강 기간 연장 요청", "강의 환불 절차 문의",
+        "교재 배송 지연 문의", "모바일 앱 오류 신고", "세금계산서 발행 요청",
+        "아이디 변경 요청", "강의 내용 관련 질문", "수료증 발급 문의",
+        "단체 수강 할인 문의", "결제 오류 발생", "사이트 접속 불가",
+        "학습 진도율 반영 오류", "강사에게 질문하기 기능 문의", "기업 전용 강의 개설 문의"
+    ];
+
+    const procedureExamples = [
+        "1. 고객 정보 확인\n2. 관리자 페이지 로그인\n3. 비밀번호 초기화 버튼 클릭\n4. 고객에게 초기화 완료 안내",
+        "1. 수강생 학습 이력 조회\n2. 연장 가능 여부 확인 (정책 확인)\n3. 연장 신청서 접수 및 승인\n4. 시스템에 수강 기간 반영",
+        "1. 환불 규정 안내\n2. 환불 신청서 접수\n3. 학습 진도율 및 수강 기간 확인\n4. 환불 금액 산정 및 처리",
+        "1. 운송장 번호 조회\n2. 택배사 문의 및 배송 현황 확인\n3. 고객에게 배송 지연 사유 및 예상일 안내\n4. 필요 시 재발송 처리",
+        "1. 오류 발생 환경 (기기, OS, 앱 버전) 확인\n2. 재현 경로 확인\n3. 개발팀에 전달 및 처리 요청\n4. 고객에게 진행 상황 안내",
+        "1. 기업 정보 및 사업자등록증 확인\n2. 세금계산서 발행 시스템 접속\n3. 발행 정보 입력 및 발행\n4. 고객에게 발행 완료 안내"
+    ];
+
+    const customerMessageExamples = [
+        "안녕하세요, {고객명}님. 요청하신 비밀번호가 아이디와 동일하게 초기화되었습니다. 로그인 후 비밀번호를 변경해주세요.",
+        "안녕하세요, {고객명}님. 수강 기간 연장 요청이 접수되었습니다. 현재 학습 이력을 확인 중이며, 2영업일 이내로 처리 결과를 안내해 드리겠습니다.",
+        "안녕하세요, {고객명}님. 환불 규정에 따라 환불 금액이 산정되었습니다. 자세한 내용은 이메일로 발송해 드렸으니 확인 부탁드립니다.",
+        "안녕하세요, {고객명}님. 교재 배송이 지연되어 죄송합니다. 현재 {택배사명}을 통해 배송 중이며, 예상 배송일은 {날짜}입니다.",
+        "안녕하세요, {고객명}님. 모바일 앱 오류 신고가 접수되었습니다. 빠른 시일 내에 확인 후 조치하겠습니다. 불편을 드려 죄송합니다.",
+        "안녕하세요, {고객명}님. 요청하신 세금계산서가 발행 완료되었습니다. 이메일로 발송해 드렸으니 확인 부탁드립니다."
+    ];
+
+    const dummyManuals = Array.from({ length: 20 }, (_, i) => {
+        const companies = [
+            { name: "삼성전자", code: "samsung" },
+            { name: "SK하이닉스", code: "skhynix" },
+            { name: "LG화학", code: "lgchem" },
+            { name: "현대자동차", code: "hyundai" },
+            { name: "카카오", code: "kakao" }, // 5
+            { name: "네이버", code: "naver" }, // 6
+            { name: "CJ푸드빌", code: "cjfood" }, // 7
+            { name: "대한항공", code: "koreanair" }, // 8
+            { name: "다우오피스", code: "daou" }, // 9
+            { name: "포스코", code: "posco" } // 10
+        ];
+        const company = companies[i % companies.length];
+        const authors = ["박지현", "이현우", "김영희", "이하윤"];
+
+        return {
+            regDate: `2025-10-${String(20 - i % 20).padStart(2, '0')} ${String(10 + i % 12).padStart(2, '0')}:${String(30 + i % 30).padStart(2, '0')}`,
+            companyCode: company.code,
+            companyName: company.name, // 10개 기업 반복
+            title: `[${company.name}] ${inquiryExamples[i % inquiryExamples.length].substring(0, 10)}`, // 제목 추가
+            inquiry: inquiryExamples[i % inquiryExamples.length], // 15개 문의 반복
+            procedure: procedureExamples[i % procedureExamples.length], // 6개 절차 반복
+            author: authors[i % authors.length],
+            customerMessage: `안녕하세요, {고객명}님. 요청하신 비밀번호가 아이디와 동일하게 초기화되었습니다.`,
+            link: `http://internal.wiki/doc/${100+i}`
+        };
+    }).sort((a, b) => new Date(b.regDate) - new Date(a.regDate));
+
+    const tbody = document.getElementById("table-body");
+    const loadMoreBtn = document.getElementById("load-more");
+    const itemsPerPage = 10;
+    let itemsShown = 0;
+
+    // ✅ 검색 필터 요소
+    const searchCompanyName = document.getElementById('search-company-name');
+    const searchCompanyCode = document.getElementById('search-company-code');
+    const companySuggestions = document.getElementById('company-suggestions');
+    const searchTitle = document.getElementById('search-title');
+    const searchInquiry = document.getElementById('search-inquiry');
+    const searchAuthor = document.getElementById('search-author');
+    const searchBtn = document.getElementById('search-btn');
+    const resetSearchBtn = document.getElementById('reset-search-btn');
+
+    function renderTable() {
+        tbody.innerHTML = ''; // 테이블 비우기
+
+        // 검색어 가져오기
+        const companyCodeQuery = searchCompanyCode.value.toLowerCase();
+        const companyNameQuery = searchCompanyName.value.toLowerCase();
+        const titleQuery = searchTitle.value.toLowerCase();
+        const inquiryQuery = searchInquiry.value.toLowerCase();
+        const authorQuery = searchAuthor.value.toLowerCase();
+
+        const filteredManuals = dummyManuals.filter(m => 
+            m.companyCode.toLowerCase().includes(companyCodeQuery) &&
+            m.companyName.toLowerCase().includes(companyNameQuery) &&
+            m.title.toLowerCase().includes(titleQuery) &&
+            m.inquiry.toLowerCase().includes(inquiryQuery) &&
+            m.author.toLowerCase().includes(authorQuery)
+        );
+
+        const toShow = filteredManuals.slice(0, itemsShown + itemsPerPage);
+        toShow.forEach((d, index) => {
+            const row = document.createElement("tr");
+            row.className = "border-b hover:bg-blue-50 transition cursor-pointer";
+            row.innerHTML = `
+                <!-- 각 td에 데이터 바인딩 -->
+                <td class='p-4 whitespace-nowrap'>${d.regDate}</td>
+                <td class='p-4 whitespace-nowrap'>${d.companyCode}</td>
+                <td class='p-4 whitespace-nowrap font-medium'>${d.companyName}</td>
+                <td class='p-4 whitespace-nowrap truncate font-semibold' title="${d.title}">${d.title}</td>
+                <td class='p-4 whitespace-nowrap truncate' title="${d.inquiry}">${d.inquiry}</td>
+                <td class='p-4 whitespace-nowrap'>${d.author}</td>
+                <td class='p-4 whitespace-nowrap truncate'><a href="${d.link}" target="_blank" class="text-blue-600 hover:underline" title="${d.link}">문서보기</a></td>
+                <!-- <td><button class="text-blue-600 hover:underline" onclick="openManualDetail(${JSON.stringify(d).replace(/"/g, '&quot;')})">상세보기</button></td> -->
+                `;
+            tbody.appendChild(row);
+        });
+
+        itemsShown = toShow.length;
+
+        if (itemsShown >= filteredManuals.length) {
+            loadMoreBtn.style.display = 'none';
+        }
+        // '더보기' 버튼을 다시 활성화해야 할 경우를 대비
+        else {
+            loadMoreBtn.style.display = 'block';
+        }
+        document.getElementById("count").innerText = `총 ${filteredManuals.length}건`;
+    }
+
+    function handleSearch() {
+        itemsShown = 0; // 검색 시 페이지네이션 초기화
+        renderTable();
+    }
+
+    loadMoreBtn.addEventListener('click', () => {
+        itemsShown += itemsPerPage;
+        renderTable();
+    });
+    searchBtn.addEventListener('click', handleSearch);
+    resetSearchBtn.addEventListener('click', () => {
+        searchCompanyName.value = '';
+        searchCompanyCode.value = '';
+        searchTitle.value = '';
+        searchInquiry.value = '';
+        searchAuthor.value = '';
+        handleSearch();
+    });
+
+    // ✅ 기업명 검색 기능 (b2b_dashboard_tailwind.html 에서 가져옴)
+    const companyDB = [
+        { name: "삼성전자", code: "samsung" }, { name: "SK하이닉스", code: "skhynix" },
+        { name: "LG화학", code: "lgchem" }, { name: "현대자동차", code: "hyundai" },
+        { name: "카카오", code: "kakao" }, { name: "네이버", code: "naver" },
+        { name: "CJ푸드빌", code: "cjfood" }, { name: "대한항공", code: "koreanair" },
+        { name: "다우오피스", code: "daou" }, { name: "포스코", code: "posco" }
+    ];
+
+    let highlightedIndex = -1;
+    searchCompanyName.addEventListener("input", () => {
+        const query = searchCompanyName.value.trim();
+        if (query.length === 0) {
+            companySuggestions.classList.add("hidden");
+            searchCompanyCode.value = ""; // 기업명 비우면 기업코드도 비움
+            return;
+        }
+
+        const filteredCompanies = companyDB.filter(c => c.name.toLowerCase().includes(query.toLowerCase()));
+        
+        companySuggestions.innerHTML = "";
+        filteredCompanies.forEach(company => {
+            const item = document.createElement("div");
+            item.className = "px-4 py-2 hover:bg-blue-50 cursor-pointer";
+            item.textContent = company.name;
+            item.addEventListener("click", () => {
+                searchCompanyName.value = company.name;
+                searchCompanyCode.value = company.code;
+                companySuggestions.classList.add("hidden");
+            });
+            companySuggestions.appendChild(item);
+        });
+
+        if (filteredCompanies.length > 0) {
+            companySuggestions.classList.remove("hidden");
+        } else {
+            companySuggestions.classList.add("hidden");
+        }
+        highlightedIndex = -1; // 검색어 변경 시 하이라이트 초기화
+    });
+
+    // 다른 곳 클릭 시 제안 창 닫기
+    document.addEventListener("click", (e) => {
+      if (!searchCompanyName.contains(e.target) && !companySuggestions.contains(e.target)) {
+        companySuggestions.classList.add("hidden");
+      }
+    });
+
+    function highlightItem(index) {
+        const items = companySuggestions.querySelectorAll("div");
+        items.forEach((item, i) => {
+            if (i === index) {
+                item.classList.add("bg-blue-100");
+                item.scrollIntoView({ block: 'nearest' });
+            } else {
+                item.classList.remove("bg-blue-100");
+            }
+        });
+    }
+
+    // 엔터 키로 검색 실행
+    [searchCompanyName, searchTitle, searchInquiry, searchAuthor].forEach(input => {
+        input.addEventListener('keydown', e => {
+            const items = companySuggestions.querySelectorAll("div");
+            if (input === searchCompanyName && !companySuggestions.classList.contains("hidden") && items.length > 0) {
+                if (e.key === "ArrowDown") {
+                    e.preventDefault();
+                    highlightedIndex = (highlightedIndex + 1) % items.length;
+                    highlightItem(highlightedIndex);
+                    return; // handleSearch()가 실행되지 않도록 함
+                } else if (e.key === "ArrowUp") {
+                    e.preventDefault();
+                    highlightedIndex = (highlightedIndex - 1 + items.length) % items.length;
+                    highlightItem(highlightedIndex);
+                    return; // handleSearch()가 실행되지 않도록 함
+                } else if (e.key === "Enter" && highlightedIndex > -1) {
+                    e.preventDefault();
+                    items[highlightedIndex].click();
+                    companySuggestions.classList.add("hidden");
+                    handleSearch(); // 선택 후 검색 실행
+                    return;
+                }
+            }
+
+            if (e.key === 'Enter') {
+                handleSearch();
+            }
+        });
+    });
+
+    // 초기 데이터 로드
+    renderTable();
+
+    // ✅ 메뉴얼 상세 보기 모달 관련 스크립트
+    const manualDetailModal = document.getElementById("manualDetailModal");
+    const modalContentArea = document.getElementById("manualDetailContentArea");
+    const closeManualModalBtn = document.getElementById("closeManualModalBtn");
+    const editManualBtn = document.getElementById("editManualBtn");
+    const saveManualBtn = document.getElementById("saveManualBtn");
+    let currentManualIndex = -1;
+
+    function openManualDetail(manual) {
+        currentManualIndex = dummyManuals.findIndex(m => m === manual);
+        modalContentArea.innerHTML = `
+            <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <div class="grid grid-cols-[140px_1fr] border-b border-gray-200">
+                    <div class="font-semibold text-gray-600 bg-gray-50 p-4">등록일시</div>
+                    <div class="p-4">${manual.regDate}</div>
+                </div>
+                <div class="grid grid-cols-[140px_1fr] border-b border-gray-200">
+                    <div class="font-semibold text-gray-600 bg-gray-50 p-4">기업코드</div>
+                    <div class="p-4 editable-field">${manual.companyCode}</div>
+                </div>
+                <div class="grid grid-cols-[140px_1fr] border-b border-gray-200">
+                    <div class="font-semibold text-gray-600 bg-gray-50 p-4">기업명</div>
+                    <div class="p-4 editable-field">${manual.companyName}</div>
+                </div>
+                <div class="grid grid-cols-[140px_1fr] border-b border-gray-200">
+                    <div class="font-semibold text-gray-600 bg-gray-50 p-4">제목</div>
+                    <div class="p-4 whitespace-pre-wrap editable-field">${manual.title}</div>
+                </div>
+                <div class="grid grid-cols-[140px_1fr] border-b border-gray-200">
+                    <div class="font-semibold text-gray-600 bg-gray-50 p-4">상황개요</div>
+                    <div class="p-4 whitespace-pre-wrap editable-field">${manual.inquiry}</div>
+                </div>
+                <div class="grid grid-cols-[140px_1fr] border-b border-gray-200">
+                    <div class="font-semibold text-gray-600 bg-gray-50 p-4">응대절차</div>
+                    <div class="p-4 whitespace-pre-wrap editable-field">${manual.procedure}</div>
+                </div>
+                <div class="grid grid-cols-[140px_1fr] border-b border-gray-200">
+                    <div class="font-semibold text-gray-600 bg-gray-50 p-4">작성자</div>
+                    <div class="p-4 editable-field">${manual.author}</div>
+                </div>
+                <div class="grid grid-cols-[140px_1fr] border-b border-gray-200">
+                    <div class="font-semibold text-gray-600 bg-gray-50 p-4">고객전달문구</div>
+                    <div class="p-4 whitespace-pre-wrap editable-field">${manual.customerMessage}</div>
+                </div>
+                <div class="grid grid-cols-[140px_1fr]">
+                    <div class="font-semibold text-gray-600 bg-gray-50 p-4">관련문서/링크</div>
+                    <div class="p-4 editable-field"><a href="${manual.link}" target="_blank" class="text-blue-600 hover:underline">${manual.link}</a></div>
+                </div>
+            </div>
+        `;
+        manualDetailModal.classList.remove("hidden");
+        exitEditMode(); // 항상 보기 모드로 시작
+    }
+
+    function closeManualDetailModal() {
+        manualDetailModal.classList.add("hidden");
+    }
+
+    function enterEditMode() {
+        modalContentArea.querySelectorAll('.editable-field').forEach(field => {
+            field.contentEditable = "true";
+            field.classList.add('bg-yellow-50', 'outline-blue-400', 'p-3');
+        });
+        editManualBtn.classList.add('hidden');
+        saveManualBtn.classList.remove('hidden');
+    }
+
+    function exitEditMode() {
+        modalContentArea.querySelectorAll('.editable-field').forEach(field => {
+            field.contentEditable = "false";
+            field.classList.remove('bg-yellow-50', 'outline-blue-400', 'p-3');
+        });
+        editManualBtn.classList.remove('hidden');
+        saveManualBtn.classList.add('hidden');
+    }
+
+    editManualBtn.addEventListener("click", enterEditMode);
+
+    saveManualBtn.addEventListener("click", () => {
+        // 실제 저장 로직은 여기에 구현합니다.
+        // 지금은 더미 데이터를 업데이트하고 모달을 닫습니다.
+        alert("저장되었습니다.");
+        // 여기서 dummyManuals[currentManualIndex] 데이터를 업데이트 할 수 있습니다.
+        exitEditMode();
+        // 필요 시 테이블을 다시 렌더링 할 수 있습니다.
+        // renderTable(); 
+    });
+
+    closeManualModalBtn.addEventListener("click", closeManualDetailModal);
+    manualDetailModal.addEventListener("click", (e) => {
+        if (e.target === manualDetailModal) {
+            closeManualDetailModal();
+        }
+    });
+
+    // 테이블 행 클릭 이벤트 리스너 (renderTable 함수 내에서 각 row에 추가)
+    tbody.addEventListener('click', (e) => {
+        const row = e.target.closest('tr');
+        if (row && !e.target.closest('a')) { // 링크 클릭 시 모달 열림 방지
+            const rowIndex = Array.from(tbody.children).indexOf(row);
+            // 페이지네이션을 고려하여 실제 인덱스 계산이 필요할 수 있음. 현재는 itemsShown 기준으로 계산
+            openManualDetail(dummyManuals[rowIndex]);
+        }
+    });
+
+  </script>
+</body>
+
+</html>

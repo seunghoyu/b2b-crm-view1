@@ -5,6 +5,10 @@
   <meta charset="UTF-8" />
   <title>B2B CRM 고객조회</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    body { font-family: 'Pretendard', sans-serif; }
+  </style>
 </head>
 
 <body class="bg-blue-50 h-screen flex overflow-hidden">
@@ -22,9 +26,9 @@
           <span>▼</span>
         </button>
         <div id="menu1" class="hidden ml-4 mt-2 space-y-1 text-sm">
-          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">문자발송</a>
-          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">문자설정</a>
-          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">문자발송</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">문자설정</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회</a>
         </div>
       </div>
 
@@ -47,10 +51,10 @@
           <span>▼</span>
         </button>
         <div id="menuBiztalk" class="hidden ml-4 mt-2 space-y-1 text-sm">
-          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">비즈톡발송(강의)</a>
-          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">비즈톡발송(회원)</a>
-          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회(강의)</a>
-          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회(회원)</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">비즈톡발송(강의)</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">비즈톡발송(회원)</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회(강의)</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회(회원)</a>
         </div>
       </div>
 
@@ -64,8 +68,9 @@
           <a href="b2b_dashboard_tailwind.html" class="block px-3 py-1 hover:bg-blue-700 rounded">상담 현황</a>
           <a href="company_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">기업 목록</a>
           <a href="customer_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">고객 목록</a>
-          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">수강시간 조회</a>
-          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">학습상담·CS 관리</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">수강시간 조회</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">학습상담·CS 관리</a>
+          <a href="manual_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">메뉴얼 관리</a>
           <a href="customer_registration.html" class="block px-3 py-1 hover:bg-blue-700 rounded">신규 고객 등록</a>
         </div>
       </div>
@@ -77,37 +82,57 @@
     <!-- ✅ 상단 고정: 응대입력 -->
     <header class="sticky top-0 bg-white shadow p-5 z-10">
       <div class="w-full">
-        <h2 class="text-xl font-semibold text-gray-800 border-b pb-4 mb-6">응대 내용 입력</h2>
+        <div class="flex justify-between items-center border-b pb-4 mb-6">
+          <h2 class="text-xl font-semibold text-gray-800">응대 내용</h2>
+        </div>
         <div class="grid grid-cols-4 gap-4 mb-4">
-          <select class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-400">
-            <option>담당자 선택</option>
-            <option>홍길동</option>
-            <option>이현우</option>
+          <select id="responseManager" class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-400 bg-gray-100" disabled>
             <option>박지현</option>
+            <option>이현우</option>
+            <option>김영희</option>
+            <option>이하윤</option>
           </select>
-          <select id="statusSelect" class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-400">
-            <option>처리상태 선택</option>
+          <select id="statusSelect" class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-400 bg-gray-100" disabled>
             <option value="처리대기" class="text-red-600 font-semibold">처리대기</option>
             <option value="처리완료" class="text-green-600 font-semibold">처리완료</option>
           </select>
-          <select id="categoryMain" class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-400">
-            <option value="">대분류 선택</option>
-            <option value="수강·결제">수강·결제</option>
-            <option value="수강환경·접속">수강환경·접속</option>
-            <option value="학습진행·평가">학습진행·평가</option>
-            <option value="강의·강사">강의·강사</option>
-            <option value="기타·제휴">기타·제휴</option>
-          </select>
-          <select id="categorySub" class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-400 disabled:bg-gray-100 disabled:cursor-not-allowed" disabled>
-            <option value="">중분류 선택</option>
-          </select>
+          <div class="col-span-2">
+            <select id="categorySelect" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-400 bg-gray-100" disabled>
+              <option value="">분류 선택</option>
+              <option>수강신청 기간/방법</option>
+              <option>결제 방법/오류</option>
+              <option>과정 취소/변경</option>
+              <option>수강방법 문의</option>
+              <option>수강/복습 기간</option>
+              <option>아이디/비밀번호 문의</option>
+              <option>교재배송</option>
+              <option>모바일 수강</option>
+              <option>동영상 오류</option>
+              <option>MP3 관련 문의</option>
+              <option>PMP/PC 다운로드</option>
+              <option>학습자료 다운로드</option>
+              <option>출석체크/진도율</option>
+              <option>평가시험</option>
+              <option>수료여부 및 기준</option>
+              <option>온라인 모의고사(대학생)</option>
+              <option>강의 내용</option>
+              <option>선생님께 질문하기</option>
+              <option>기타문의</option>
+              <option>제휴문의</option>
+            </select>
+          </div>
         </div>
         <div class="grid grid-cols-2 gap-4">
-          <textarea placeholder="문의 내용을 입력하세요..." class="border border-gray-300 rounded-lg px-3 py-2 w-full h-24 focus:ring-blue-400 focus:outline-none"></textarea>
+          <textarea id="inquiryContent" placeholder="문의 내용을 입력하세요..." class="border border-gray-300 rounded-lg px-3 py-2 w-full h-24 focus:ring-blue-400 focus:outline-none bg-gray-100" readonly></textarea>
           <div class="flex flex-col space-y-2">
-            <input type="text" placeholder="제목을 입력하세요" class="w-full border border-blue-300 bg-blue-50 rounded-lg px-3 py-2 text-sm focus:ring-blue-400 placeholder:font-medium" />
-            <textarea placeholder="응대 내용을 입력하세요..." class="border border-gray-300 rounded-lg px-3 py-2 w-full flex-1 focus:ring-blue-400 focus:outline-none"></textarea>
+            <input type="text" id="responseTitle" placeholder="제목을 입력하세요" class="w-full border border-blue-300 bg-blue-50 rounded-lg px-3 py-2 text-sm focus:ring-blue-400 placeholder:font-medium bg-gray-100" readonly />
+            <textarea id="responseContent" placeholder="응대 내용을 입력하세요..." class="border border-gray-300 rounded-lg px-3 py-2 w-full flex-1 focus:ring-blue-400 focus:outline-none bg-gray-100" readonly></textarea>
           </div>
+        </div>
+        <div class="flex justify-end mt-4 space-x-2">
+          <button id="editResponseBtn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-semibold text-sm">수정</button>
+          <button id="saveResponseBtn" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition font-semibold text-sm">저장</button>
+          <button id="cancelResponseBtn" class="hidden bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition font-semibold text-sm">취소</button>
         </div>
       </div>
     </header>
@@ -124,7 +149,7 @@
             <p class="text-sm text-gray-500 mb-2">상담자: 홍길동 (영업팀)</p>
             <div class="mt-4 text-sm text-gray-800 space-y-4">
               <!-- 3열 그리드 -->
-              <div class="grid grid-cols-3">
+              <div class="grid grid-cols-2">
                 <!-- 1열: 기업정보 -->
                 <div>
                   <h4 class="font-bold text-blue-600">[기업정보]</h4>
@@ -141,14 +166,6 @@
                     <div class="grid grid-cols-[80px_1fr]"><span class="p-2 font-semibold bg-gray-50 border-r border-b border-gray-200">이름</span><span class="p-2 border-b border-gray-200">김해커</span></div>
                     <div class="grid grid-cols-[80px_1fr]"><span class="p-2 font-semibold bg-gray-50 border-r border-b border-gray-200">아이디</span><span class="p-2 border-b border-gray-200">lgchem01</span></div>
                     <div class="grid grid-cols-[80px_1fr]"><span id="customer-phone" class="p-2 font-semibold bg-gray-50 border-r border-b border-gray-200">전화번호</span><span class="p-2 border-b border-gray-200">010-1234-5678</span></div>
-                  </div>
-                </div>
-                <!-- 3열: 구분 -->
-                <div>
-                  <h4 class="font-bold text-blue-600">[구분]</h4>
-                  <div class="mt-2 border-t border-l border-r border-gray-200">
-                    <div class="grid grid-cols-[80px_1fr]"><span class="p-2 font-semibold bg-gray-50 border-r border-b border-gray-200">대분류</span><span class="p-2 border-b border-gray-200">수강·결제</span></div>
-                    <div class="grid grid-cols-[80px_1fr]"><span class="p-2 font-semibold bg-gray-50 border-r border-b border-gray-200">중분류</span><span class="p-2 border-b border-gray-200">결제오류</span></div>
                   </div>
                 </div>
               </div>
@@ -185,10 +202,14 @@
                 학습자ID 로그인
               </button>
               </div>
-              <div class="grid grid-cols-3 gap-2">
+              <div class="grid grid-cols-4 gap-2">
               <button id="menuSendSms" class="w-full text-center px-4 py-2 rounded-lg bg-blue-50 hover:bg-blue-100 transition">문자 전송</button>
               <button id="menuSendEmail" class="w-full text-center px-4 py-2 rounded-lg bg-blue-50 hover:bg-blue-100 transition">이메일 전송</button>
               <button id="menuSendBiztalk" class="w-full text-center px-4 py-2 rounded-lg bg-blue-50 hover:bg-blue-100 transition">알림톡 전송</button>
+              <button id="openNoteModalBtn" class="w-full text-center px-4 py-2 rounded-lg bg-blue-100 hover:bg-blue-200 transition text-blue-800 font-semibold">쪽지 전송</button>
+            </div>
+            <div class="grid grid-cols-1 gap-2 mt-2">
+              <button id="menuManualLookup" class="w-full text-center px-4 py-2 rounded-lg bg-green-100 hover:bg-green-200 transition text-green-800 font-semibold">메뉴얼 조회</button>
             </div>
           </div>
         </div>
@@ -334,7 +355,7 @@
             <button onclick="alert('시험 재응시 기능이 실행됩니다.')" class="w-full bg-white border border-gray-300 text-gray-800 px-5 py-3 rounded-lg hover:bg-gray-100 transition font-semibold shadow-sm text-lg">
               시험 재응시
             </button>
-            <button onclick="alert('수강기간 연장 기능이 실행됩니다.')" class="w-full bg-white border border-gray-300 text-gray-800 px-5 py-3 rounded-lg hover:bg-gray-100 transition font-semibold shadow-sm text-lg">
+            <button id="openExtendPeriodModalBtn" class="w-full bg-white border border-gray-300 text-gray-800 px-5 py-3 rounded-lg hover:bg-gray-100 transition font-semibold shadow-sm text-lg">
               수강기간 연장
             </button>
             <button onclick="alert('연장 초기화 기능이 실행됩니다.')" class="w-full bg-white border border-gray-300 text-gray-800 px-5 py-3 rounded-lg hover:bg-gray-100 transition font-semibold shadow-sm text-lg">
@@ -343,11 +364,52 @@
             <button onclick="alert('평가시험창 재진입 기능이 실행됩니다.')" class="w-full bg-white border border-gray-300 text-gray-800 px-5 py-3 rounded-lg hover:bg-gray-100 transition font-semibold shadow-sm text-lg">
               평가시험창 재진입
             </button>
-            <button onclick="alert('삭제 기능이 실행됩니다.')" class="w-full bg-white border border-gray-300 text-gray-800 px-5 py-3 rounded-lg hover:bg-red-500 hover:text-white transition font-semibold shadow-sm text-lg">
+            <button onclick="alert('삭제 기능이 실행됩니다.')" class="w-full bg-red-600 text-white px-5 py-3 rounded-lg hover:bg-red-700 transition font-semibold shadow-sm text-lg">
               삭제
             </button>
           </div>
           <button id="closeStudyModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+        </div>
+      </div>
+
+      <!-- ✅ 수강기간 연장 전용 모달 -->
+      <div id="extendPeriodModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+        <div class="bg-white rounded-xl shadow-2xl w-[600px] p-6 relative border-4 border-blue-300">
+          <h3 class="text-xl font-bold text-blue-700 mb-4 pb-2 border-b-2 border-blue-200">수강기간 연장</h3>
+          
+          <!-- 기존 정보 표시 -->
+          <div id="extendCourseInfo" class="text-sm space-y-2 bg-gray-50 p-4 rounded-lg border mb-4">
+            <!-- JS로 내용 채워짐 -->
+          </div>
+
+          <!-- 수정할 정보 입력 -->
+          <div class="space-y-4 text-sm">
+            <div class="grid grid-cols-2 gap-4 items-center">
+              <div>
+                <label class="font-semibold">시작일</label>
+                <input type="date" id="newStartDate" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none">
+              </div>
+              <div>
+                <label class="font-semibold">종료일</label>
+                <input type="date" id="newEndDate" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none">
+              </div>
+            </div>
+            <div>
+              <label class="font-semibold">적용 대상</label>
+              <div id="periodCheckboxes" class="flex items-center space-x-4 mt-2">
+                <label class="flex items-center"><input type="checkbox" value="수강기간" class="mr-1 h-4 w-4"> 수강기간</label>
+                <label class="flex items-center"><input type="checkbox" value="복습기간" class="mr-1 h-4 w-4"> 복습기간</label>
+                <label class="flex items-center"><input type="checkbox" value="졸업기간" class="mr-1 h-4 w-4"> 졸업기간</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- 버튼 -->
+          <div class="flex justify-end mt-6 space-x-3">
+            <button id="cancelExtendBtn" class="bg-gray-400 text-white px-5 py-2 rounded-lg hover:bg-gray-500 transition font-semibold">취소</button>
+            <button id="saveExtendBtn" class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition font-semibold">저장하기</button>
+          </div>
+          <button id="closeExtendPeriodModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
         </div>
       </div>
 
@@ -400,6 +462,56 @@
         </div>
       </div>
 
+      <!-- ✅ 메뉴얼 조회 모달 -->
+      <div id="manualLookupModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-7xl h-[80vh] flex flex-col p-6 relative border-4 border-blue-300">
+          <h3 class="text-2xl font-bold text-blue-700 mb-4 pb-2 border-b-2 border-blue-200">
+            메뉴얼 조회 (<span id="lookupCompanyCode"></span>)
+          </h3>
+          <div class="flex-1 flex overflow-hidden space-x-6 mt-4">
+            <!-- 좌측: 검색 필터 -->
+            <div class="w-1/3 lg:w-1/4 flex flex-col space-y-4 pr-6 border-r">
+              <div>
+                <label for="modal-search-title" class="text-sm font-medium text-gray-700">제목</label>
+                <input type="text" id="modal-search-title" placeholder="제목으로 검색" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" />
+              </div>
+              <div>
+                <label for="modal-search-inquiry" class="text-sm font-medium text-gray-700">상황개요</label>
+                <input type="text" id="modal-search-inquiry" placeholder="상황개요로 검색" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" />
+              </div>
+              <div>
+                <label for="modal-search-author" class="text-sm font-medium text-gray-700">작성자</label>
+                <input type="text" id="modal-search-author" placeholder="작성자로 검색" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" />
+              </div>
+              <div class="flex-grow"></div> <!-- 버튼을 아래로 밀기 위한 빈 공간 -->
+              <div class="space-y-2">
+                <button id="modal-search-btn" class="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-semibold">검색</button>
+                <button id="modal-reset-btn" class="w-full bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition font-semibold">초기화</button>
+              </div>
+            </div>
+            <!-- 우측: 테이블 -->
+            <div class="w-2/3 lg:w-3/4 overflow-y-auto">
+              <table class="w-full table-auto border-collapse text-sm text-gray-700">
+                <thead class="bg-gray-100 sticky top-0"><tr class="border-b text-left text-gray-600"><th class="p-3">등록일시</th><th class="p-3">제목</th><th class="p-3">상황개요</th><th class="p-3">작성자</th></tr></thead>
+                <tbody id="manualLookupTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="flex justify-end mt-6 flex-shrink-0">
+            <button id="closeManualLookupModalBtn" class="bg-gray-400 text-white px-5 py-2 rounded-lg hover:bg-gray-500 transition font-semibold shadow-md">닫기</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ✅ 메뉴얼 상세 보기 모달 (manual_list.html 에서 가져옴) -->
+      <div id="manualDetailModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto p-8 relative border-4 border-blue-300">
+          <h3 class="text-2xl font-bold text-blue-700 mb-6 pb-2 border-b-2 border-blue-200">메뉴얼 상세 보기</h3>
+          <div id="manualDetailContentArea" class="text-sm text-gray-700 space-y-4"></div>
+          <div class="flex justify-end mt-8 space-x-3"><button id="editManualBtn" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-semibold shadow-md">수정</button><button id="saveManualBtn" class="hidden bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition font-semibold shadow-md">저장</button><button id="closeManualDetailModalBtn" class="bg-gray-400 text-white px-6 py-2 rounded-lg hover:bg-gray-500 transition font-semibold shadow-md">닫기</button></div>
+        </div>
+      </div>
+
       <script>
         // ✅ 사이드메뉴 토글 (다른 페이지와 동일)
         const menuToggle1 = document.getElementById("menuToggle1");
@@ -417,35 +529,62 @@
         menuToggleBiztalk.addEventListener("click", () => menuBiztalk.classList.toggle("hidden"));
         menu2.classList.remove("hidden"); // 관리메뉴는 기본으로 열어둠
 
-        // 🔹 대분류-중분류 연동 기능
-        const categoryMap = {
-          "수강·결제": ["결제오류", "환불문의", "영수증발급", "할인문의", "결제방법"],
-          "수강환경·접속": ["로그인문제", "비밀번호찾기", "계정오류", "접속불가", "브라우저문제"],
-          "학습진행·평가": ["진도율문의", "시험응시", "과제제출", "수료증발급", "성적문의"],
-          "강의·강사": ["강사평가", "강의내용", "강의자료", "강의오류", "강의요청"],
-          "기타·제휴": ["제휴문의", "견적문의", "단체문의", "기타", "건의사항"]
-        };
+        // ✅ 상단 응대 내용 섹션 제어
+        const responseFields = [
+          document.getElementById('responseManager'),
+          document.getElementById('statusSelect'),
+          document.getElementById('categorySelect'),
+          document.getElementById('inquiryContent'),
+          document.getElementById('responseTitle'),
+          document.getElementById('responseContent')
+        ];
 
-        const categoryMainSelect = document.getElementById("categoryMain");
-        const categorySubSelect = document.getElementById("categorySub");
+        const editResponseBtn = document.getElementById('editResponseBtn');
+        const saveResponseBtn = document.getElementById('saveResponseBtn');
+        const cancelResponseBtn = document.getElementById('cancelResponseBtn');
 
-        // 대분류 선택 시 중분류 업데이트
-        categoryMainSelect.addEventListener("change", function() {
-          const selectedMain = this.value;
-          categorySubSelect.innerHTML = '<option value="">중분류 선택</option>';
-          
-          if (selectedMain && categoryMap[selectedMain]) {
-            categoryMap[selectedMain].forEach(sub => {
-              const option = document.createElement("option");
-              option.value = sub;
-              option.textContent = sub;
-              categorySubSelect.appendChild(option);
-            });
-            categorySubSelect.disabled = false;
-          } else {
-            categorySubSelect.disabled = true;
-          }
+        function enterResponseEditMode() {
+          responseFields.forEach(field => {
+            field.disabled = false;
+            field.readOnly = false;
+            field.classList.remove('bg-gray-100');
+          });
+          // 수정 버튼은 계속 보이게 하고, 취소 버튼만 나타나게 함
+          cancelResponseBtn.classList.remove('hidden');
+        }
+
+        function exitResponseEditMode() {
+          responseFields.forEach(field => {
+            field.disabled = true;
+            field.readOnly = true;
+            field.classList.add('bg-gray-100');
+          });
+          // 취소 버튼 숨김
+          cancelResponseBtn.classList.add('hidden');
+        }
+
+        editResponseBtn.addEventListener('click', enterResponseEditMode);
+        saveResponseBtn.addEventListener('click', () => {
+          alert('상담 내용이 저장되었습니다.');
+          exitResponseEditMode();
         });
+        cancelResponseBtn.addEventListener('click', () => {
+          // 실제로는 원본 데이터로 되돌려야 함
+          alert('수정이 취소되었습니다.');
+          populateResponseData(dummyConsultationData); // 더미 데이터로 다시 채움
+          exitResponseEditMode();
+        });
+
+        function populateResponseData(data) {
+          document.getElementById('responseManager').value = data.manager;
+          document.getElementById('statusSelect').value = data.status;
+          document.getElementById('categorySelect').value = data.category;
+          document.getElementById('responseTitle').value = data.title;
+          document.getElementById('inquiryContent').value = data.inquiryContent;
+          document.getElementById('responseContent').value = data.responseContent;
+        }
+
+        // 🔹 대분류-중분류 연동 기능 삭제 (통합됨)
 
         // ✅ 처리상태 드롭다운 색상 변경
         const statusSelect = document.getElementById("statusSelect");
@@ -466,6 +605,15 @@
         // 1️⃣ --- 더미데이터 (맨 위로 이동해야 함) ---
         
         // ✅ 회원 정보 더미 데이터
+        const dummyConsultationData = {
+          manager: "박지현",
+          status: "처리완료",
+          category: "아이디/비밀번호 문의",
+          title: "비밀번호 초기화 요청",
+          inquiryContent: "비밀번호를 잊어버렸습니다. 초기화 부탁드립니다.",
+          responseContent: "안녕하세요. 고객님. 요청하신 비밀번호는 아이디와 동일하게 초기화되었습니다. 로그인 후 변경 부탁드립니다."
+        };
+
         const memberData = {
           "기업": "LG화학",
           "이름": "김해커",
@@ -507,11 +655,40 @@
                 content: content,
             };
         });
+
+        // ✅ 메뉴얼 더미 데이터 (manual_list.html 에서 가져옴)
+        const inquiryExamples = ["비밀번호 초기화 문의", "수강 기간 연장 요청", "강의 환불 절차 문의", "교재 배송 지연 문의", "모바일 앱 오류 신고", "세금계산서 발행 요청", "아이디 변경 요청", "강의 내용 관련 질문", "수료증 발급 문의", "단체 수강 할인 문의", "결제 오류 발생", "사이트 접속 불가", "학습 진도율 반영 오류", "강사에게 질문하기 기능 문의", "기업 전용 강의 개설 문의"];
+        const procedureExamples = ["1. 고객 정보 확인\n2. 관리자 페이지 로그인\n3. 비밀번호 초기화 버튼 클릭\n4. 고객에게 초기화 완료 안내", "1. 수강생 학습 이력 조회\n2. 연장 가능 여부 확인 (정책 확인)\n3. 연장 신청서 접수 및 승인\n4. 시스템에 수강 기간 반영", "1. 환불 규정 안내\n2. 환불 신청서 접수\n3. 학습 진도율 및 수강 기간 확인\n4. 환불 금액 산정 및 처리", "1. 운송장 번호 조회\n2. 택배사 문의 및 배송 현황 확인\n3. 고객에게 배송 지연 사유 및 예상일 안내\n4. 필요 시 재발송 처리", "1. 오류 발생 환경 (기기, OS, 앱 버전) 확인\n2. 재현 경로 확인\n3. 개발팀에 전달 및 처리 요청\n4. 고객에게 진행 상황 안내", "1. 기업 정보 및 사업자등록증 확인\n2. 세금계산서 발행 시스템 접속\n3. 발행 정보 입력 및 발행\n4. 고객에게 발행 완료 안내"];
+        const dummyManuals = Array.from({ length: 20 }, (_, i) => {
+            const companies = [ { name: "삼성전자", code: "samsung" }, { name: "SK하이닉스", code: "skhynix" }, { name: "LG화학", code: "lgchem" }, { name: "현대자동차", code: "hyundai" }, { name: "카카오", code: "kakao" }, { name: "네이버", code: "naver" }, { name: "CJ푸드빌", code: "cjfood" }, { name: "대한항공", code: "koreanair" }, { name: "다우오피스", code: "daou" }, { name: "포스코", code: "posco" }];
+            const company = companies[i % companies.length];
+            const authors = ["박지현", "이현우", "김영희", "이하윤"];
+            return {
+                regDate: `2025-10-${String(20 - i % 20).padStart(2, '0')} ${String(10 + i % 12).padStart(2, '0')}:${String(30 + i % 30).padStart(2, '0')}`,
+                companyCode: company.code,
+                companyName: company.name,
+                title: `[${company.name}] ${inquiryExamples[i % inquiryExamples.length].substring(0, 10)}`, // 제목 추가
+                inquiry: inquiryExamples[i % inquiryExamples.length],
+                procedure: procedureExamples[i % procedureExamples.length],
+                author: authors[i % authors.length],
+                customerMessage: `안녕하세요, {고객명}님. 요청하신 비밀번호가 아이디와 동일하게 초기화되었습니다.`,
+                link: `http://internal.wiki/doc/${100+i}`
+            };
+        }).sort((a, b) => new Date(b.regDate) - new Date(a.dateB));
         
+        const categories = [
+          "수강신청 기간/방법", "결제 방법/오류", "과정 취소/변경", "수강방법 문의",
+          "수강/복습 기간", "아이디/비밀번호 문의", "교재배송", "모바일 수강",
+          "동영상 오류", "MP3 관련 문의", "PMP/PC 다운로드", "학습자료 다운로드",
+          "출석체크/진도율", "평가시험", "수료여부 및 기준", "온라인 모의고사(대학생)",
+          "강의 내용", "선생님께 질문하기", "기타문의", "제휴문의"
+        ];
+
         const historyData = Array.from({ length: 10 }, (_, i) => ({
           channel: i % 2 === 0 ? "1:1 문의게시판" : "전화상담",
-          categoryMain: ["수강·결제", "수강환경·접속", "학습진행·평가", "강의·강사", "기타·제휴"][i % 5],
-          categorySub: ["결제오류", "로그인문제", "진도율문의", "강사평가", "제휴문의"][i % 5],
+          // categoryMain: ["수강·결제", "수강환경·접속", "학습진행·평가", "강의·강사", "기타·제휴"][i % 5],
+          // categorySub: ["결제오류", "로그인문제", "진도율문의", "강사평가", "제휴문의"][i % 5],
+          category: categories[i % categories.length],
           date: `2025-09-${String(10 + i).padStart(2, '0')}`,
           datetime: `2025-09-${String(10 + i).padStart(2, '0')} ${String(14 + i).padStart(2, '0')}:${String(20 + (i * 3) % 60).padStart(2, '0')}`,
           title: `상담 테스트 ${i + 1}`,
@@ -530,6 +707,7 @@
           reviewPeriod: `2025-10-${1 + i} ~ 2025-10-${10 + i}`,
           attend: `${80 + i}%`,
           test: `${70 + i}%`,
+          graduationPeriod: `2025-11-${1 + i} ~ 2025-11-${10 + i}`, // 졸업기간 추가
           mock: `${75 + i}%`,
           reset: i % 3,
           level: i + 1,
@@ -882,12 +1060,8 @@
                     <td class="p-2 rounded-r-lg border border-gray-100">${h.channel}</td>
                   </tr>
                   <tr>
-                    <td class="p-2 bg-gray-50 font-semibold rounded-l-lg">대분류</td>
-                    <td class="p-2 rounded-r-lg border border-gray-100">${h.categoryMain}</td>
-                  </tr>
-                  <tr>
-                    <td class="p-2 bg-gray-50 font-semibold rounded-l-lg">중분류</td>
-                    <td class="p-2 rounded-r-lg border border-gray-100">${h.categorySub}</td>
+                    <td class="p-2 bg-gray-50 font-semibold rounded-l-lg">분류</td>
+                    <td class="p-2 rounded-r-lg border border-gray-100">${h.category}</td>
                   </tr>
                   <tr>
                     <td class="p-2 bg-gray-50 font-semibold rounded-l-lg">상담일시</td>
@@ -963,11 +1137,66 @@
         const studyActionModal = document.getElementById("studyActionModal");
         const closeStudyModalBtn = document.getElementById("closeStudyModalBtn");
 
+        let selectedStudyData = null; // 클릭한 행의 데이터를 저장할 변수
+
         studyBody.addEventListener("click", (e) => {
-          if (e.target.closest("tr")) {
+          const row = e.target.closest("tr");
+          if (row) {
+            const index = Array.from(studyBody.children).indexOf(row);
+            selectedStudyData = studyData.slice(0, studyShown)[index];
             studyActionModal.classList.remove("hidden");
           }
         });
+
+        // ✅ 수강기간 연장 모달 로직
+        const extendPeriodModal = document.getElementById("extendPeriodModal");
+        const openExtendPeriodModalBtn = document.getElementById("openExtendPeriodModalBtn");
+        const closeExtendPeriodModalBtn = document.getElementById("closeExtendPeriodModalBtn");
+        const cancelExtendBtn = document.getElementById("cancelExtendBtn");
+        const saveExtendBtn = document.getElementById("saveExtendBtn");
+        const extendCourseInfo = document.getElementById("extendCourseInfo");
+
+        function openExtendPeriodModal() {
+          if (!selectedStudyData) return;
+
+          // 기존 정보 채우기
+          extendCourseInfo.innerHTML = `
+            <p><strong>학습차수:</strong> ${selectedStudyData.round}</p>
+            <p><strong>강의코드:</strong> ${selectedStudyData.code}</p>
+            <p><strong>강의명:</strong> ${selectedStudyData.subject}</p>
+            <p><strong>수강기간:</strong> ${selectedStudyData.period}</p>
+            <p><strong>복습기간:</strong> ${selectedStudyData.reviewPeriod}</p>
+            <p><strong>졸업기간:</strong> ${selectedStudyData.graduationPeriod}</p>
+          `;
+
+          // 입력 필드 초기화
+          document.getElementById('newStartDate').value = '';
+          document.getElementById('newEndDate').value = '';
+          document.querySelectorAll('#periodCheckboxes input').forEach(cb => cb.checked = false);
+
+          studyActionModal.classList.add("hidden"); // 기존 모달 닫기
+          extendPeriodModal.classList.remove("hidden"); // 새 모달 열기
+        }
+
+        function closeExtendPeriodModal() {
+          extendPeriodModal.classList.add("hidden");
+        }
+
+        openExtendPeriodModalBtn.addEventListener("click", openExtendPeriodModal);
+        closeExtendPeriodModalBtn.addEventListener("click", closeExtendPeriodModal);
+        cancelExtendBtn.addEventListener("click", closeExtendPeriodModal);
+        extendPeriodModal.addEventListener("click", (e) => { if (e.target === extendPeriodModal) closeExtendPeriodModal(); });
+
+        saveExtendBtn.addEventListener("click", () => {
+          if (confirm("저장하시겠습니까?")) {
+            // 실제 저장 로직
+            alert("저장되었습니다.");
+            closeExtendPeriodModal();
+          }
+        });
+
+
+
 
         function closeStudyModal() {
           studyActionModal.classList.add("hidden");
@@ -1017,6 +1246,130 @@
             }
           });
         }
+
+        // 페이지 로드 시 응대 내용 채우기
+        populateResponseData(dummyConsultationData);
+
+      </script>
+
+      <!-- ✅ 메뉴얼 조회 관련 스크립트 -->
+      <script>
+        const menuManualLookupBtn = document.getElementById("menuManualLookup");
+        const manualLookupModal = document.getElementById("manualLookupModal");
+        const closeManualLookupModalBtn = document.getElementById("closeManualLookupModalBtn");
+        const manualLookupTableBody = document.getElementById("manualLookupTableBody");
+        const lookupCompanyCodeSpan = document.getElementById("lookupCompanyCode");
+
+        // 모달 내 검색 요소
+        const modalSearchTitle = document.getElementById("modal-search-title");
+        const modalSearchInquiry = document.getElementById("modal-search-inquiry");
+        const modalSearchAuthor = document.getElementById("modal-search-author");
+        const modalSearchBtn = document.getElementById("modal-search-btn");
+        const modalResetBtn = document.getElementById("modal-reset-btn");
+
+        // 메뉴얼 상세 모달 (위에서 복사해 온 모달)
+        const manualDetailModal = document.getElementById("manualDetailModal");
+        const manualDetailContentArea = document.getElementById("manualDetailContentArea");
+        const closeManualDetailModalBtn = document.getElementById("closeManualDetailModalBtn");
+        const editManualBtn = document.getElementById("editManualBtn");
+        const saveManualBtn = document.getElementById("saveManualBtn");
+        let currentManualIndex = -1;
+
+        menuManualLookupBtn.addEventListener("click", () => {
+          const currentCompanyCode = memberData["기업코드"]; // 현재 고객의 기업코드
+          lookupCompanyCodeSpan.textContent = currentCompanyCode;
+
+          const filteredManuals = dummyManuals.filter(m => m.companyCode === currentCompanyCode);
+          manualLookupTableBody.innerHTML = "";
+
+          if (filteredManuals.length > 0) {
+            filteredManuals.forEach(manual => {
+              const row = document.createElement("tr");
+              row.className = "border-b hover:bg-blue-50 transition cursor-pointer";
+              row.innerHTML = `
+                <td class='p-3 whitespace-nowrap'>${manual.regDate}</td>
+                <td class='p-3 font-semibold'>${manual.title}</td>
+                <td class='p-3'>${manual.inquiry}</td>
+                <td class='p-3'>${manual.author}</td>
+              `;
+              row.addEventListener("click", () => {
+                openManualDetail(manual);
+              });
+              manualLookupTableBody.appendChild(row);
+            });
+          } else {
+          }
+
+          manualLookupModal.classList.remove("hidden");
+        });
+
+        closeManualLookupModalBtn.addEventListener("click", () => manualLookupModal.classList.add("hidden"));
+        manualLookupModal.addEventListener("click", (e) => {
+          if (e.target === manualLookupModal) manualLookupModal.classList.add("hidden");
+        });
+
+        modalSearchBtn.addEventListener("click", renderManualLookupTable);
+        modalResetBtn.addEventListener("click", () => {
+          modalSearchTitle.value = '';
+          modalSearchInquiry.value = '';
+          modalSearchAuthor.value = '';
+          renderManualLookupTable();
+        });
+        // 엔터 키로 검색
+        [modalSearchTitle, modalSearchInquiry, modalSearchAuthor].forEach(input => input.addEventListener('keydown', e => e.key === 'Enter' && renderManualLookupTable()));
+
+        // --- 메뉴얼 상세 보기/수정 관련 함수 (manual_list.html 에서 가져옴) ---
+        function openManualDetail(manual) {
+          currentManualIndex = dummyManuals.findIndex(m => m.regDate === manual.regDate && m.companyCode === manual.companyCode);
+          manualDetailContentArea.innerHTML = `
+            <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <div class="grid grid-cols-[140px_1fr] border-b border-gray-200"><div class="font-semibold text-gray-600 bg-gray-50 p-4">등록일시</div><div class="p-4">${manual.regDate}</div></div>
+                <div class="grid grid-cols-[140px_1fr] border-b border-gray-200"><div class="font-semibold text-gray-600 bg-gray-50 p-4">기업코드</div><div class="p-4 editable-field">${manual.companyCode}</div></div>
+                <div class="grid grid-cols-[140px_1fr] border-b border-gray-200"><div class="font-semibold text-gray-600 bg-gray-50 p-4">기업명</div><div class="p-4 editable-field">${manual.companyName}</div></div>
+                <div class="grid grid-cols-[140px_1fr] border-b border-gray-200"><div class="font-semibold text-gray-600 bg-gray-50 p-4">제목</div><div class="p-4 whitespace-pre-wrap editable-field">${manual.title}</div></div>
+                <div class="grid grid-cols-[140px_1fr] border-b border-gray-200"><div class="font-semibold text-gray-600 bg-gray-50 p-4">상황개요</div><div class="p-4 whitespace-pre-wrap editable-field">${manual.inquiry}</div></div>
+                <div class="grid grid-cols-[140px_1fr] border-b border-gray-200"><div class="font-semibold text-gray-600 bg-gray-50 p-4">응대절차</div><div class="p-4 whitespace-pre-wrap editable-field">${manual.procedure}</div></div>
+                <div class="grid grid-cols-[140px_1fr] border-b border-gray-200"><div class="font-semibold text-gray-600 bg-gray-50 p-4">작성자</div><div class="p-4 editable-field">${manual.author}</div></div>
+                <div class="grid grid-cols-[140px_1fr] border-b border-gray-200"><div class="font-semibold text-gray-600 bg-gray-50 p-4">고객전달문구</div><div class="p-4 whitespace-pre-wrap editable-field">${manual.customerMessage}</div></div>
+                <div class="grid grid-cols-[140px_1fr]"><div class="font-semibold text-gray-600 bg-gray-50 p-4">관련문서/링크</div><div class="p-4 editable-field"><a href="${manual.link}" target="_blank" class="text-blue-600 hover:underline">${manual.link}</a></div></div>
+            </div>
+          `;
+          manualDetailModal.classList.remove("hidden");
+          exitEditMode();
+        }
+
+        function closeManualDetailModal() {
+          manualDetailModal.classList.add("hidden");
+        }
+
+        function enterEditMode() {
+          manualDetailContentArea.querySelectorAll('.editable-field').forEach(field => {
+            field.contentEditable = "true";
+            field.classList.add('bg-yellow-50', 'outline-blue-400', 'p-3');
+          });
+          editManualBtn.classList.add('hidden');
+          saveManualBtn.classList.remove('hidden');
+        }
+
+        function exitEditMode() {
+          manualDetailContentArea.querySelectorAll('.editable-field').forEach(field => {
+            field.contentEditable = "false";
+            field.classList.remove('bg-yellow-50', 'outline-blue-400', 'p-3');
+          });
+          editManualBtn.classList.remove('hidden');
+          saveManualBtn.classList.add('hidden');
+        }
+
+        editManualBtn.addEventListener("click", enterEditMode);
+        saveManualBtn.addEventListener("click", () => {
+          alert("저장되었습니다.");
+          exitEditMode();
+        });
+
+        closeManualDetailModalBtn.addEventListener("click", closeManualDetailModal);
+        manualDetailModal.addEventListener("click", (e) => {
+          if (e.target === manualDetailModal) closeManualDetailModal();
+        });
       </script>
 </body>
 

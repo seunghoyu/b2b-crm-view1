@@ -5,6 +5,10 @@
   <meta charset="UTF-8" />
   <title>B2B CRM 신규 고객 등록</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    body { font-family: 'Pretendard', sans-serif; }
+  </style>
 </head>
 
 <body class="bg-blue-50 h-screen flex overflow-hidden">
@@ -22,9 +26,9 @@
           <span>▼</span>
         </button>
         <div id="menu1" class="hidden ml-4 mt-2 space-y-1 text-sm">
-          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">문자발송</a>
-          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">문자설정</a>
-          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">문자발송</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">문자설정</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회</a>
         </div>
       </div>
 
@@ -47,10 +51,10 @@
           <span>▼</span>
         </button>
         <div id="menuBiztalk" class="hidden ml-4 mt-2 space-y-1 text-sm">
-          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">비즈톡발송(강의)</a>
-          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">비즈톡발송(회원)</a>
-          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회(강의)</a>
-          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회(회원)</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">비즈톡발송(강의)</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">비즈톡발송(회원)</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회(강의)</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회(회원)</a>
         </div>
       </div>
 
@@ -64,8 +68,9 @@
           <a href="b2b_dashboard_tailwind.html" class="block px-3 py-1 hover:bg-blue-700 rounded">상담 현황</a>
           <a href="company_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">기업 목록</a>
           <a href="customer_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">고객 목록</a>
-          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">수강시간 조회</a>
-          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">학습상담·CS 관리</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">수강시간 조회</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">학습상담·CS 관리</a>
+          <a href="manual_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">메뉴얼 관리</a>
           <a href="customer_registration.html" class="block px-3 py-1 bg-blue-900 rounded font-semibold">신규 고객 등록</a>
         </div>
       </div>
@@ -90,17 +95,31 @@
             <option value="처리대기" class="text-red-600 font-semibold">처리대기</option>
             <option value="처리완료" class="text-green-600 font-semibold">처리완료</option>
           </select>
-          <select id="categoryMain" class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-400">
-            <option value="">대분류 선택</option>
-            <option value="수강·결제">수강·결제</option>
-            <option value="수강환경·접속">수강환경·접속</option>
-            <option value="학습진행·평가">학습진행·평가</option>
-            <option value="강의·강사">강의·강사</option>
-            <option value="기타·제휴">기타·제휴</option>
-          </select>
-          <select id="categorySub" class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-400 disabled:bg-gray-100 disabled:cursor-not-allowed" disabled>
-            <option value="">중분류 선택</option>
-          </select>
+          <div class="col-span-2">
+            <select id="categorySelect" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-400">
+              <option value="">분류 선택</option>
+              <option>수강신청 기간/방법</option>
+              <option>결제 방법/오류</option>
+              <option>과정 취소/변경</option>
+              <option>수강방법 문의</option>
+              <option>수강/복습 기간</option>
+              <option>아이디/비밀번호 문의</option>
+              <option>교재배송</option>
+              <option>모바일 수강</option>
+              <option>동영상 오류</option>
+              <option>MP3 관련 문의</option>
+              <option>PMP/PC 다운로드</option>
+              <option>학습자료 다운로드</option>
+              <option>출석체크/진도율</option>
+              <option>평가시험</option>
+              <option>수료여부 및 기준</option>
+              <option>온라인 모의고사(대학생)</option>
+              <option>강의 내용</option>
+              <option>선생님께 질문하기</option>
+              <option>기타문의</option>
+              <option>제휴문의</option>
+            </select>
+          </div>
         </div>
         <div class="mb-4">
           <input type="text" placeholder="제목을 입력하세요" class="w-full border border-blue-300 bg-blue-50 rounded-lg px-3 py-2 text-sm focus:ring-blue-400 placeholder:font-medium" />
@@ -379,36 +398,7 @@
         window.location.href = 'customer_list.html';
     });
 
-
-    // 🔹 대분류-중분류 연동 기능 (customer_view.html 에서 복사)
-    const categoryMap = {
-      "수강·결제": ["결제오류", "환불문의", "영수증발급", "할인문의", "결제방법"],
-      "수강환경·접속": ["로그인문제", "비밀번호찾기", "계정오류", "접속불가", "브라우저문제"],
-      "학습진행·평가": ["진도율문의", "시험응시", "과제제출", "수료증발급", "성적문의"],
-      "강의·강사": ["강사평가", "강의내용", "강의자료", "강의오류", "강의요청"],
-      "기타·제휴": ["제휴문의", "견적문의", "단체문의", "기타", "건의사항"]
-    };
-
-    const categoryMainSelect = document.getElementById("categoryMain");
-    const categorySubSelect = document.getElementById("categorySub");
-
-    // 대분류 선택 시 중분류 업데이트
-    categoryMainSelect.addEventListener("change", function() {
-      const selectedMain = this.value;
-      categorySubSelect.innerHTML = '<option value="">중분류 선택</option>'; 
-      
-      if (selectedMain && categoryMap[selectedMain]) {
-        categoryMap[selectedMain].forEach(sub => {
-          const option = document.createElement("option");
-          option.value = sub;
-          option.textContent = sub;
-          categorySubSelect.appendChild(option);
-        });
-        categorySubSelect.disabled = false;
-      } else {
-        categorySubSelect.disabled = true;
-      }
-    });
+    // 🔹 대분류-중분류 연동 기능 삭제 (통합됨)
 
     // ✅ 처리상태 드롭다운 색상 변경 (customer_view.html 에서 복사)
     const statusSelect = document.getElementById("statusSelect");
