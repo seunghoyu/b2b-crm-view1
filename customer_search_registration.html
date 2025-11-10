@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>B2B CRM 고객 검색 및 등록</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    body { font-family: 'Pretendard', sans-serif; }
+  </style>
+</head>
+
+<body class="bg-blue-50 h-screen flex overflow-hidden">
+  <!-- ✅ 좌측 사이드 메뉴 (대시보드와 동일) -->
+  <aside class="w-[230px] bg-blue-800 text-white flex-shrink-0">
+    <a href="b2b_dashboard_tailwind.html" class="block p-5 text-lg font-semibold border-b border-blue-700 hover:bg-blue-700 transition">
+      B2B CRM 메뉴
+    </a>
+
+    <nav class="p-3 space-y-2">
+      <!-- 문자관리 -->
+      <div>
+        <button id="menuToggle1" class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+          <span>문자관리</span>
+          <span>▼</span>
+        </button>
+        <div id="menu1" class="hidden ml-4 mt-2 space-y-1 text-sm">
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">문자발송</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">문자설정</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회</a>
+        </div>
+      </div>
+
+      <!-- 이메일 관리 -->
+      <div>
+        <button id="menuToggleEmail" class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+          <span>이메일 관리</span>
+          <span>▼</span>
+        </button>
+        <div id="menuEmail" class="hidden ml-4 mt-2 space-y-1 text-sm">
+          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">웹메일(Biz)</a>
+          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">패스메일(fnBiz)</a>
+        </div>
+      </div>
+
+      <!-- 비즈톡 관리 -->
+      <div>
+        <button id="menuToggleBiztalk" class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+          <span>비즈톡 관리</span>
+          <span>▼</span>
+        </button>
+        <div id="menuBiztalk" class="hidden ml-4 mt-2 space-y-1 text-sm">
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">비즈톡발송(강의)</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">비즈톡발송(회원)</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회(강의)</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회(회원)</a>
+        </div>
+      </div>
+
+      <!-- 관리메뉴 -->
+      <div>
+        <button id="menuToggle2" class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+          <span>관리메뉴</span>
+          <span>▼</span>
+        </button>
+        <div id="menu2" class="ml-4 mt-2 space-y-1 text-sm">
+          <a href="b2b_dashboard_tailwind.html" class="block px-3 py-1 hover:bg-blue-700 rounded">상담 현황</a>
+          <a href="company_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">기업 목록</a>
+          <a href="customer_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">고객 목록</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">수강시간 조회</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">학습상담·CS 관리</a>
+          <a href="manual_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">메뉴얼 관리</a>
+          <a href="customer_search_registration.html" class="block px-3 py-1 bg-blue-900 rounded font-semibold">고객 검색/등록</a>
+        </div>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- ✅ 메인 영역 -->
+  <div class="flex-1 flex flex-col relative overflow-y-auto">
+    <!-- ✅ 상단 고정: 응대 내용 입력 -->
+    <header class="sticky top-0 bg-white shadow p-5 z-10">
+      <div class="w-full">
+        <h2 class="text-xl font-semibold text-gray-800 border-b pb-4 mb-6">응대 내용</h2>
+        <div class="grid grid-cols-4 gap-4 mb-4">
+          <select class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-400">
+            <option>담당자 선택</option>
+            <option>홍길동</option>
+            <option>이현우</option>
+            <option>박지현</option>
+          </select>
+          <select id="statusSelect" class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-400"> 
+            <option>처리상태 선택</option>
+            <option value="처리대기" class="text-red-600 font-semibold">처리대기</option>
+            <option value="처리완료" class="text-green-600 font-semibold">처리완료</option>
+          </select>
+          <div class="col-span-2">
+            <select id="categorySelect" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-400">
+              <option value="">분류 선택</option>
+              <option>수강신청 기간/방법</option>
+              <option>결제 방법/오류</option>
+              <option>과정 취소/변경</option>
+              <option>수강방법 문의</option>
+              <option>수강/복습 기간</option>
+              <option>아이디/비밀번호 문의</option>
+              <option>교재배송</option>
+              <option>모바일 수강</option>
+              <option>동영상 오류</option>
+              <option>MP3 관련 문의</option>
+              <option>PMP/PC 다운로드</option>
+              <option>학습자료 다운로드</option>
+              <option>출석체크/진도율</option>
+              <option>평가시험</option>
+              <option>수료여부 및 기준</option>
+              <option>온라인 모의고사(대학생)</option>
+              <option>강의 내용</option>
+              <option>선생님께 질문하기</option>
+              <option>기타문의</option>
+              <option>제휴문의</option>
+            </select>
+          </div>
+        </div>
+        <div class="mb-4">
+          <input type="text" placeholder="제목을 입력하세요" class="w-full border border-blue-300 bg-blue-50 rounded-lg px-3 py-2 text-sm focus:ring-blue-400 placeholder:font-medium" />
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <textarea placeholder="문의 내용을 입력하세요..." class="border border-gray-300 rounded-lg px-3 py-2 w-full h-24 focus:ring-blue-400 focus:outline-none"></textarea>
+          <textarea placeholder="응대 내용을 입력하세요..." class="border border-gray-300 rounded-lg px-3 py-2 w-full h-24 focus:ring-blue-400 focus:outline-none"></textarea>
+        </div>
+      </div>
+    </header>
+
+    <!-- ✅ 메인: 신규 고객 정보 입력 -->
+    <main class="flex-1 p-8">
+      <section class="bg-white p-8 rounded-xl shadow">
+        <h2 class="text-xl font-semibold text-gray-800 border-b pb-4 mb-6">신규 고객 정보 등록</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 items-start">
+          <!-- ✅ 기업명 검색 및 선택 -->
+          <div class="md:col-span-2 grid grid-cols-2 gap-x-8 items-start">
+            <div class="relative">
+              <label for="company-search" class="text-sm font-medium text-gray-700">기업명 검색</label>
+              <input type="text" id="company-search" placeholder="기업명을 입력하여 검색하세요..." class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" autocomplete="off" />
+              <div id="company-suggestions" class="hidden absolute z-10 mt-1 w-full bg-white rounded-lg shadow-lg border border-gray-200 max-h-60 overflow-y-auto">
+                <!-- JS로 제안 목록 생성 -->
+              </div>
+              <div id="daou-notice" class="hidden text-red-600 text-xs mt-1">
+                다우오피스 플랫폼 고객사의 문의가 아닌, 다우오피스 자체문의일 경우에는 대괄호 내의 회사명을 작성하지 않아도 됩니다.
+              </div>
+            </div>
+            <div>
+              <label class="text-sm font-medium text-gray-700">선택된 기업</label>
+              <div id="selected-company-info" class="w-full mt-1 bg-blue-50 border border-blue-200 rounded-lg px-3 py-2 text-blue-800 font-semibold min-h-[42px] flex items-center">
+                <span class="text-gray-400">기업을 검색하여 선택해주세요.</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <label for="contact-id" class="text-sm font-medium text-gray-700">아이디</label>
+            <input type="text" id="contact-id" placeholder="예: hackers01" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" />
+          </div>
+          <div>
+            <label for="contact-name" class="text-sm font-medium text-gray-700">이름</label>
+            <input type="text" id="contact-name" placeholder="예: 홍길동" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" />
+          </div>
+          <div>
+            <label for="member-type" class="text-sm font-medium text-gray-700">회원구분</label>
+            <select id="member-type" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none">
+              <option>구분 선택</option>
+              <option>학습자</option>
+              <option>기업관리자</option>
+              <option>교육담당자</option>
+              <option>기업운영자</option>
+              <option>기업 자체 고객사</option>
+            </select>
+          </div>
+          <div>
+            <label for="mobile-phone" class="text-sm font-medium text-gray-700">연락처(Mobile)</label>
+            <input type="text" id="mobile-phone" placeholder="'-' 없이 숫자만 입력" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" />
+          </div>
+          <div>
+            <label for="email" class="text-sm font-medium text-gray-700">이메일</label>
+            <input type="email" id="email" placeholder="예: example@hackers.com" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" />
+          </div>
+          <div>
+            <label for="office-phone" class="text-sm font-medium text-gray-700">연락처(Office)</label>
+            <input type="text" id="office-phone" placeholder="'-' 없이 숫자만 입력" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" />
+          </div>
+          <!-- ✅ 영업/운영 담당자 (하단으로 이동 및 스타일 변경) -->
+          <div class="md:col-span-2 border-t pt-6 mt-4 grid grid-cols-2 gap-x-8">
+            <div>
+              <label for="sales-manager" class="text-sm font-medium text-gray-500">영업담당자</small></label>
+              <input type="text" id="sales-manager" class="w-full mt-1 border border-gray-200 bg-gray-100 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none cursor-not-allowed" readonly placeholder="기업 선택 시 자동 설정">
+            </div>
+            <div>
+              <label for="operation-manager" class="text-sm font-medium text-gray-500">운영담당자</label>
+              <input type="text" id="operation-manager" class="w-full mt-1 border border-gray-200 bg-gray-100 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none cursor-not-allowed" readonly placeholder="기업 선택 시 자동 설정">
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- 하단 버튼 영역 -->
+    <footer class="bg-white px-5 py-4 shadow-inner flex justify-end items-center border-t sticky bottom-0">
+      <button onclick="window.location.href='customer_list.html'" class="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-300 transition font-semibold mr-3">
+        취소
+      </button>
+      <button id="register-btn" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-semibold">
+        등록하기
+      </button>
+    </footer>
+  </div>
+
+  <!-- ✅ 통합 고객 검색 모달 -->
+  <div id="customer-search-modal" class="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50">
+    <div class="bg-white rounded-xl shadow-2xl w-full max-w-7xl max-h-[80vh] flex flex-col border-4 border-blue-300">
+      <header class="p-5 border-b-2 border-blue-200">
+        <h3 class="text-2xl font-bold text-blue-700">통합 고객 검색</h3>
+        <p class="text-sm text-gray-500 mt-1">먼저 고객 정보를 검색하세요. 정보가 없으면 신규 등록으로 진행할 수 있습니다.</p>
+      </header>
+
+      <!-- 검색 필터 -->
+      <div class="p-6 space-y-4 bg-gray-50">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <div class="relative">
+              <label for="modal-company-name" class="text-sm font-medium text-gray-700">기업명 (기업코드)</label>
+              <input type="text" id="modal-company-name" placeholder="기업명 또는 기업코드" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" autocomplete="off">
+              <div id="modal-company-suggestions" class="hidden absolute z-20 mt-1 w-full bg-white rounded-lg shadow-lg border border-gray-200 max-h-48 overflow-y-auto"></div>
+            </div>
+          </div>
+          <div>
+            <label for="modal-customer-name" class="text-sm font-medium text-gray-700">이름</label>
+            <input type="text" id="modal-customer-name" placeholder="고객 이름" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none">
+          </div>
+          <div>
+            <label for="modal-customer-id" class="text-sm font-medium text-gray-700">아이디</label>
+            <input type="text" id="modal-customer-id" placeholder="고객 아이디" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none">
+          </div>
+          <div>
+            <label for="modal-customer-phone" class="text-sm font-medium text-gray-700">전화번호</label>
+            <input type="text" id="modal-customer-phone" placeholder="'-' 없이 숫자만 입력" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none">
+          </div>
+        </div>
+        <div class="flex justify-end">
+          <button id="modal-search-btn" class="bg-blue-600 text-white px-8 py-2 rounded-lg hover:bg-blue-700 transition font-semibold">검색</button>
+        </div>
+      </div>
+
+      <!-- 검색 결과 -->
+      <div id="modal-search-results" class="flex-1 p-6 overflow-y-auto">
+        <p class="text-center text-gray-500">검색어를 입력 후 검색 버튼을 눌러주세요.</p>
+        <!-- 검색 결과가 없을 때 -->
+        <!-- <div class="text-center py-10">
+          <p class="text-gray-600 mb-4">검색된 고객이 없습니다.</p>
+          <button id="modal-go-to-register" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition font-semibold">신규 고객으로 등록</button>
+        </div> -->
+        <!-- 검색 결과가 있을 때 (테이블) -->
+        <!-- JS로 동적 생성 -->
+      </div>
+
+      <footer class="p-4 bg-gray-50 border-t flex justify-end">
+        <button onclick="closeSearchModal()" class="bg-gray-400 text-white px-5 py-2 rounded-lg hover:bg-gray-500 transition font-semibold">
+          닫기
+        </button>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // ✅ 사이드메뉴 토글 (대시보드와 동일)
+    const menuToggle1 = document.getElementById("menuToggle1");
+    const menu1 = document.getElementById("menu1");
+    const menuToggle2 = document.getElementById("menuToggle2");
+    const menu2 = document.getElementById("menu2");
+    const menuToggleEmail = document.getElementById("menuToggleEmail");
+    const menuEmail = document.getElementById("menuEmail");
+    const menuToggleBiztalk = document.getElementById("menuToggleBiztalk");
+    const menuBiztalk = document.getElementById("menuBiztalk");
+
+    menuToggle1.addEventListener("click", () => menu1.classList.toggle("hidden"));
+    menuToggle2.addEventListener("click", () => menu2.classList.toggle("hidden"));
+    menuToggleEmail.addEventListener("click", () => menuEmail.classList.toggle("hidden"));
+    menuToggleBiztalk.addEventListener("click", () => menuBiztalk.classList.toggle("hidden"));
+    menu2.classList.remove("hidden"); // 관리메뉴는 기본으로 열어둠 
+
+    // ✅ 기업명 검색 기능
+    // company_list.html의 데이터와 연동되는 가상 DB
+    const companyDB = [
+        { name: "삼성전자", code: "samsung", salesManager: "박지현", opManager: "김민준" },
+        { name: "SK하이닉스", code: "skhynix", salesManager: "이현우", opManager: "이서연" },
+        { name: "LG화학", code: "lgchem", salesManager: "김영희", opManager: "박도윤" },
+        { name: "현대자동차", code: "hyundai", salesManager: "이하윤", opManager: "최서윤" },
+        { name: "카카오", code: "kakao", salesManager: "박지현", opManager: "정시우" },
+        { name: "네이버", code: "naver", salesManager: "이현우", opManager: "강지우" },
+        { name: "CJ푸드빌", code: "cjfood", salesManager: "김영희", opManager: "조하준" },
+        { name: "대한항공", code: "koreanair", salesManager: "이하윤", opManager: "윤지유" },
+        { name: "다우오피스", code: "daou", salesManager: "박지현", opManager: "장주원" },
+        { name: "포스코", code: "posco", salesManager: "이현우", opManager: "임서현" }
+    ];
+
+    // ✅ 고객 목록 더미 데이터 (요청에 따라 삼성, 카카오, CJ푸드빌 데이터 강화)
+    const dummyCustomers = [];
+    const targetCompanies = ["삼성전자", "카카오", "CJ푸드빌"];
+    const firstNames = ["김", "이", "박", "최", "정", "강", "조", "윤", "장", "임"];
+    const lastNames = ["민준", "서연", "도윤", "서윤", "시우", "지우", "하준", "지유", "주원", "서현"];
+    const memberTypes = ["학습자", "기업관리자", "교육담당자", "기업운영자"];
+
+    companyDB.forEach((company, companyIndex) => {
+      // 모든 회사에 대해 최소 1개의 데이터를 생성하고, 타겟 회사에 대해서는 3개씩 생성
+      const customerCount = targetCompanies.includes(company.name) ? 3 : 1;
+      for (let i = 0; i < customerCount; i++) {
+        const name = firstNames[(companyIndex + i) % firstNames.length] + lastNames[(companyIndex + i) % lastNames.length];
+        const id = `${company.code}_user${i + 1}`;
+        dummyCustomers.push({
+            companyCode: company.code,
+            companyName: company.name,
+            id: id,
+            name: name,
+            memberType: memberTypes[i % memberTypes.length],
+            email: `${id}@${company.code}.com`,
+            mobilePhone: `010-1234-${String(1000 + companyIndex * 10 + i).padStart(4, '0')}`,
+            officePhone: `02-5678-${String(1000 + companyIndex * 10 + i).padStart(4, '0')}`,
+            regDate: `2025-10-${String(20 - (companyIndex + i)).padStart(2, '0')}`
+        });
+      }
+    });
+
+    const searchInput = document.getElementById("company-search");
+    const suggestionsContainer = document.getElementById("company-suggestions");
+    const selectedDisplay = document.getElementById("selected-company-info");
+    const salesManagerInput = document.getElementById("sales-manager");
+    const opManagerInput = document.getElementById("operation-manager");
+    const daouNotice = document.getElementById("daou-notice");
+
+    function disableManagerInputs() {
+        salesManagerInput.readOnly = true;
+        opManagerInput.readOnly = true;
+        [salesManagerInput, opManagerInput].forEach(input => {
+            input.classList.add("bg-gray-100", "cursor-not-allowed");
+            input.classList.remove("bg-white");
+            input.placeholder = "기업 선택 시 자동 설정";
+        });
+    }
+
+    function enableManagerInputs() {
+        salesManagerInput.readOnly = false;
+        opManagerInput.readOnly = false;
+        [salesManagerInput, opManagerInput].forEach(input => {
+            input.classList.remove("bg-gray-100", "cursor-not-allowed");
+            input.classList.add("bg-white");
+            input.placeholder = "담당자 이름을 입력하세요";
+        });
+    }
+
+    function resetCompanyInfo() {
+        selectedDisplay.innerHTML = `<span class="text-gray-400">기업을 검색하여 선택해주세요.</span>`;
+        salesManagerInput.value = "";
+        opManagerInput.value = "";
+        searchInput.classList.remove("text-blue-600", "font-bold");
+        disableManagerInputs();
+        daouNotice.classList.add("hidden");
+    }
+    
+    let highlightedIndex = -1;
+
+    function highlightItem(index) {
+        const items = suggestionsContainer.querySelectorAll("div");
+        items.forEach((item, i) => {
+            if (i === index) {
+                item.classList.add("bg-blue-100");
+            } else {
+                item.classList.remove("bg-blue-100");
+            }
+        });
+    }
+
+    searchInput.addEventListener("input", () => {
+        const query = searchInput.value.trim();
+        if (query.length === 0) {
+            suggestionsContainer.classList.add("hidden");
+            return;
+        }
+
+        const filteredCompanies = companyDB.filter(c => c.name.toLowerCase().includes(query.toLowerCase()));
+        
+        suggestionsContainer.innerHTML = "";
+        filteredCompanies.forEach(company => {
+            const item = document.createElement("div");
+            item.className = "px-4 py-2 hover:bg-blue-50 cursor-pointer";
+            if (company.name === "다우오피스") {
+                item.classList.add("text-blue-600", "font-bold");
+            }
+            item.textContent = company.name;
+            item.addEventListener("click", () => {
+                selectedDisplay.innerHTML = `<span>${company.name}</span> <span class="ml-2 px-2 py-0.5 bg-blue-200 text-blue-800 text-xs font-bold rounded-full">${company.code}</span>`;
+                salesManagerInput.value = company.salesManager;
+                opManagerInput.value = company.opManager;
+                disableManagerInputs();
+                suggestionsContainer.classList.add("hidden");
+                
+                if (company.name === "다우오피스") {
+                    searchInput.value = "다우오피스[]";
+                    searchInput.classList.add("text-blue-600", "font-bold");
+                    daouNotice.classList.remove("hidden");
+                    // 커서를 대괄호 사이에 위치시킵니다.
+                    searchInput.focus();
+                    searchInput.setSelectionRange(searchInput.value.length - 1, searchInput.value.length - 1);
+                } else {
+                    searchInput.classList.remove("text-blue-600", "font-bold");
+                    searchInput.value = "";
+                    daouNotice.classList.add("hidden");
+                }
+
+            });
+            suggestionsContainer.appendChild(item);
+        });
+
+        suggestionsContainer.classList.remove("hidden");
+        highlightedIndex = -1;
+    });
+
+    searchInput.addEventListener("keydown", (e) => {
+        const items = suggestionsContainer.querySelectorAll("div");
+        if (suggestionsContainer.classList.contains("hidden")) return;
+
+        if (e.key === "ArrowDown") {
+            e.preventDefault();
+            highlightedIndex = (highlightedIndex + 1) % items.length;
+            highlightItem(highlightedIndex);
+        } else if (e.key === "ArrowUp") {
+            e.preventDefault();
+            highlightedIndex = (highlightedIndex - 1 + items.length) % items.length;
+            highlightItem(highlightedIndex);
+        } else if (e.key === "Enter") {
+            e.preventDefault();
+            if (highlightedIndex > -1) {
+                items[highlightedIndex].click();
+            } else {
+                // 드롭다운에서 선택하지 않고 엔터 누른 경우
+                const query = searchInput.value.trim();
+                const exactMatch = companyDB.find(c => c.name.toLowerCase() === query.toLowerCase());
+
+                if (!exactMatch && query) {
+                    // 정확히 일치하는 기업이 없으면 '신규'로 처리
+                    selectedDisplay.innerHTML = `<span>${query}</span> <span class="ml-2 px-2 py-0.5 bg-green-200 text-green-800 text-xs font-bold rounded-full">신규</span>`;
+                    salesManagerInput.value = "";
+                    opManagerInput.value = "";
+                    searchInput.classList.remove("text-blue-600", "font-bold");
+                    daouNotice.classList.add("hidden");
+                    disableManagerInputs();
+                    
+                    if (query.toLowerCase() === '다우오피스') {
+                        searchInput.value = "다우오피스[]";
+                        searchInput.classList.add("text-blue-600", "font-bold");
+                        searchInput.focus();
+                        searchInput.setSelectionRange(searchInput.value.length - 1, searchInput.value.length - 1);
+                    } else {
+                        searchInput.classList.remove("text-blue-600", "font-bold");
+                        searchInput.value = ""; // 검색창만 비움
+                    }
+                }
+            }
+            suggestionsContainer.classList.add("hidden");
+        } else if (e.key === "Escape") {
+            suggestionsContainer.classList.add("hidden");
+        }
+    });
+
+    // 다른 곳 클릭 시 제안 창 닫기
+    document.addEventListener("click", (e) => {
+      if (!searchInput.contains(e.target) && !suggestionsContainer.contains(e.target)) {
+        suggestionsContainer.classList.add("hidden");
+      }
+    });
+
+    // ✅ 등록하기 버튼 클릭 이벤트
+    document.getElementById("register-btn").addEventListener("click", () => {
+        alert("신규 고객 정보가 등록되었습니다. 고객 목록 및 상담 현황에 업데이트됩니다.");
+        window.location.href = 'customer_list.html';
+    });
+
+    // 🔹 대분류-중분류 연동 기능 삭제 (통합됨)
+
+    // ✅ 처리상태 드롭다운 색상 변경 (customer_view.html 에서 복사)
+    const statusSelect = document.getElementById("statusSelect");
+    statusSelect.addEventListener("change", function() {
+      // 먼저 모든 색상 및 굵기 클래스를 제거합니다.
+      this.classList.remove("text-red-600", "text-green-600", "font-semibold");
+
+      const selectedValue = this.value;
+
+      if (selectedValue === "처리대기") {
+        this.classList.add("text-red-600", "font-semibold");
+      } else if (selectedValue === "처리완료") {
+        this.classList.add("text-green-600", "font-semibold");
+      }
+    });
+
+    // ✅ 통합 검색 모달 로직
+    const searchModal = document.getElementById('customer-search-modal');
+    const modalSearchBtn = document.getElementById('modal-search-btn');
+    const modalGoToRegisterBtn = document.getElementById('modal-go-to-register');
+    const searchResultsContainer = document.getElementById('modal-search-results');
+    const modalCompanyNameInput = document.getElementById('modal-company-name');
+
+    // 페이지 로드 시 모달을 바로 엽니다.
+    document.addEventListener('DOMContentLoaded', () => {
+      searchModal.classList.remove('hidden');
+    });
+
+    // 모달을 닫는 함수
+    function closeSearchModal() {
+      searchModal.classList.add('hidden');
+    }
+
+    // 모달의 '신규 고객으로 등록' 버튼 클릭 시
+    function goToRegistration() {
+      // 검색에 사용했던 값을 신규 등록 폼으로 전달
+      document.getElementById('company-search').value = modalCompanyNameInput.value;
+      document.getElementById('contact-name').value = document.getElementById('modal-customer-name').value;
+      document.getElementById('contact-id').value = document.getElementById('modal-customer-id').value;
+      document.getElementById('mobile-phone').value = document.getElementById('modal-customer-phone').value;
+      
+      // 기업명 검색 로직을 수동으로 트리거하여 담당자 정보 등을 가져올 수 있습니다.
+      searchInput.dispatchEvent(new Event('input'));
+
+      closeSearchModal(); // 모달 닫기
+    }
+
+    // 모달 검색 버튼 클릭 이벤트 (가상)
+    modalSearchBtn.addEventListener('click', () => {
+      const companyQuery = modalCompanyNameInput.value.toLowerCase();
+      const nameQuery = document.getElementById('modal-customer-name').value.toLowerCase();
+      const idQuery = document.getElementById('modal-customer-id').value.toLowerCase();
+      const phoneQuery = document.getElementById('modal-customer-phone').value.replace(/-/g, '');
+
+      // 모든 입력 필드가 비어있으면 검색하지 않음
+      if (!companyQuery && !nameQuery && !idQuery && !phoneQuery) {
+        searchResultsContainer.innerHTML = `<p class="text-center text-gray-500">검색어를 입력 후 검색 버튼을 눌러주세요.</p>`;
+        return;
+      }
+
+      const searchResults = dummyCustomers.filter(customer => {
+        const matchCompany = companyQuery ? customer.companyName.toLowerCase().includes(companyQuery) || customer.companyCode.toLowerCase().includes(companyQuery) : true;
+        const matchName = nameQuery ? customer.name.toLowerCase().includes(nameQuery) : true;
+        const matchId = idQuery ? customer.id.toLowerCase().includes(idQuery) : true;
+        const matchPhone = phoneQuery ? customer.mobilePhone.includes(phoneQuery) : true;
+        return matchCompany && matchName && matchId && matchPhone;
+      });
+
+      if (searchResults.length > 0) {
+        // 검색 결과가 있을 경우 테이블로 표시
+        let tableHTML = `
+          <table class="w-full table-auto border-collapse text-sm text-gray-700">
+            <thead>
+              <tr class="bg-gray-100 border-b text-left text-gray-600">
+                <th class="p-3">기업코드</th>
+                <th class="p-3">회사명</th>
+                <th class="p-3">아이디</th>
+                <th class="p-3">이름</th>
+                <th class="p-3">회원구분</th>
+                <th class="p-3">email</th>
+                <th class="p-3">핸드폰</th>
+                <th class="p-3">전화번호</th>
+                <th class="p-3">회원가입일</th>
+              </tr>
+            </thead>
+            <tbody>
+        `;
+        searchResults.forEach(customer => {
+          tableHTML += `
+            <tr class="border-b hover:bg-blue-50 transition cursor-pointer whitespace-nowrap" onclick="window.location.href='customer_view.html'">
+              <td class="p-3">${customer.companyCode}</td>
+              <td class="p-3 font-medium">${customer.companyName}</td>
+              <td class="p-3">${customer.id}</td>
+              <td class="p-3">${customer.name}</td>
+              <td class="p-3">${customer.memberType}</td>
+              <td class="p-3">${customer.email}</td>
+              <td class="p-3">${maskPhoneNumber(customer.mobilePhone)}</td>
+              <td class="p-3">${maskPhoneNumber(customer.officePhone)}</td>
+              <td class="p-3">${customer.regDate}</td>
+            </tr>
+          `;
+        });
+        tableHTML += `</tbody></table>`;
+        searchResultsContainer.innerHTML = tableHTML;
+      } else {
+        // 검색 결과가 없을 경우
+        searchResultsContainer.innerHTML = `
+          <div class="text-center py-10">
+            <p class="text-gray-600 mb-4">검색된 고객이 없습니다.</p>
+            <button onclick="goToRegistration()" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition font-semibold">
+              신규 고객으로 등록
+            </button>
+          </div>
+        `;
+      }
+    });
+
+    // ✅ 모달 내 기업명 검색 자동완성 로직
+    const modalSuggestionsContainer = document.getElementById("modal-company-suggestions");
+    let modalHighlightedIndex = -1;
+
+    function modalHighlightItem(index) {
+        const items = modalSuggestionsContainer.querySelectorAll("div");
+        items.forEach((item, i) => {
+            item.classList.toggle("bg-blue-100", i === index);
+            if (i === index) {
+                item.scrollIntoView({ block: 'nearest' });
+            }
+        });
+    }
+
+    modalCompanyNameInput.addEventListener("input", () => {
+        const query = modalCompanyNameInput.value.trim().toLowerCase();
+        if (query.length === 0) {
+            modalSuggestionsContainer.classList.add("hidden");
+            return;
+        }
+
+        const filteredCompanies = companyDB.filter(c => c.name.toLowerCase().includes(query) || c.code.toLowerCase().includes(query));
+        
+        modalSuggestionsContainer.innerHTML = "";
+        filteredCompanies.forEach(company => {
+            const item = document.createElement("div");
+            item.className = "px-4 py-2 hover:bg-blue-50 cursor-pointer";
+            item.textContent = `${company.name} (${company.code})`;
+            item.addEventListener("click", () => {
+                modalCompanyNameInput.value = company.name; // 입력창에 기업명 설정
+                modalSuggestionsContainer.classList.add("hidden");
+            });
+            modalSuggestionsContainer.appendChild(item);
+        });
+
+        if (filteredCompanies.length > 0) {
+            modalSuggestionsContainer.classList.remove("hidden");
+        } else {
+            modalSuggestionsContainer.classList.add("hidden");
+        }
+        modalHighlightedIndex = -1;
+    });
+
+    modalCompanyNameInput.addEventListener("keydown", (e) => {
+        const items = modalSuggestionsContainer.querySelectorAll("div");
+        if (modalSuggestionsContainer.classList.contains("hidden") || items.length === 0) return;
+
+        switch (e.key) {
+            case "ArrowDown":
+                e.preventDefault();
+                modalHighlightedIndex = (modalHighlightedIndex + 1) % items.length;
+                modalHighlightItem(modalHighlightedIndex);
+                break;
+            case "ArrowUp":
+                e.preventDefault();
+                modalHighlightedIndex = (modalHighlightedIndex - 1 + items.length) % items.length;
+                modalHighlightItem(modalHighlightedIndex);
+                break;
+            case "Enter":
+                e.preventDefault();
+                if (modalHighlightedIndex > -1) {
+                    items[modalHighlightedIndex].click();
+                }
+                modalSuggestionsContainer.classList.add("hidden");
+                break;
+            case "Escape":
+                modalSuggestionsContainer.classList.add("hidden");
+                break;
+        }
+    });
+
+    document.addEventListener("click", (e) => { if (!modalCompanyNameInput.contains(e.target) && !modalSuggestionsContainer.contains(e.target)) { modalSuggestionsContainer.classList.add("hidden"); } });
+
+  </script>
+</body>
+</html>

@@ -71,7 +71,7 @@
           <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">수강시간 조회</a>
           <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">학습상담·CS 관리</a>
           <a href="manual_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">메뉴얼 관리</a>
-          <a href="customer_registration.html" class="block px-3 py-1 hover:bg-blue-700 rounded">신규 고객 등록</a>
+          <a href="customer_search_registration.html" class="block px-3 py-1 hover:bg-blue-700 rounded">고객 검색/등록</a>
         </div>
       </div>
     </nav>
@@ -96,7 +96,7 @@
             <button onclick="alert('엑셀 파일 일괄 등록 기능이 실행됩니다.')" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition text-sm font-semibold">
               Excel파일 일괄등록
             </button>
-            <button onclick="window.location.href='customer_registration.html'" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm font-semibold">
+            <button onclick="window.location.href='customer_search_registration.html'" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm font-semibold">
               신규 고객 등록
             </button>
             <span id="count" class="text-sm text-gray-500"></span>
@@ -190,6 +190,19 @@
     const itemsPerPage = 10;
     let itemsShown = 0;
 
+    // ✅ 전화번호 마스킹 함수
+    function maskPhoneNumber(phone) {
+      if (!phone || typeof phone !== 'string') {
+        return '';
+      }
+      const parts = phone.split('-');
+      if (parts.length === 3) {
+        parts[1] = '****';
+        return parts.join('-');
+      }
+      return phone;
+    }
+
     function renderTable() {
         const toShow = dummyCustomers.slice(itemsShown, itemsShown + itemsPerPage);
 
@@ -203,8 +216,8 @@
                 <td class='p-4'>${d.name}</td>
                 <td class='p-4'>${d.memberType}</td>
                 <td class='p-4'>${d.email}</td>
-                <td class='p-4'>${d.mobilePhone}</td>
-                <td class='p-4'>${d.officePhone}</td>
+                <td class='p-4'>${maskPhoneNumber(d.mobilePhone)}</td>
+                <td class='p-4'>${maskPhoneNumber(d.officePhone)}</td>
                 <td class='p-4'>${d.regDate}</td>
                 <td class='p-4'><button onclick="alert('회원정보 수정 페이지로 이동합니다.')" class="bg-gray-200 text-gray-700 px-3 py-1 rounded text-xs hover:bg-gray-300">수정</button></td>
                 <td class='p-4'><button onclick="alert('배송지 정보 수정 페이지로 이동합니다.')" class="bg-gray-200 text-gray-700 px-3 py-1 rounded text-xs hover:bg-gray-300">수정</button></td>
