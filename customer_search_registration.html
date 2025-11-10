@@ -213,51 +213,54 @@
   </div>
 
   <!-- ✅ 통합 고객 검색 모달 -->
-  <div id="customer-search-modal" class="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50">
-    <div class="bg-white rounded-xl shadow-2xl w-full max-w-7xl max-h-[80vh] flex flex-col border-4 border-blue-300">
+  <div id="customer-search-modal" class="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-start z-50">
+    <div class="bg-white rounded-xl shadow-2xl w-full max-w-7xl max-h-[80vh] flex flex-col border-4 border-blue-300 mt-16">
       <header class="p-5 border-b-2 border-blue-200">
         <h3 class="text-2xl font-bold text-blue-700">통합 고객 검색</h3>
         <p class="text-sm text-gray-500 mt-1">먼저 고객 정보를 검색하세요. 정보가 없으면 신규 등록으로 진행할 수 있습니다.</p>
       </header>
 
-      <!-- 검색 필터 -->
-      <div class="p-6 space-y-4 bg-gray-50">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <div class="relative">
-              <label for="modal-company-name" class="text-sm font-medium text-gray-700">기업명 (기업코드)</label>
-              <input type="text" id="modal-company-name" placeholder="기업명 또는 기업코드" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" autocomplete="off">
-              <div id="modal-company-suggestions" class="hidden absolute z-20 mt-1 w-full bg-white rounded-lg shadow-lg border border-gray-200 max-h-48 overflow-y-auto"></div>
+      <!-- Main content area for side-by-side layout -->
+      <div class="flex-1 flex flex-row overflow-hidden">
+        <!-- 좌측: 검색 필터 -->
+        <div class="w-1/3 p-6 space-y-4 bg-gray-50 flex flex-col">
+          <div class="grid grid-cols-1 gap-4">
+            <div>
+              <div class="relative">
+                <label for="modal-company-name" class="text-sm font-medium text-gray-700">기업명 (기업코드)</label>
+                <input type="text" id="modal-company-name" placeholder="기업명 또는 기업코드" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" autocomplete="off">
+                <div id="modal-company-suggestions" class="hidden absolute z-20 mt-1 w-full bg-white rounded-lg shadow-lg border border-gray-200 max-h-48 overflow-y-auto"></div>
+              </div>
+            </div>
+            <div>
+              <label for="modal-customer-name" class="text-sm font-medium text-gray-700">이름</label>
+              <input type="text" id="modal-customer-name" placeholder="고객 이름" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none">
+            </div>
+            <div>
+              <label for="modal-customer-id" class="text-sm font-medium text-gray-700">아이디</label>
+              <input type="text" id="modal-customer-id" placeholder="고객 아이디" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none">
+            </div>
+            <div>
+              <label for="modal-customer-phone" class="text-sm font-medium text-gray-700">전화번호</label>
+              <input type="text" id="modal-customer-phone" placeholder="'-' 없이 숫자만 입력" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none">
             </div>
           </div>
-          <div>
-            <label for="modal-customer-name" class="text-sm font-medium text-gray-700">이름</label>
-            <input type="text" id="modal-customer-name" placeholder="고객 이름" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none">
-          </div>
-          <div>
-            <label for="modal-customer-id" class="text-sm font-medium text-gray-700">아이디</label>
-            <input type="text" id="modal-customer-id" placeholder="고객 아이디" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none">
-          </div>
-          <div>
-            <label for="modal-customer-phone" class="text-sm font-medium text-gray-700">전화번호</label>
-            <input type="text" id="modal-customer-phone" placeholder="'-' 없이 숫자만 입력" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none">
+          <div class="flex justify-end mt-auto">
+            <button id="modal-search-button" class="bg-blue-600 text-white px-6 py-1 rounded-lg hover:bg-blue-700 transition font-semibold text-sm">검색</button>
           </div>
         </div>
-        <div class="flex justify-end">
-          <button id="modal-search-btn" class="bg-blue-600 text-white px-8 py-2 rounded-lg hover:bg-blue-700 transition font-semibold">검색</button>
-        </div>
-      </div>
 
-      <!-- 검색 결과 -->
-      <div id="modal-search-results" class="flex-1 p-6 overflow-y-auto">
-        <p class="text-center text-gray-500">검색어를 입력 후 검색 버튼을 눌러주세요.</p>
-        <!-- 검색 결과가 없을 때 -->
-        <!-- <div class="text-center py-10">
-          <p class="text-gray-600 mb-4">검색된 고객이 없습니다.</p>
-          <button id="modal-go-to-register" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition font-semibold">신규 고객으로 등록</button>
-        </div> -->
-        <!-- 검색 결과가 있을 때 (테이블) -->
-        <!-- JS로 동적 생성 -->
+        <!-- 우측: 검색 결과 -->
+        <div id="modal-search-results" class="w-2/3 p-6 overflow-y-auto border-l border-gray-200">
+          <p class="text-center text-gray-500">검색어를 입력 후 검색 버튼을 눌러주세요.</p>
+          <!-- 검색 결과가 없을 때 -->
+          <!-- <div class="text-center py-10">
+            <p class="text-gray-600 mb-4">검색된 고객이 없습니다.</p>
+            <button id="modal-go-to-register" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition font-semibold">신규 고객으로 등록</button>
+          </div> -->
+          <!-- 검색 결과가 있을 때 (테이블) -->
+          <!-- JS로 동적 생성 -->
+        </div>
       </div>
 
       <footer class="p-4 bg-gray-50 border-t flex justify-end">
@@ -285,8 +288,11 @@
     menuToggleBiztalk.addEventListener("click", () => menuBiztalk.classList.toggle("hidden"));
     menu2.classList.remove("hidden"); // 관리메뉴는 기본으로 열어둠 
 
-    // ✅ 기업명 검색 기능
-    // company_list.html의 데이터와 연동되는 가상 DB
+    // ===================================================================================
+    // ✅ 데이터 정의 (스크립트 최상단으로 이동)
+    // ===================================================================================
+
+    // ✅ 기업 정보 더미 데이터
     const companyDB = [
         { name: "삼성전자", code: "samsung", salesManager: "박지현", opManager: "김민준" },
         { name: "SK하이닉스", code: "skhynix", salesManager: "이현우", opManager: "이서연" },
@@ -300,32 +306,34 @@
         { name: "포스코", code: "posco", salesManager: "이현우", opManager: "임서현" }
     ];
 
-    // ✅ 고객 목록 더미 데이터 (요청에 따라 삼성, 카카오, CJ푸드빌 데이터 강화)
+    // ✅ 고객 정보 더미 데이터
     const dummyCustomers = [];
-    const targetCompanies = ["삼성전자", "카카오", "CJ푸드빌"];
-    const firstNames = ["김", "이", "박", "최", "정", "강", "조", "윤", "장", "임"];
-    const lastNames = ["민준", "서연", "도윤", "서윤", "시우", "지우", "하준", "지유", "주원", "서현"];
-    const memberTypes = ["학습자", "기업관리자", "교육담당자", "기업운영자"];
-
     companyDB.forEach((company, companyIndex) => {
-      // 모든 회사에 대해 최소 1개의 데이터를 생성하고, 타겟 회사에 대해서는 3개씩 생성
-      const customerCount = targetCompanies.includes(company.name) ? 3 : 1;
+      const firstNames = ["김", "이", "박", "최", "정", "강", "조", "윤", "장", "임"];
+      const lastNames = ["민준", "서연", "도윤", "서윤", "시우", "지우", "하준", "지유", "주원", "서현"];
+      const memberTypes = ["학습자", "기업관리자", "교육담당자", "기업운영자"];
+      const customerCount = company.name === "삼성전자" ? 5 : 3; // 삼성전자에 더 많은 데이터 생성
+
       for (let i = 0; i < customerCount; i++) {
         const name = firstNames[(companyIndex + i) % firstNames.length] + lastNames[(companyIndex + i) % lastNames.length];
         const id = `${company.code}_user${i + 1}`;
-        dummyCustomers.push({
-            companyCode: company.code,
-            companyName: company.name,
-            id: id,
-            name: name,
-            memberType: memberTypes[i % memberTypes.length],
-            email: `${id}@${company.code}.com`,
-            mobilePhone: `010-1234-${String(1000 + companyIndex * 10 + i).padStart(4, '0')}`,
-            officePhone: `02-5678-${String(1000 + companyIndex * 10 + i).padStart(4, '0')}`,
-            regDate: `2025-10-${String(20 - (companyIndex + i)).padStart(2, '0')}`
-        });
+        dummyCustomers.push({ companyCode: company.code, companyName: company.name, id: id, name: name, memberType: memberTypes[i % memberTypes.length], email: `${id}@${company.code}.com`, mobilePhone: `010-1234-${String(1000 + companyIndex * 10 + i).padStart(4, '0')}`, officePhone: `02-5678-${String(1000 + companyIndex * 10 + i).padStart(4, '0')}`, regDate: `2025-10-${String(20 - (companyIndex + i)).padStart(2, '0')}` });
       }
     });
+
+    // ✅ 전화번호 마스킹 함수
+    function maskPhoneNumber(phone) {
+      if (!phone || typeof phone !== 'string') {
+        return '';
+      }
+      const parts = phone.split('-');
+      if (parts.length === 3) {
+        parts[1] = '****';
+        return parts.join('-');
+      }
+      return phone;
+    }
+
 
     const searchInput = document.getElementById("company-search");
     const suggestionsContainer = document.getElementById("company-suggestions");
@@ -500,15 +508,13 @@
 
     // ✅ 통합 검색 모달 로직
     const searchModal = document.getElementById('customer-search-modal');
-    const modalSearchBtn = document.getElementById('modal-search-btn');
+    const modalSearchBtn = document.getElementById('modal-search-button');
     const modalGoToRegisterBtn = document.getElementById('modal-go-to-register');
-    const searchResultsContainer = document.getElementById('modal-search-results');
+    const modalSearchResultsContainer = document.getElementById('modal-search-results');
     const modalCompanyNameInput = document.getElementById('modal-company-name');
-
-    // 페이지 로드 시 모달을 바로 엽니다.
-    document.addEventListener('DOMContentLoaded', () => {
-      searchModal.classList.remove('hidden');
-    });
+    const modalCustomerNameInput = document.getElementById('modal-customer-name');
+    const modalCustomerIdInput = document.getElementById('modal-customer-id');
+    const modalCustomerPhoneInput = document.getElementById('modal-customer-phone');
 
     // 모달을 닫는 함수
     function closeSearchModal() {
@@ -529,24 +535,27 @@
       closeSearchModal(); // 모달 닫기
     }
 
-    // 모달 검색 버튼 클릭 이벤트 (가상)
-    modalSearchBtn.addEventListener('click', () => {
-      const companyQuery = modalCompanyNameInput.value.toLowerCase();
-      const nameQuery = document.getElementById('modal-customer-name').value.toLowerCase();
-      const idQuery = document.getElementById('modal-customer-id').value.toLowerCase();
-      const phoneQuery = document.getElementById('modal-customer-phone').value.replace(/-/g, '');
+    // 모달 검색 실행 함수
+    function executeModalSearch() {
+      let companyQuery = modalCompanyNameInput.value.trim().toLowerCase();
+      // "기업명 (기업코드)" 형식에서 기업명만 추출
+      const companyMatch = companyQuery.match(/^(.*?)\s*\(/);
+      const pureCompanyName = companyMatch ? companyMatch[1].trim() : companyQuery;
+      const nameQuery = modalCustomerNameInput.value.trim().toLowerCase();
+      const idQuery = modalCustomerIdInput.value.trim().toLowerCase();
+      const phoneQuery = modalCustomerPhoneInput.value.trim().replace(/-/g, '');
 
       // 모든 입력 필드가 비어있으면 검색하지 않음
       if (!companyQuery && !nameQuery && !idQuery && !phoneQuery) {
-        searchResultsContainer.innerHTML = `<p class="text-center text-gray-500">검색어를 입력 후 검색 버튼을 눌러주세요.</p>`;
+        modalSearchResultsContainer.innerHTML = `<p class="text-center text-gray-500">검색어를 입력 후 검색 버튼을 눌러주세요.</p>`;
         return;
       }
 
       const searchResults = dummyCustomers.filter(customer => {
-        const matchCompany = companyQuery ? customer.companyName.toLowerCase().includes(companyQuery) || customer.companyCode.toLowerCase().includes(companyQuery) : true;
+        const matchCompany = pureCompanyName ? customer.companyName.toLowerCase().includes(pureCompanyName) || customer.companyCode.toLowerCase().includes(pureCompanyName) : true;
         const matchName = nameQuery ? customer.name.toLowerCase().includes(nameQuery) : true;
         const matchId = idQuery ? customer.id.toLowerCase().includes(idQuery) : true;
-        const matchPhone = phoneQuery ? customer.mobilePhone.includes(phoneQuery) : true;
+        const matchPhone = phoneQuery ? customer.mobilePhone.replace(/-/g, '').includes(phoneQuery) : true;
         return matchCompany && matchName && matchId && matchPhone;
       });
 
@@ -585,10 +594,10 @@
           `;
         });
         tableHTML += `</tbody></table>`;
-        searchResultsContainer.innerHTML = tableHTML;
+        modalSearchResultsContainer.innerHTML = tableHTML;
       } else {
         // 검색 결과가 없을 경우
-        searchResultsContainer.innerHTML = `
+        modalSearchResultsContainer.innerHTML = `
           <div class="text-center py-10">
             <p class="text-gray-600 mb-4">검색된 고객이 없습니다.</p>
             <button onclick="goToRegistration()" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition font-semibold">
@@ -597,7 +606,10 @@
           </div>
         `;
       }
-    });
+    }
+
+    // 모달 검색 버튼 클릭 이벤트
+    modalSearchBtn.addEventListener('click', executeModalSearch);
 
     // ✅ 모달 내 기업명 검색 자동완성 로직
     const modalSuggestionsContainer = document.getElementById("modal-company-suggestions");
@@ -614,6 +626,7 @@
     }
 
     modalCompanyNameInput.addEventListener("input", () => {
+        let currentModalCompanies = []; // 현재 필터링된 회사 목록을 저장
         const query = modalCompanyNameInput.value.trim().toLowerCase();
         if (query.length === 0) {
             modalSuggestionsContainer.classList.add("hidden");
@@ -621,15 +634,17 @@
         }
 
         const filteredCompanies = companyDB.filter(c => c.name.toLowerCase().includes(query) || c.code.toLowerCase().includes(query));
-        
+        currentModalCompanies = filteredCompanies; // 필터링된 결과를 변수에 할당
         modalSuggestionsContainer.innerHTML = "";
         filteredCompanies.forEach(company => {
             const item = document.createElement("div");
             item.className = "px-4 py-2 hover:bg-blue-50 cursor-pointer";
             item.textContent = `${company.name} (${company.code})`;
-            item.addEventListener("click", () => {
-                modalCompanyNameInput.value = company.name; // 입력창에 기업명 설정
+            // blur 이벤트보다 click이 먼저 실행되도록 mousedown 이벤트를 사용합니다.
+            item.addEventListener("mousedown", (e) => { // Add e parameter
+                modalCompanyNameInput.value = `${company.name} (${company.code})`; // 입력창에 '기업명 (기업코드)' 형식으로 설정
                 modalSuggestionsContainer.classList.add("hidden");
+                e.preventDefault(); // Prevent blur from firing immediately and potentially clearing input
             });
             modalSuggestionsContainer.appendChild(item);
         });
@@ -642,12 +657,29 @@
         modalHighlightedIndex = -1;
     });
 
+    // 입력창에서 포커스가 벗어났을 때(blur) 자동완성 목록을 숨깁니다.
+    // setTimeout을 사용하여 클릭 이벤트가 먼저 처리될 시간을 확보합니다.
+    modalCompanyNameInput.addEventListener("blur", () => {
+        setTimeout(() => {
+            modalSuggestionsContainer.classList.add("hidden");
+        }, 150); // 150ms 지연
+    });
+
     modalCompanyNameInput.addEventListener("keydown", (e) => {
         const items = modalSuggestionsContainer.querySelectorAll("div");
-        if (modalSuggestionsContainer.classList.contains("hidden") || items.length === 0) return;
+        const suggestionsVisible = !modalSuggestionsContainer.classList.contains("hidden") && items.length > 0;
 
-        switch (e.key) {
-            case "ArrowDown":
+        if (e.key === "Enter") {
+            e.preventDefault(); // Prevent default form submission
+
+            if (suggestionsVisible && modalHighlightedIndex > -1 && items[modalHighlightedIndex]) {
+                // If a suggestion is highlighted, trigger its mousedown event to select it.
+                items[modalHighlightedIndex].dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
+            }
+            modalSuggestionsContainer.classList.add("hidden"); // Hide suggestions after selection or if no selection was made.
+        } else if (suggestionsVisible) { // Only handle arrow keys and escape if suggestions are visible
+            switch (e.key) {
+                case "ArrowDown":
                 e.preventDefault();
                 modalHighlightedIndex = (modalHighlightedIndex + 1) % items.length;
                 modalHighlightItem(modalHighlightedIndex);
@@ -657,20 +689,12 @@
                 modalHighlightedIndex = (modalHighlightedIndex - 1 + items.length) % items.length;
                 modalHighlightItem(modalHighlightedIndex);
                 break;
-            case "Enter":
-                e.preventDefault();
-                if (modalHighlightedIndex > -1) {
-                    items[modalHighlightedIndex].click();
-                }
-                modalSuggestionsContainer.classList.add("hidden");
-                break;
             case "Escape":
                 modalSuggestionsContainer.classList.add("hidden");
                 break;
+            }
         }
     });
-
-    document.addEventListener("click", (e) => { if (!modalCompanyNameInput.contains(e.target) && !modalSuggestionsContainer.contains(e.target)) { modalSuggestionsContainer.classList.add("hidden"); } });
 
   </script>
 </body>
