@@ -71,8 +71,8 @@
           </button>
           <div id="menu2" class="ml-4 mt-2 space-y-1 text-sm">
             <a href="b2b_dashboard_tailwind.html" class="block px-3 py-1 bg-blue-900 rounded font-semibold">상담 현황</a>
-            <a href="company_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">기업 목록</a>
-            <a href="customer_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">고객 목록</a>
+            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">기업 목록</a>
+            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">고객 목록</a>
             <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">수강시간 조회</a>
             <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">학습상담·CS 관리</a>
             <a href="manual_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">메뉴얼 관리</a>
@@ -95,6 +95,13 @@
       <main class="flex-1 w-full px-10 py-8 overflow-y-auto">
         <!-- 필터 영역 -->
         <section class="bg-white p-6 rounded-xl shadow mb-8 text-sm">
+          <div class="flex items-center space-x-2 mb-5">
+            <button id="filter-all" class="filter-btn bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold transition">전체</button>
+            <button id="filter-member" class="filter-btn bg-white text-gray-600 border border-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">회원</button>
+            <button id="filter-non-member" class="filter-btn bg-white text-gray-600 border border-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">비회원</button>
+          </div>
+          <hr class="mb-6">
+
           <div class="grid grid-cols-1 md:grid-cols-4 gap-x-6 gap-y-4 items-end">
             <!-- 1행 -->
             <div>
@@ -358,6 +365,7 @@
       ];
 
       const dummyData = [];
+      // 회원 상담 데이터 생성
       companies.forEach((company, companyIndex) => {
         for (let i = 0; i < 3; i++) {
             const firstNames = ["김", "이", "박", "최", "정", "강", "조", "윤", "장", "임"];
@@ -379,23 +387,76 @@
         }
       });
 
+      // 비회원 상담 데이터 생성 (5건)
+      for (let i = 0; i < 5; i++) {
+        const firstNames = ["김", "이", "박", "최", "정"];
+        const lastNames = ["비회원", "방문자", "문의자", "고객", "상담자"];
+        const name = firstNames[i % firstNames.length] + lastNames[i % lastNames.length];
+        dummyData.push({
+            date: `2025-10-${String(25 - i).padStart(2, '0')} ${String(10+i).padStart(2, '0')}:${String(30+i*5).padStart(2, '0')}`,
+            // 비회원도 기업명을 가질 수 있음 (i가 짝수일 때만 기업명 부여)
+            companyCode: "비회원", // 비회원은 '비회원'으로 고정
+            companyName: i % 2 === 0 ? `비회원기업${i+1}`: null,
+            name: name,
+            memberType: "비회원",
+            id: null,
+            category: ["견적/제휴문의", "기타문의", "오발신"][i % 3],
+            manager: managers[i % managers.length],
+            status: i % 2 === 0 ? "처리완료" : "처리대기",
+        });
+      }
+
       const tbody = document.getElementById("table-body");
+      let currentFilterType = 'all'; // 'all', 'member', 'non-member'
+
+      // 필터 버튼 이벤트 리스너
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => {
+            b.classList.remove('bg-blue-600', 'text-white');
+            b.classList.add('bg-white', 'text-gray-600', 'border', 'border-gray-300', 'hover:bg-gray-100');
+          });
+          btn.classList.add('bg-blue-600', 'text-white');
+          btn.classList.remove('bg-white', 'text-gray-600', 'border', 'border-gray-300', 'hover:bg-gray-100');
+
+          currentFilterType = btn.id.split('-')[1]; // 'all', 'member', 'non-member'
+          renderTable();
+        });
+      });
 
       // ✅ 상담일시 기준으로 내림차순 정렬 (최신순)
       dummyData.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-      // 상위 15개만 표시
-      dummyData.slice(0, 15).forEach((d) => {
-        const row = document.createElement("tr");
-        row.setAttribute("onclick", "window.location.href='customer_view.html'");
-        row.className = "border-b hover:bg-blue-50 cursor-pointer transition";
-        row.innerHTML = `
+      function renderTable() {
+        tbody.innerHTML = '';
+
+        let filteredData = dummyData;
+        if (currentFilterType === 'member') {
+          filteredData = dummyData.filter(d => d.id !== null); // id가 있으면 회원
+        } else if (currentFilterType === 'non-member') {
+          filteredData = dummyData.filter(d => d.id === null); // id가 없으면 비회원
+        }
+
+        // 상위 15개만 표시
+        const dataToShow = filteredData.slice(0, 15);
+
+        dataToShow.forEach((d) => {
+          const row = document.createElement("tr");
+          // 비회원은 상세 페이지 이동 불가 (임시 처리)
+          if (d.id) {
+            row.setAttribute("onclick", "window.location.href='customer_view.html'");
+            row.className = "border-b hover:bg-blue-50 cursor-pointer transition";
+          } else {
+            row.className = "border-b bg-gray-50";
+          }
+          row.innerHTML = `
           <td class='p-4'>${d.date}</td>
-          <td class='p-4'>${d.companyCode}</td>
-          <td class='p-4 font-medium'>${d.companyName}</td>
+          <td class='p-4'>${d.companyCode || '-'}</td>
+          <td class='p-4 font-medium'>${d.companyName || '-'}</td>
           <td class='p-4'>${d.name}</td>
           <td class='p-4'>${d.memberType}</td>
-          <td class='p-4'>${d.id}</td>
+          <td class='p-4'>${d.id || '-'}</td>
           <td class='p-4'>${d.category}</td>
           <td class='p-4'>${d.manager}</td>
           <td class='p-4 font-semibold ${
@@ -405,10 +466,12 @@
               ? "text-red-600"
               : "text-gray-500"
           }'>${d.status}</td>`;
-        tbody.appendChild(row);
-      });
+          tbody.appendChild(row);
+        });
+        document.getElementById("count").innerText = `총 ${dataToShow.length}건`;
+      }
 
-      document.getElementById("count").innerText = `총 ${dummyData.slice(0, 15).length}건`;
+      renderTable();
     </script>
   </body>
 </html>

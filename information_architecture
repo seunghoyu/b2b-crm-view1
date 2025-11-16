@@ -1,0 +1,63 @@
+graph TD
+    subgraph "B2B CRM 시스템"
+        direction LR
+
+        %% --- Global Components & Sidebar Menu ---
+        subgraph "공통 요소"
+            direction TD
+            GlobalComponents["공통 컴포넌트"]
+            GlobalComponents --> Sidebar["사이드바"]
+            GlobalComponents --> Header["페이지 헤더"]
+
+            subgraph "사이드바 메뉴"
+                direction LR
+                Sidebar --> AdminMenu["관리메뉴"]
+                Sidebar --> SMS["문자관리"]
+                Sidebar --> Email["이메일 관리"]
+                Sidebar --> Biztalk["비즈톡 관리"]
+            end
+        end
+
+        %% --- Main Pages ---
+        subgraph "메인 화면"
+            Dashboard["1. 상담 현황"]
+            CompanyList["2. 기업 목록"]
+            CustomerList["3. 고객 목록"]
+            CustomerRegistration["4. 신규 고객 등록"]
+            CustomerView["5. 고객 상세 조회"]
+            ManualList["6. 메뉴얼 관리"]
+            ManualRegistration["7. 신규 메뉴얼 등록"]
+        end
+
+        %% --- Page Details & Links ---
+        subgraph "페이지 상세 및 연결"
+            %% Sidebar Links
+            AdminMenu -.-> Dashboard
+            AdminMenu -.-> CompanyList
+            AdminMenu -.-> CustomerList
+            AdminMenu -.-> ManualList
+            AdminMenu -.-> CustomerRegistration
+
+            %% Dashboard Links
+            Dashboard --> D_Table["상담 목록 테이블"]
+            D_Table -- "고객 등록 버튼" --> CustomerRegistration
+            D_Table -- "상담 건 클릭" --> CustomerView
+
+            %% Customer List Links
+            CustomerList -- "신규 고객 등록 버튼" --> CustomerRegistration
+
+            %% Manual List Links
+            ManualList --> ML_Table["메뉴얼 목록 테이블"]
+            ML_Table -- "메뉴얼 등록 버튼" --> ManualRegistration
+            ML_Table -- "메뉴얼 클릭" --> ManualDetailModal["메뉴얼 상세 모달"]
+
+            %% Customer View Links
+            CustomerView --> CV_Menu["기능 메뉴"]
+            CV_Menu -- "메뉴얼 조회" --> ManualDetailModal
+        end
+    end
+
+    %% 스타일
+    style Dashboard fill:#E0E7FF,stroke:#4338CA
+    style CustomerView fill:#E0E7FF,stroke:#4338CA
+    style Sidebar fill:#DBEAFE,stroke:#1E40AF

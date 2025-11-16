@@ -68,6 +68,8 @@
           <a href="b2b_dashboard_tailwind.html" class="block px-3 py-1 hover:bg-blue-700 rounded">상담 현황</a>
           <a href="company_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">기업 목록</a>
           <a href="customer_list.html" class="block px-3 py-1 bg-blue-900 rounded font-semibold">고객 목록</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">기업 목록</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 bg-blue-900 rounded font-semibold">고객 목록</a>
           <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">수강시간 조회</a>
           <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">학습상담·CS 관리</a>
           <a href="manual_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">메뉴얼 관리</a>
@@ -90,6 +92,13 @@
     <main class="flex-1 w-full px-10 py-8 overflow-y-auto">
       <!-- 테이블 영역 -->
       <section class="bg-white p-6 rounded-xl shadow overflow-x-auto">
+        <div class="flex items-center space-x-2 mb-5 text-sm">
+          <button id="filter-all" class="filter-btn bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold transition">전체</button>
+          <button id="filter-member" class="filter-btn bg-white text-gray-600 border border-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">회원</button>
+          <button id="filter-non-member" class="filter-btn bg-white text-gray-600 border border-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">비회원</button>
+        </div>
+        <hr class="mb-6">
+
         <div class="flex justify-between items-center mb-4">
           <h2 class="text-lg font-semibold text-gray-800">전체 고객</h2>
           <div class="flex items-center space-x-4">
@@ -164,6 +173,7 @@
     ];
 
     const dummyCustomers = [];
+    // 회원 데이터 생성
     companies.forEach((company, companyIndex) => {
       for (let i = 0; i < 3; i++) {
         const firstNames = ["김", "이", "박", "최", "정", "강", "조", "윤", "장", "임"];
@@ -180,15 +190,52 @@
             email: `${id}@${company.code}.com`,
             mobilePhone: `010-****-${String(Math.floor(Math.random() * 9000) + 1000)}`,
             officePhone: `02-****-${String(Math.floor(Math.random() * 9000) + 1000)}`,
-            regDate: `2025-10-${String(20 - (companyIndex + i)).padStart(2, '0')}`
+            regDate: `2025-10-${String(20 - (companyIndex + i)).padStart(2, '0')}`,
+            isMember: true
         });
       }
     });
+
+    // 비회원 데이터 생성
+    for (let i = 0; i < 5; i++) {
+      dummyCustomers.push({
+        companyCode: null,
+        companyName: null,
+        id: null,
+        name: `김비회원${i+1}`,
+        memberType: '비회원',
+        email: null,
+        mobilePhone: `010-5555-${String(1000+i).padStart(4, '0')}`,
+        officePhone: null,
+        regDate: `2025-09-${String(25-i).padStart(2, '0')}`,
+        isMember: false
+      });
+    }
+
+    // 최신순 정렬
+    dummyCustomers.sort((a, b) => new Date(b.regDate) - new Date(a.regDate));
 
     const tbody = document.getElementById("table-body");
     const loadMoreBtn = document.getElementById("load-more");
     const itemsPerPage = 10;
     let itemsShown = 0;
+    let currentFilterType = 'all'; // 'all', 'member', 'non-member'
+
+    // 필터 버튼 이벤트 리스너
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-blue-600', 'text-white');
+          b.classList.add('bg-white', 'text-gray-600', 'border', 'border-gray-300', 'hover:bg-gray-100');
+        });
+        btn.classList.add('bg-blue-600', 'text-white');
+        btn.classList.remove('bg-white', 'text-gray-600', 'border', 'border-gray-300', 'hover:bg-gray-100');
+        currentFilterType = btn.id.split('-')[1];
+        itemsShown = 0; // 필터 변경 시 처음부터 다시 로드
+        renderTable(true); // clearTable = true
+      });
+    });
 
     // ✅ 전화번호 마스킹 함수
     function maskPhoneNumber(phone) {
@@ -203,41 +250,54 @@
       return phone;
     }
 
-    function renderTable() {
-        const toShow = dummyCustomers.slice(itemsShown, itemsShown + itemsPerPage);
+    function renderTable(clearTable = false) {
+        if (clearTable) {
+          tbody.innerHTML = '';
+        }
+
+        let filteredCustomers = dummyCustomers;
+        if (currentFilterType === 'member') {
+          filteredCustomers = dummyCustomers.filter(c => c.isMember);
+        } else if (currentFilterType === 'non-member') {
+          filteredCustomers = dummyCustomers.filter(c => !c.isMember);
+        }
+
+        const toShow = filteredCustomers.slice(itemsShown, itemsShown + itemsPerPage);
 
         toShow.forEach((d) => {
             const row = document.createElement("tr");
             row.className = "border-b hover:bg-blue-50 transition";
             row.innerHTML = `
-                <td class='p-4'>${d.companyCode}</td>
-                <td class='p-4 font-medium'>${d.companyName}</td>
-                <td class='p-4'>${d.id}</td>
+                <td class='p-4'>${d.companyCode || '-'}</td>
+                <td class='p-4 font-medium'>${d.companyName || '-'}</td>
+                <td class='p-4'>${d.id || '-'}</td>
                 <td class='p-4'>${d.name}</td>
                 <td class='p-4'>${d.memberType}</td>
-                <td class='p-4'>${d.email}</td>
+                <td class='p-4'>${d.email || '-'}</td>
                 <td class='p-4'>${maskPhoneNumber(d.mobilePhone)}</td>
                 <td class='p-4'>${maskPhoneNumber(d.officePhone)}</td>
                 <td class='p-4'>${d.regDate}</td>
-                <td class='p-4'><button onclick="alert('회원정보 수정 페이지로 이동합니다.')" class="bg-gray-200 text-gray-700 px-3 py-1 rounded text-xs hover:bg-gray-300">수정</button></td>
-                <td class='p-4'><button onclick="alert('배송지 정보 수정 페이지로 이동합니다.')" class="bg-gray-200 text-gray-700 px-3 py-1 rounded text-xs hover:bg-gray-300">수정</button></td>
-                <td class='p-4'><button onclick="alert('${d.companyName} 사이트로 이동합니다.')" class="bg-blue-100 text-blue-700 px-3 py-1 rounded text-xs hover:bg-blue-200">이동</button></td>
+                <td class='p-4'><button onclick="${d.isMember ? "alert('회원정보 수정 페이지로 이동합니다.')" : ""}" class="${d.isMember ? 'bg-gray-200 text-gray-700 hover:bg-gray-300' : 'bg-gray-100 text-gray-400 cursor-not-allowed'} px-3 py-1 rounded text-xs">수정</button></td>
+                <td class='p-4'><button onclick="${d.isMember ? "alert('배송지 정보 수정 페이지로 이동합니다.')" : ""}" class="${d.isMember ? 'bg-gray-200 text-gray-700 hover:bg-gray-300' : 'bg-gray-100 text-gray-400 cursor-not-allowed'} px-3 py-1 rounded text-xs">수정</button></td>
+                <td class='p-4'><button onclick="${d.isMember ? `alert('${d.companyName} 사이트로 이동합니다.')` : ""}" class="${d.isMember ? 'bg-blue-100 text-blue-700 hover:bg-blue-200' : 'bg-gray-100 text-gray-400 cursor-not-allowed'} px-3 py-1 rounded text-xs">이동</button></td>
                 `;
             tbody.appendChild(row);
         });
 
         itemsShown += toShow.length;
 
-        if (itemsShown >= dummyCustomers.length) {
+        if (itemsShown >= filteredCustomers.length) {
             loadMoreBtn.style.display = 'none';
+        } else {
+            loadMoreBtn.style.display = 'block';
         }
+        document.getElementById("count").innerText = `총 ${filteredCustomers.length}건`;
     }
 
-    loadMoreBtn.addEventListener('click', renderTable);
+    loadMoreBtn.addEventListener('click', () => renderTable(false));
 
     // 초기 데이터 로드
-    renderTable();
-    document.getElementById("count").innerText = `총 ${dummyCustomers.length}건`;
+    renderTable(true);
 
   </script>
 </body>

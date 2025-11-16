@@ -66,8 +66,8 @@
         </button>
         <div id="menu2" class="ml-4 mt-2 space-y-1 text-sm">
           <a href="b2b_dashboard_tailwind.html" class="block px-3 py-1 hover:bg-blue-700 rounded">상담 현황</a>
-          <a href="company_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">기업 목록</a>
-          <a href="customer_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">고객 목록</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">기업 목록</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">고객 목록</a>
           <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">수강시간 조회</a>
           <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">학습상담·CS 관리</a>
           <a href="manual_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">메뉴얼 관리</a>
@@ -84,51 +84,62 @@
       <section class="bg-white p-8 rounded-xl shadow flex-1 flex flex-col">
         <h2 class="text-xl font-semibold text-gray-800 border-b pb-4 mb-6">비회원 상담 내용 입력</h2>
         <div class="flex flex-col flex-1">
-          <!-- 문의자 정보 -->
-          <div class="md:col-span-2 grid grid-cols-2 gap-x-8">
+          <!-- 상단 입력 필드 -->
+          <div class="space-y-4 mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-4">
               <div>
                   <label for="nonMemberPhone" class="text-sm font-medium text-gray-700">문의자 전화번호 (필수)</label>
                   <input type="text" id="nonMemberPhone" placeholder="'-' 없이 숫자만 입력" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" />
               </div>
               <div>
-                  <label for="nonMemberName" class="text-sm font-medium text-gray-700">문의자명 (선택)</label>
+                  <label for="nonMemberName" class="text-sm font-medium text-gray-700">문의자명</label>
                   <input type="text" id="nonMemberName" placeholder="문의자 이름" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" />
               </div>
-          </div>
-
-          <!-- 상담 내용 -->
-          <div class="md:col-span-2 grid grid-cols-4 gap-4 my-4">
-            <select class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-400">
-              <option>담당자 선택</option>
-              <option>홍길동</option>
-              <option>이현우</option>
-              <option>박지현</option>
-            </select>
-            <select id="statusSelect" class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-400"> 
-              <option>처리상태 선택</option>
-              <option value="처리대기" class="text-red-600 font-semibold">처리대기</option>
-              <option value="처리완료" class="text-green-600 font-semibold">처리완료</option>
-            </select>
-            <div class="col-span-2">
-              <select id="categorySelect" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-400">
-                <option value="">분류 선택</option>
-                <option value="견적/제휴문의" class="font-bold text-blue-600">견적/제휴문의</option>
-                <option>오발신</option>
-                <option>기타</option>
-              </select>
+              <div>
+                <label for="nonMemberManager" class="text-sm font-medium text-gray-700">담당자</label>
+                <select id="nonMemberManager" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-400">
+                  <option>담당자 선택</option>
+                  <option>홍길동</option>
+                  <option>이현우</option>
+                  <option>박지현</option>
+                </select>
+              </div>
+              <div>
+                <label for="statusSelect" class="text-sm font-medium text-gray-700">처리상태</label>
+                <select id="statusSelect" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-400"> 
+                  <option>처리상태 선택</option>
+                  <option value="처리대기" class="text-red-600 font-semibold">처리대기</option>
+                  <option value="처리완료" class="text-green-600 font-semibold">처리완료</option>
+                </select>
+              </div>
+              <div class="md:col-span-2">
+                <label for="nonMemberCompany" class="text-sm font-medium text-gray-700">기업명 (선택)</label>
+                <input type="text" id="nonMemberCompany" placeholder="소속 기업명" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" />
+              </div>
+              <div class="md:col-span-2">
+                <label for="categorySelect" class="text-sm font-medium text-gray-700">분류</label>
+                <select id="categorySelect" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-400">
+                  <option value="">분류 선택</option>
+                  <option value="견적/제휴문의" class="font-bold text-blue-600">견적/제휴문의</option>
+                  <option>오발신</option>
+                  <option>기타</option>
+                </select>
+              </div>
+              <div class="md:col-span-4">
+                <label for="nonMemberTitle" class="text-sm font-medium text-gray-700">제목</label>
+                <input type="text" id="nonMemberTitle" placeholder="제목을 입력하세요" class="w-full mt-1 border border-blue-300 bg-blue-50 rounded-lg px-3 py-2 text-sm focus:ring-blue-400 placeholder:font-medium" />
+              </div>
             </div>
-          </div>
-          <div class="mb-4">
-            <input type="text" placeholder="제목을 입력하세요" class="w-full border border-blue-300 bg-blue-50 rounded-lg px-3 py-2 text-sm focus:ring-blue-400 placeholder:font-medium" />
           </div>
           <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-x-8">
             <div class="flex flex-col">
+              <!-- 하단 텍스트 영역 (화면 채우기) -->
               <label for="inquiryContent" class="text-sm font-medium text-gray-700">문의 내용</label>
               <textarea id="inquiryContent" placeholder="문의 내용을 입력하세요..." class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 flex-1 focus:ring-blue-400 focus:outline-none"></textarea>
             </div>
             <div class="flex flex-col">
-              <label for="responseContent" class="text-sm font-medium text-gray-700">응대 내용</label>
-              <textarea id="responseContent" placeholder="응대 내용을 입력하세요..." class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 flex-1 focus:ring-blue-400 focus:outline-none"></textarea>
+                <label for="responseContent" class="text-sm font-medium text-gray-700">응대 내용</label>
+                <textarea id="responseContent" placeholder="응대 내용을 입력하세요..." class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 flex-1 focus:ring-blue-400 focus:outline-none"></textarea>
             </div>
           </div>
         </div>
@@ -156,15 +167,13 @@
 
       <!-- Main content area for side-by-side layout -->
       <div class="flex-1 flex flex-row overflow-hidden">
-        <!-- 좌측: 검색 필터 -->
-        <div class="w-1/3 p-6 space-y-4 bg-gray-50 flex flex-col">
-          <div class="grid grid-cols-1 gap-4">
-            <div>
-              <div class="relative">
-                <label for="modal-company-name" class="text-sm font-medium text-gray-700">기업명 (기업코드)</label>
-                <input type="text" id="modal-company-name" placeholder="기업명 또는 기업코드" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" autocomplete="off">
-                <div id="modal-company-suggestions" class="hidden absolute z-20 mt-1 w-full bg-white rounded-lg shadow-lg border border-gray-200 max-h-48 overflow-y-auto"></div>
-              </div>
+        <!-- 좌측: 검색 필터 (flex-col 추가) -->
+        <div class="w-1/3 p-6 bg-gray-50">
+          <div class="space-y-4">
+            <div class="relative">
+              <label for="modal-company-name" class="text-sm font-medium text-gray-700">기업명 (기업코드)</label>
+              <input type="text" id="modal-company-name" placeholder="기업명 또는 기업코드" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" autocomplete="off">
+              <div id="modal-company-suggestions" class="hidden absolute z-20 mt-1 w-full bg-white rounded-lg shadow-lg border border-gray-200 max-h-48 overflow-y-auto"></div>
             </div>
             <div>
               <label for="modal-customer-name" class="text-sm font-medium text-gray-700">이름</label>
@@ -175,12 +184,13 @@
               <input type="text" id="modal-customer-id" placeholder="고객 아이디" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none">
             </div>
             <div>
-              <label for="modal-customer-phone" class="text-sm font-medium text-gray-700">전화번호</label>
-              <input type="text" id="modal-customer-phone" placeholder="'-' 없이 숫자만 입력" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none">
+              <label for="modal-customer-mobile" class="text-sm font-medium text-gray-700">휴대폰 번호</label>
+              <input type="text" id="modal-customer-mobile" placeholder="'-' 없이 숫자만 입력" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none">
             </div>
-          </div>
-          <div class="flex justify-end mt-auto">
-            <button id="modal-search-button" class="bg-blue-600 text-white px-6 py-1 rounded-lg hover:bg-blue-700 transition font-semibold text-sm">검색</button>
+            <div>
+              <label for="modal-customer-office" class="text-sm font-medium text-gray-700">일반 전화번호</label>
+              <input type="text" id="modal-customer-office" placeholder="'-' 없이 숫자만 입력" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none">
+            </div>
           </div>
         </div>
 
@@ -193,10 +203,16 @@
         </div>
       </div>
 
-      <footer class="p-4 bg-gray-50 border-t flex justify-end">
-        <button onclick="closeSearchModal()" class="bg-gray-400 text-white px-5 py-2 rounded-lg hover:bg-gray-500 transition font-semibold">
-          닫기
+      <footer class="p-4 bg-gray-50 border-t flex justify-between items-center space-x-2">
+        <button onclick="goToNonMemberRegistration()" class="bg-gray-600 text-white px-5 py-2 rounded-lg hover:bg-gray-700 transition font-semibold">
+          비회원으로 상담 기록
         </button>
+        <div class="flex items-center space-x-2">
+          <button id="modal-search-button" class="bg-blue-600 text-white px-8 py-2 rounded-lg hover:bg-blue-700 transition font-semibold">검색</button>
+          <button onclick="closeSearchModal()" class="bg-gray-400 text-white px-5 py-2 rounded-lg hover:bg-gray-500 transition font-semibold">
+            닫기
+          </button>
+        </div>
       </footer>
     </div>
   </div>
@@ -296,7 +312,8 @@
     const modalCompanyNameInput = document.getElementById('modal-company-name');
     const modalCustomerNameInput = document.getElementById('modal-customer-name');
     const modalCustomerIdInput = document.getElementById('modal-customer-id');
-    const modalCustomerPhoneInput = document.getElementById('modal-customer-phone');
+    const modalCustomerMobileInput = document.getElementById('modal-customer-mobile');
+    const modalCustomerOfficeInput = document.getElementById('modal-customer-office');
 
     // 모달을 닫는 함수
     function closeSearchModal() {
@@ -307,7 +324,7 @@
     function goToNonMemberRegistration() {
       // 검색에 사용했던 값을 비회원 상담 폼으로 전달
       document.getElementById('nonMemberName').value = modalCustomerNameInput.value;
-      document.getElementById('nonMemberPhone').value = modalCustomerPhoneInput.value;
+      document.getElementById('nonMemberPhone').value = modalCustomerMobileInput.value || modalCustomerOfficeInput.value;
 
       closeSearchModal(); // 모달 닫기
     }
@@ -320,20 +337,22 @@
       const pureCompanyName = companyMatch ? companyMatch[1].trim() : companyQuery;
       const nameQuery = modalCustomerNameInput.value.trim().toLowerCase();
       const idQuery = modalCustomerIdInput.value.trim().toLowerCase();
-      const phoneQuery = modalCustomerPhoneInput.value.trim().replace(/-/g, '');
+      const mobileQuery = modalCustomerMobileInput.value.trim().replace(/-/g, '');
+      const officeQuery = modalCustomerOfficeInput.value.trim().replace(/-/g, '');
 
       // 모든 입력 필드가 비어있으면 검색하지 않음
-      if (!companyQuery && !nameQuery && !idQuery && !phoneQuery) {
+      if (!companyQuery && !nameQuery && !idQuery && !mobileQuery && !officeQuery) {
         modalSearchResultsContainer.innerHTML = `<p class="text-center text-gray-500">검색어를 입력 후 검색 버튼을 눌러주세요.</p>`;
         return;
       }
 
       const searchResults = dummyCustomers.filter(customer => {
-        const matchCompany = pureCompanyName ? customer.companyName.toLowerCase().includes(pureCompanyName) || customer.companyCode.toLowerCase().includes(pureCompanyName) : true;
-        const matchName = nameQuery ? customer.name.toLowerCase().includes(nameQuery) : true;
-        const matchId = idQuery ? customer.id.toLowerCase().includes(idQuery) : true;
-        const matchPhone = phoneQuery ? customer.mobilePhone.replace(/-/g, '').includes(phoneQuery) : true;
-        return matchCompany && matchName && matchId && matchPhone;
+        const matchCompany = !pureCompanyName || customer.companyName.toLowerCase().includes(pureCompanyName) || customer.companyCode.toLowerCase().includes(pureCompanyName);
+        const matchName = !nameQuery || customer.name.toLowerCase().includes(nameQuery);
+        const matchId = !idQuery || customer.id.toLowerCase().includes(idQuery);
+        const matchMobile = !mobileQuery || customer.mobilePhone.replace(/-/g, '').includes(mobileQuery);
+        const matchOffice = !officeQuery || customer.officePhone.replace(/-/g, '').includes(officeQuery);
+        return matchCompany && matchName && matchId && matchMobile && matchOffice;
       });
 
       if (searchResults.length > 0) {

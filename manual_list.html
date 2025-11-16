@@ -66,8 +66,8 @@
         </button>
         <div id="menu2" class="ml-4 mt-2 space-y-1 text-sm">
           <a href="b2b_dashboard_tailwind.html" class="block px-3 py-1 hover:bg-blue-700 rounded">상담 현황</a>
-          <a href="company_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">기업 목록</a>
-          <a href="customer_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">고객 목록</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">기업 목록</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">고객 목록</a>
           <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">수강시간 조회</a>
           <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">학습상담·CS 관리</a>
           <a href="manual_list.html" class="block px-3 py-1 bg-blue-900 rounded font-semibold">메뉴얼 관리</a>
@@ -90,6 +90,13 @@
     <main class="flex-1 w-full px-10 py-8 overflow-y-auto">
       <!-- 필터 영역 -->
       <section class="bg-white p-6 rounded-xl shadow mb-8 text-sm">
+        <div class="flex items-center space-x-2 mb-5">
+          <button id="filter-all" class="filter-btn bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold transition">전체</button>
+          <button id="filter-common" class="filter-btn bg-white text-gray-600 border border-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">공통 메뉴얼</button>
+          <button id="filter-company" class="filter-btn bg-white text-gray-600 border border-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">기업별 메뉴얼</button>
+        </div>
+        <hr class="mb-6">
+
         <div class="grid grid-cols-1 md:grid-cols-4 gap-x-6 gap-y-4 items-end">
           <div class="relative">
             <label for="search-company-name" class="font-medium text-gray-700">기업명</label>
@@ -227,27 +234,30 @@
         "안녕하세요, {고객명}님. 요청하신 세금계산서가 발행 완료되었습니다. 이메일로 발송해 드렸으니 확인 부탁드립니다."
     ];
 
-    const dummyManuals = Array.from({ length: 20 }, (_, i) => {
+    const dummyManuals = Array.from({ length: 25 }, (_, i) => {
         const companies = [
             { name: "삼성전자", code: "samsung" },
             { name: "SK하이닉스", code: "skhynix" },
             { name: "LG화학", code: "lgchem" },
             { name: "현대자동차", code: "hyundai" },
-            { name: "카카오", code: "kakao" }, // 5
-            { name: "네이버", code: "naver" }, // 6
-            { name: "CJ푸드빌", code: "cjfood" }, // 7
-            { name: "대한항공", code: "koreanair" }, // 8
-            { name: "다우오피스", code: "daou" }, // 9
-            { name: "포스코", code: "posco" } // 10
+            { name: "카카오", code: "kakao" },
+            { name: "네이버", code: "naver" },
+            { name: "CJ푸드빌", code: "cjfood" },
+            { name: "대한항공", code: "koreanair" },
+            { name: "다우오피스", code: "daou" },
+            { name: "포스코", code: "posco" }
         ];
-        const company = companies[i % companies.length];
+        
+        // 4번째 마다 공통 메뉴얼 생성
+        const isCommon = (i + 1) % 4 === 0;
+        const company = isCommon ? { name: null, code: null } : companies[i % companies.length];
         const authors = ["박지현", "이현우", "김영희", "이하윤"];
 
         return {
             regDate: `2025-10-${String(20 - i % 20).padStart(2, '0')} ${String(10 + i % 12).padStart(2, '0')}:${String(30 + i % 30).padStart(2, '0')}`,
-            companyCode: company.code,
-            companyName: company.name, // 10개 기업 반복
-            title: `[${company.name}] ${inquiryExamples[i % inquiryExamples.length].substring(0, 10)}`, // 제목 추가
+            companyCode: company.code, // 공통일 경우 null
+            companyName: company.name, // 공통일 경우 null
+            title: isCommon ? `${inquiryExamples[i % inquiryExamples.length]}` : `[${company.name}] ${inquiryExamples[i % inquiryExamples.length]}`,
             inquiry: inquiryExamples[i % inquiryExamples.length], // 15개 문의 반복
             procedure: procedureExamples[i % procedureExamples.length], // 6개 절차 반복
             author: authors[i % authors.length],
@@ -260,6 +270,7 @@
     const loadMoreBtn = document.getElementById("load-more");
     const itemsPerPage = 10;
     let itemsShown = 0;
+    let currentFilterType = 'all'; // 'all', 'common', 'company'
 
     // ✅ 검색 필터 요소
     const searchCompanyName = document.getElementById('search-company-name');
@@ -270,6 +281,27 @@
     const searchAuthor = document.getElementById('search-author');
     const searchBtn = document.getElementById('search-btn');
     const resetSearchBtn = document.getElementById('reset-search-btn');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+
+    // 필터 버튼 이벤트 리스너
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // 모든 버튼 스타일 초기화
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-blue-600', 'text-white');
+          b.classList.add('bg-white', 'text-gray-600', 'border', 'border-gray-300', 'hover:bg-gray-100');
+        });
+        // 클릭된 버튼 스타일 활성화
+        btn.classList.add('bg-blue-600', 'text-white');
+        btn.classList.remove('bg-white', 'text-gray-600', 'border', 'border-gray-300', 'hover:bg-gray-100');
+
+        currentFilterType = btn.id.split('-')[1]; // 'all', 'common', 'company'
+        
+        // 기업명/기업코드 필드 활성화/비활성화
+        searchCompanyName.disabled = currentFilterType === 'common';
+        handleSearch();
+      });
+    });
 
     function renderTable() {
         tbody.innerHTML = ''; // 테이블 비우기
@@ -281,9 +313,19 @@
         const inquiryQuery = searchInquiry.value.toLowerCase();
         const authorQuery = searchAuthor.value.toLowerCase();
 
-        const filteredManuals = dummyManuals.filter(m => 
-            m.companyCode.toLowerCase().includes(companyCodeQuery) &&
-            m.companyName.toLowerCase().includes(companyNameQuery) &&
+        let filteredManuals = dummyManuals;
+
+        // 1. 타입 필터 (공통/기업별)
+        if (currentFilterType === 'common') {
+          filteredManuals = filteredManuals.filter(m => !m.companyCode);
+        } else if (currentFilterType === 'company') {
+          filteredManuals = filteredManuals.filter(m => m.companyCode);
+        }
+
+        // 2. 검색어 필터
+        filteredManuals = filteredManuals.filter(m => 
+            (m.companyCode || '').toLowerCase().includes(companyCodeQuery) &&
+            (m.companyName || '').toLowerCase().includes(companyNameQuery) &&
             m.title.toLowerCase().includes(titleQuery) &&
             m.inquiry.toLowerCase().includes(inquiryQuery) &&
             m.author.toLowerCase().includes(authorQuery)
@@ -296,8 +338,8 @@
             row.innerHTML = `
                 <!-- 각 td에 데이터 바인딩 -->
                 <td class='p-4 whitespace-nowrap'>${d.regDate}</td>
-                <td class='p-4 whitespace-nowrap'>${d.companyCode}</td>
-                <td class='p-4 whitespace-nowrap font-medium'>${d.companyName}</td>
+                <td class='p-4 whitespace-nowrap'>${d.companyCode || '-'}</td>
+                <td class='p-4 whitespace-nowrap font-medium'>${d.companyName || '공통'}</td>
                 <td class='p-4 whitespace-nowrap truncate font-semibold' title="${d.title}">${d.title}</td>
                 <td class='p-4 whitespace-nowrap truncate' title="${d.inquiry}">${d.inquiry}</td>
                 <td class='p-4 whitespace-nowrap'>${d.author}</td>

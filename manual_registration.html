@@ -66,8 +66,8 @@
         </button>
         <div id="menu2" class="ml-4 mt-2 space-y-1 text-sm">
           <a href="b2b_dashboard_tailwind.html" class="block px-3 py-1 hover:bg-blue-700 rounded">상담 현황</a>
-          <a href="company_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">기업 목록</a>
-          <a href="customer_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">고객 목록</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">기업 목록</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">고객 목록</a>
           <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">수강시간 조회</a>
           <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">학습상담·CS 관리</a>
           <a href="manual_list.html" class="block px-3 py-1 bg-blue-900 rounded font-semibold">메뉴얼 관리</a>
@@ -91,6 +91,13 @@
       <section class="bg-white p-8 rounded-xl shadow">
         <div id="registrationFormArea" class="text-sm text-gray-700 space-y-4">
           <div class="border border-gray-200 rounded-lg overflow-hidden">
+            <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center">
+              <div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">메뉴얼 구분</div>
+              <div class="p-4 flex items-center">
+                <input type="checkbox" id="is-common-manual" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                <label for="is-common-manual" class="ml-2 font-medium text-gray-700">공통 메뉴얼로 등록</label>
+              </div>
+            </div>
             <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center">
               <div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">기업명 검색</div>
               <div class="p-2 relative">
@@ -156,13 +163,19 @@
 
     // ✅ 등록 버튼 클릭 이벤트
     document.getElementById('saveRegistrationBtn').addEventListener('click', () => {
+      const isCommon = document.getElementById('is-common-manual').checked;
       const companyName = document.getElementById('company-search').value;
       const title = document.getElementById('reg-title').value;
       const inquiry = document.getElementById('reg-inquiry').value;
       const author = document.getElementById('reg-author').value;
 
-      if (!companyName || !title || !inquiry || !author) {
-        alert('기업명, 상황개요, 작성자는 필수 항목입니다.');
+      // 공통 메뉴얼이 아닐 때만 기업명 체크
+      if (!isCommon && !companyName) {
+        alert('기업별 메뉴얼은 기업명을 반드시 선택해야 합니다.');
+        return;
+      }
+      if (!title || !inquiry || !author) {
+        alert('제목, 상황개요, 작성자는 필수 항목입니다.');
         return;
       }
 
@@ -170,6 +183,27 @@
       // 지금은 성공 알림 후 목록 페이지로 이동합니다.
       alert('새로운 메뉴얼이 등록되었습니다.');
       window.location.href = 'manual_list.html';
+    });
+
+    // ✅ 공통 메뉴얼 체크박스 로직
+    const isCommonCheckbox = document.getElementById('is-common-manual');
+    const companySearchInput = document.getElementById('company-search');
+    const companyCodeInput = document.getElementById('reg-company-code');
+
+    isCommonCheckbox.addEventListener('change', (e) => {
+      const isChecked = e.target.checked;
+      companySearchInput.disabled = isChecked;
+      companyCodeInput.disabled = isChecked;
+
+      if (isChecked) {
+        companySearchInput.value = '';
+        companyCodeInput.value = '';
+        companySearchInput.placeholder = '공통 메뉴얼은 기업을 지정할 수 없습니다.';
+        companySearchInput.classList.add('bg-gray-100');
+      } else {
+        companySearchInput.placeholder = '기업명을 입력하여 검색';
+        companySearchInput.classList.remove('bg-gray-100');
+      }
     });
 
     // ✅ 기업명 검색 기능
