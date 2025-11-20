@@ -107,19 +107,15 @@
             <label for="search-company-code" class="font-medium text-gray-700">기업코드</label>
             <input type="text" id="search-company-code" placeholder="기업 선택 시 자동 입력" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none bg-gray-100" readonly />
           </div>
-          <div class="md:col-span-2">
+          <div>
             <label for="search-title" class="font-medium text-gray-700">제목</label>
             <input type="text" id="search-title" placeholder="제목으로 검색" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" />
-          </div>
-          <div class="md:col-span-2">
-            <label for="search-inquiry" class="font-medium text-gray-700">상황개요</label>
-            <input type="text" id="search-inquiry" placeholder="상황개요로 검색" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" />
           </div>
           <div>
             <label for="search-author" class="font-medium text-gray-700">작성자</label>
             <input type="text" id="search-author" placeholder="작성자로 검색" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" />
           </div>
-          <div class="flex space-x-2 justify-end">
+          <div class="md:col-span-2 flex space-x-2 justify-end">
             <button id="reset-search-btn" class="bg-gray-500 text-white w-full md:w-auto px-6 h-[42px] rounded-lg hover:bg-gray-600 transition font-semibold">
               초기화
             </button>
@@ -164,17 +160,16 @@
 
         <!-- 테이블을 감싸는 div에서 overflow-x-auto 제거 -->
         <div>
-          <!-- table-fixed를 추가하여 열 너비를 고정 -->
-          <table class="w-full table-fixed border-collapse text-sm text-gray-700">
+          <table class="w-full table-auto border-collapse text-sm text-gray-700">
             <thead>
               <tr class="bg-gray-100 border-b text-left text-gray-600">
-                <th class="p-4 w-[140px]">등록일시</th>
-                <th class="p-4 w-[100px]">기업코드</th>
-                <th class="p-4 w-[120px]">기업명</th>
-                <th class="p-4 w-[350px]">제목</th>
-                <th class="p-4 w-[250px]">상황개요</th>
-                <th class="p-4 w-[100px]">작성자</th>
-                <th class="p-4 w-[120px]">관련문서/링크</th>
+                <th class="p-4">등록일시</th>
+                <th class="p-4">기업코드</th>
+                <th class="p-4">기업명</th>
+                <th class="p-4">제목</th>
+                <th class="p-4">영업담당팀</th>
+                <th class="p-4">영업담당자</th>
+                <th class="p-4">작성자</th>
               </tr>
             </thead>
             <tbody id="table-body"></tbody>
@@ -207,64 +202,19 @@
     menuToggleBiztalk.addEventListener("click", () => menuBiztalk.classList.toggle("hidden"));
     menu2.classList.remove("hidden"); // 관리메뉴는 기본으로 열어둠
 
-    // ✅ 메뉴얼 더미 데이터 (20개)
-    const inquiryExamples = [
-        "비밀번호 초기화 문의", "수강 기간 연장 요청", "강의 환불 절차 문의",
-        "교재 배송 지연 문의", "모바일 앱 오류 신고", "세금계산서 발행 요청",
-        "아이디 변경 요청", "강의 내용 관련 질문", "수료증 발급 문의",
-        "단체 수강 할인 문의", "결제 오류 발생", "사이트 접속 불가",
-        "학습 진도율 반영 오류", "강사에게 질문하기 기능 문의", "기업 전용 강의 개설 문의"
-    ];
-
-    const procedureExamples = [
-        "1. 고객 정보 확인\n2. 관리자 페이지 로그인\n3. 비밀번호 초기화 버튼 클릭\n4. 고객에게 초기화 완료 안내",
-        "1. 수강생 학습 이력 조회\n2. 연장 가능 여부 확인 (정책 확인)\n3. 연장 신청서 접수 및 승인\n4. 시스템에 수강 기간 반영",
-        "1. 환불 규정 안내\n2. 환불 신청서 접수\n3. 학습 진도율 및 수강 기간 확인\n4. 환불 금액 산정 및 처리",
-        "1. 운송장 번호 조회\n2. 택배사 문의 및 배송 현황 확인\n3. 고객에게 배송 지연 사유 및 예상일 안내\n4. 필요 시 재발송 처리",
-        "1. 오류 발생 환경 (기기, OS, 앱 버전) 확인\n2. 재현 경로 확인\n3. 개발팀에 전달 및 처리 요청\n4. 고객에게 진행 상황 안내",
-        "1. 기업 정보 및 사업자등록증 확인\n2. 세금계산서 발행 시스템 접속\n3. 발행 정보 입력 및 발행\n4. 고객에게 발행 완료 안내"
-    ];
-
-    const customerMessageExamples = [
-        "안녕하세요, {고객명}님. 요청하신 비밀번호가 아이디와 동일하게 초기화되었습니다. 로그인 후 비밀번호를 변경해주세요.",
-        "안녕하세요, {고객명}님. 수강 기간 연장 요청이 접수되었습니다. 현재 학습 이력을 확인 중이며, 2영업일 이내로 처리 결과를 안내해 드리겠습니다.",
-        "안녕하세요, {고객명}님. 환불 규정에 따라 환불 금액이 산정되었습니다. 자세한 내용은 이메일로 발송해 드렸으니 확인 부탁드립니다.",
-        "안녕하세요, {고객명}님. 교재 배송이 지연되어 죄송합니다. 현재 {택배사명}을 통해 배송 중이며, 예상 배송일은 {날짜}입니다.",
-        "안녕하세요, {고객명}님. 모바일 앱 오류 신고가 접수되었습니다. 빠른 시일 내에 확인 후 조치하겠습니다. 불편을 드려 죄송합니다.",
-        "안녕하세요, {고객명}님. 요청하신 세금계산서가 발행 완료되었습니다. 이메일로 발송해 드렸으니 확인 부탁드립니다."
-    ];
-
-    const dummyManuals = Array.from({ length: 25 }, (_, i) => {
-        const companies = [
-            { name: "삼성전자", code: "samsung" },
-            { name: "SK하이닉스", code: "skhynix" },
-            { name: "LG화학", code: "lgchem" },
-            { name: "현대자동차", code: "hyundai" },
-            { name: "카카오", code: "kakao" },
-            { name: "네이버", code: "naver" },
-            { name: "CJ푸드빌", code: "cjfood" },
-            { name: "대한항공", code: "koreanair" },
-            { name: "다우오피스", code: "daou" },
-            { name: "포스코", code: "posco" }
-        ];
-        
-        // 4번째 마다 공통 메뉴얼 생성
-        const isCommon = (i + 1) % 4 === 0;
-        const company = isCommon ? { name: null, code: null } : companies[i % companies.length];
-        const authors = ["박지현", "이현우", "김영희", "이하윤"];
-
-        return {
-            regDate: `2025-10-${String(20 - i % 20).padStart(2, '0')} ${String(10 + i % 12).padStart(2, '0')}:${String(30 + i % 30).padStart(2, '0')}`,
-            companyCode: company.code, // 공통일 경우 null
-            companyName: company.name, // 공통일 경우 null
-            title: isCommon ? `${inquiryExamples[i % inquiryExamples.length]}` : `[${company.name}] ${inquiryExamples[i % inquiryExamples.length]}`,
-            inquiry: inquiryExamples[i % inquiryExamples.length], // 15개 문의 반복
-            procedure: procedureExamples[i % procedureExamples.length], // 6개 절차 반복
-            author: authors[i % authors.length],
-            customerMessage: `안녕하세요, {고객명}님. 요청하신 비밀번호가 아이디와 동일하게 초기화되었습니다.`,
-            link: `http://internal.wiki/doc/${100+i}`
-        };
-    }).sort((a, b) => new Date(b.regDate) - new Date(a.regDate));
+    // ✅ 메뉴얼 더미 데이터
+    const dummyManuals = [
+      { regDate: '2025-10-20 10:30', companyCode: 'samsung', companyName: '삼성전자', title: '비밀번호 초기화 절차', salesTeam: '전략사업1팀', salesManager: '박지현', author: '김민준' },
+      { regDate: '2025-10-19 15:00', companyCode: 'skhynix', companyName: 'SK하이닉스', title: '신규 입사자 교육 안내', salesTeam: '전략사업2팀', salesManager: '이현우', author: '이서연' },
+      { regDate: '2025-10-18 09:00', companyCode: 'lgchem', companyName: 'LG화학', title: '수료증 발급 관련', salesTeam: '전략사업3팀', salesManager: '김영희', author: '박도윤' },
+      { regDate: '2025-10-17 11:20', companyCode: 'daou', companyName: '다우오피스[HRD]', title: '다우오피스 플랫폼 연동 문의', salesTeam: '전략사업1팀', salesManager: '박지현', author: '장주원' },
+      { regDate: '2025-10-16 14:00', companyCode: 'kakao', companyName: '카카오', title: '과정 변경 및 취소 규정', salesTeam: '전략사업1팀', salesManager: '박지현', author: '정시우' },
+      { regDate: '2025-10-15 16:45', companyCode: 'naver', companyName: '네이버', title: '모바일 수강 방법 안내', salesTeam: '전략사업2팀', salesManager: '이현우', author: '강지우' },
+      { regDate: '2025-10-14 17:10', companyCode: 'cjfood', companyName: 'CJ푸드빌', title: '정산 및 세금계산서 발행', salesTeam: '전략사업3팀', salesManager: '김영희', author: '조하준' },
+      { regDate: '2025-10-13 13:00', companyCode: 'hyundai', companyName: '현대자동차', title: '복습기간 설정 방법', salesTeam: '전략사업1팀', salesManager: '박지현', author: '최서윤' },
+      { regDate: '2025-10-12 11:50', companyCode: 'posco', companyName: '포스코', title: '교육 FAQ 업데이트', salesTeam: '전략사업2팀', salesManager: '이현우', author: '임서현' },
+      { regDate: '2025-10-11 10:30', companyCode: 'koreanair', companyName: '대한항공', title: '학습 독려 메시지 템플릿', salesTeam: '전략사업3팀', salesManager: '김영희', author: '윤지유' },
+    ].sort((a, b) => new Date(b.regDate) - new Date(a.regDate));
 
     const tbody = document.getElementById("table-body");
     const loadMoreBtn = document.getElementById("load-more");
@@ -277,7 +227,6 @@
     const searchCompanyCode = document.getElementById('search-company-code');
     const companySuggestions = document.getElementById('company-suggestions');
     const searchTitle = document.getElementById('search-title');
-    const searchInquiry = document.getElementById('search-inquiry');
     const searchAuthor = document.getElementById('search-author');
     const searchBtn = document.getElementById('search-btn');
     const resetSearchBtn = document.getElementById('reset-search-btn');
@@ -310,7 +259,6 @@
         const companyCodeQuery = searchCompanyCode.value.toLowerCase();
         const companyNameQuery = searchCompanyName.value.toLowerCase();
         const titleQuery = searchTitle.value.toLowerCase();
-        const inquiryQuery = searchInquiry.value.toLowerCase();
         const authorQuery = searchAuthor.value.toLowerCase();
 
         let filteredManuals = dummyManuals;
@@ -327,7 +275,6 @@
             (m.companyCode || '').toLowerCase().includes(companyCodeQuery) &&
             (m.companyName || '').toLowerCase().includes(companyNameQuery) &&
             m.title.toLowerCase().includes(titleQuery) &&
-            m.inquiry.toLowerCase().includes(inquiryQuery) &&
             m.author.toLowerCase().includes(authorQuery)
         );
 
@@ -337,14 +284,13 @@
             row.className = "border-b hover:bg-blue-50 transition cursor-pointer";
             row.innerHTML = `
                 <!-- 각 td에 데이터 바인딩 -->
-                <td class='p-4 whitespace-nowrap'>${d.regDate}</td>
-                <td class='p-4 whitespace-nowrap'>${d.companyCode || '-'}</td>
-                <td class='p-4 whitespace-nowrap font-medium'>${d.companyName || '공통'}</td>
-                <td class='p-4 whitespace-nowrap truncate font-semibold' title="${d.title}">${d.title}</td>
-                <td class='p-4 whitespace-nowrap truncate' title="${d.inquiry}">${d.inquiry}</td>
-                <td class='p-4 whitespace-nowrap'>${d.author}</td>
-                <td class='p-4 whitespace-nowrap truncate'><a href="${d.link}" target="_blank" class="text-blue-600 hover:underline" title="${d.link}">문서보기</a></td>
-                <!-- <td><button class="text-blue-600 hover:underline" onclick="openManualDetail(${JSON.stringify(d).replace(/"/g, '&quot;')})">상세보기</button></td> -->
+                <td class="p-4">${d.regDate}</td>
+                <td class="p-4">${d.companyCode || '-'}</td>
+                <td class="p-4 font-medium">${d.companyName || '공통'}</td>
+                <td class="p-4">${d.title}</td>
+                <td class="p-4">${d.salesTeam}</td>
+                <td class="p-4">${d.salesManager}</td>
+                <td class="p-4">${d.author}</td>
                 `;
             tbody.appendChild(row);
         });
@@ -375,7 +321,6 @@
         searchCompanyName.value = '';
         searchCompanyCode.value = '';
         searchTitle.value = '';
-        searchInquiry.value = '';
         searchAuthor.value = '';
         handleSearch();
     });
@@ -441,7 +386,7 @@
     }
 
     // 엔터 키로 검색 실행
-    [searchCompanyName, searchTitle, searchInquiry, searchAuthor].forEach(input => {
+    [searchCompanyName, searchTitle, searchAuthor].forEach(input => {
         input.addEventListener('keydown', e => {
             const items = companySuggestions.querySelectorAll("div");
             if (input === searchCompanyName && !companySuggestions.classList.contains("hidden") && items.length > 0) {

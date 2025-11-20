@@ -112,11 +112,13 @@
                   <option value="처리완료" class="text-green-600 font-semibold">처리완료</option>
                 </select>
               </div>
-              <div class="md:col-span-2">
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-4">
+              <div>
                 <label for="nonMemberCompany" class="text-sm font-medium text-gray-700">기업명 (선택)</label>
                 <input type="text" id="nonMemberCompany" placeholder="소속 기업명" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" />
               </div>
-              <div class="md:col-span-2">
+              <div>
                 <label for="categorySelect" class="text-sm font-medium text-gray-700">분류</label>
                 <select id="categorySelect" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-400">
                   <option value="">분류 선택</option>
@@ -125,7 +127,18 @@
                   <option>기타</option>
                 </select>
               </div>
-              <div class="md:col-span-4">
+              <div>
+                <label for="memberTypeSelect" class="text-sm font-medium text-gray-700">회원구분</label>
+                <select id="memberTypeSelect" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-400">
+                  <option>회원구분 선택</option>
+                  <option>학습자</option>
+                  <option>기업관리자</option>
+                  <option>교육담당자</option>
+                </select>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 mt-4">
+              <div>
                 <label for="nonMemberTitle" class="text-sm font-medium text-gray-700">제목</label>
                 <input type="text" id="nonMemberTitle" placeholder="제목을 입력하세요" class="w-full mt-1 border border-blue-300 bg-blue-50 rounded-lg px-3 py-2 text-sm focus:ring-blue-400 placeholder:font-medium" />
               </div>
