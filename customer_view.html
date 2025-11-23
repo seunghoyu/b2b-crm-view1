@@ -11,67 +11,74 @@
   </style>
 </head>
 
-<body class="bg-blue-50 h-screen flex overflow-hidden">
+<body class="bg-gray-50 h-screen flex overflow-hidden">
   <!-- ✅ 좌측 사이드 메뉴 -->
-  <aside class="w-[230px] bg-blue-800 text-white flex-shrink-0">
-    <a href="b2b_dashboard_tailwind.html" class="block p-5 text-lg font-semibold border-b border-blue-700 hover:bg-blue-700 transition">
+  <aside class="w-[230px] bg-white border-r border-gray-200 text-gray-700 flex-shrink-0">
+    <a href="b2b_dashboard_tailwind.html" class="block p-5 text-lg font-bold text-gray-800 border-b border-gray-200 hover:bg-gray-50 transition">
       B2B CRM 메뉴
     </a>
 
     <nav class="p-3 space-y-2">
+      <!-- 관리메뉴 -->
+      <div>
+        <button id="menuToggle2" class="group w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-gray-100 transition">
+          <span>관리메뉴</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 text-gray-500 transition-transform group-open:-rotate-180">
+            <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+          </svg>
+        </button>
+        <div id="menu2" class="ml-4 mt-2 space-y-1 text-sm">
+          <a href="b2b_dashboard_tailwind.html" class="block px-3 py-1 hover:bg-gray-100 rounded">상담 현황</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">기업 목록</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">고객 목록</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">수강시간 조회</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">학습상담·CS 관리</a>
+          <a href="manual_list.html" class="block px-3 py-1 hover:bg-gray-100 rounded">메뉴얼 관리</a>
+          <a href="customer_search_registration.html" class="block px-3 py-1 hover:bg-gray-100 rounded">고객 검색/등록</a>
+        </div>
+      </div>
       <!-- 문자관리 -->
       <div>
-        <button id="menuToggle1" class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+        <button id="menuToggle1" class="group w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-gray-100 transition">
           <span>문자관리</span>
-          <span>▼</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 text-gray-500 transition-transform group-open:-rotate-180">
+            <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+          </svg>
         </button>
         <div id="menu1" class="hidden ml-4 mt-2 space-y-1 text-sm">
-          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">문자발송</a>
-          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">문자설정</a>
-          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">문자발송</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">문자설정</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">발송이력 조회</a>
         </div>
       </div>
 
       <!-- 이메일 관리 -->
       <div>
-        <button id="menuToggleEmail" class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+        <button id="menuToggleEmail" class="group w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-gray-100 transition">
           <span>이메일 관리</span>
-          <span>▼</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 text-gray-500 transition-transform group-open:-rotate-180">
+            <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+          </svg>
         </button>
         <div id="menuEmail" class="hidden ml-4 mt-2 space-y-1 text-sm">
-          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">웹메일(Biz)</a>
-          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">패스메일(fnBiz)</a>
+          <a href="#" class="block px-3 py-1 hover:bg-gray-100 rounded">웹메일(Biz)</a>
+          <a href="#" class="block px-3 py-1 hover:bg-gray-100 rounded">패스메일(fnBiz)</a>
         </div>
       </div>
 
       <!-- 비즈톡 관리 -->
       <div>
-        <button id="menuToggleBiztalk" class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+        <button id="menuToggleBiztalk" class="group w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-gray-100 transition">
           <span>비즈톡 관리</span>
-          <span>▼</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 text-gray-500 transition-transform group-open:-rotate-180">
+            <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+          </svg>
         </button>
         <div id="menuBiztalk" class="hidden ml-4 mt-2 space-y-1 text-sm">
-          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">비즈톡발송(강의)</a>
-          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">비즈톡발송(회원)</a>
-          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회(강의)</a>
-          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회(회원)</a>
-        </div>
-      </div>
-
-      <!-- 관리메뉴 -->
-      <div>
-        <button id="menuToggle2" class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition">
-          <span>관리메뉴</span>
-          <span>▼</span>
-        </button>
-        <div id="menu2" class="ml-4 mt-2 space-y-1 text-sm">
-          <a href="b2b_dashboard_tailwind.html" class="block px-3 py-1 hover:bg-blue-700 rounded">상담 현황</a>
-          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">기업 목록</a>
-          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">고객 목록</a>
-          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">수강시간 조회</a>
-          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">학습상담·CS 관리</a>
-          <a href="manual_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">메뉴얼 관리</a>
-          <a href="customer_search_registration.html" class="block px-3 py-1 hover:bg-blue-700 rounded">고객 검색/등록</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">비즈톡발송(강의)</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">비즈톡발송(회원)</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">발송이력 조회(강의)</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">발송이력 조회(회원)</a>
         </div>
       </div>
     </nav>
@@ -86,18 +93,18 @@
           <h2 class="text-xl font-semibold text-gray-800">응대 내용</h2>
         </div>
         <div class="grid grid-cols-4 gap-4 mb-4">
-          <select id="responseManager" class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-400 bg-gray-100" disabled>
+          <select id="responseManager" class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-gray-500 focus:border-gray-500 bg-gray-100" disabled>
             <option>박지현</option>
             <option>이현우</option>
             <option>김영희</option>
             <option>이하윤</option>
           </select>
-          <select id="statusSelect" class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-400 bg-gray-100" disabled>
+          <select id="statusSelect" class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-gray-500 focus:border-gray-500 bg-gray-100" disabled>
             <option value="처리대기" class="text-red-600 font-semibold">처리대기</option>
             <option value="처리완료" class="text-green-600 font-semibold">처리완료</option>
           </select>
           <div class="col-span-2">
-            <select id="categorySelect" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-400 bg-gray-100" disabled>
+            <select id="categorySelect" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-gray-500 focus:border-gray-500 bg-gray-100" disabled>
               <option value="">분류 선택</option>
               <option>수강신청 기간/방법</option>
               <option>결제 방법/오류</option>
@@ -123,15 +130,15 @@
           </div>
         </div>
         <div class="grid grid-cols-2 gap-4">
-          <textarea id="inquiryContent" placeholder="문의 내용을 입력하세요..." class="border border-gray-300 rounded-lg px-3 py-2 w-full h-24 focus:ring-blue-400 focus:outline-none bg-gray-100" readonly></textarea>
+          <textarea id="inquiryContent" placeholder="문의 내용을 입력하세요..." class="border border-gray-300 rounded-lg px-3 py-2 w-full h-24 focus:ring-gray-500 focus:border-gray-500 focus:outline-none bg-gray-100" readonly></textarea>
           <div class="flex flex-col space-y-2">
-            <input type="text" id="responseTitle" placeholder="제목을 입력하세요" class="w-full border border-blue-300 bg-blue-50 rounded-lg px-3 py-2 text-sm focus:ring-blue-400 placeholder:font-medium bg-gray-100" readonly />
-            <textarea id="responseContent" placeholder="응대 내용을 입력하세요..." class="border border-gray-300 rounded-lg px-3 py-2 w-full flex-1 focus:ring-blue-400 focus:outline-none bg-gray-100" readonly></textarea>
+            <input type="text" id="responseTitle" placeholder="제목을 입력하세요" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-gray-500 focus:border-gray-500 placeholder:font-medium bg-gray-100" readonly />
+            <textarea id="responseContent" placeholder="응대 내용을 입력하세요..." class="border border-gray-300 rounded-lg px-3 py-2 w-full flex-1 focus:ring-gray-500 focus:border-gray-500 focus:outline-none bg-gray-100" readonly></textarea>
           </div>
         </div>
         <div class="flex justify-end mt-4 space-x-2">
-          <button id="editResponseBtn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-semibold text-sm">수정</button>
-          <button id="saveResponseBtn" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition font-semibold text-sm">저장</button>
+          <button id="editResponseBtn" class="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition font-semibold text-sm shadow-sm">수정</button>
+          <button id="saveResponseBtn" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition font-semibold text-sm shadow-sm">저장</button>
           <button id="cancelResponseBtn" class="hidden bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition font-semibold text-sm">취소</button>
         </div>
       </div>
@@ -152,7 +159,7 @@
               <div class="grid grid-cols-2">
                 <!-- 1열: 기업정보 -->
                 <div>
-                  <h4 class="font-bold text-blue-600">[기업정보]</h4>
+                  <h4 class="font-bold text-gray-800">[기업정보]</h4>
                   <div class="mt-2 border-t border-l border-gray-200">
                     <div class="grid grid-cols-[80px_1fr]"><span class="p-2 font-semibold bg-gray-50 border-r border-b border-gray-200">회원구분</span><span class="p-2 border-b border-gray-200">기업관리자</span></div>
                     <div class="grid grid-cols-[80px_1fr]"><span class="p-2 font-semibold bg-gray-50 border-r border-b border-gray-200">기업코드</span><span class="p-2 border-b border-gray-200">lgchem</span></div>
@@ -161,7 +168,7 @@
                 </div>
                 <!-- 2열: 고객정보 -->
                 <div>
-                  <h4 class="font-bold text-blue-600">[고객정보]</h4>
+                  <h4 class="font-bold text-gray-800">[고객정보]</h4>
                   <div class="mt-2 border-t border-l border-gray-200">
                     <div class="grid grid-cols-[80px_1fr]"><span class="p-2 font-semibold bg-gray-50 border-r border-b border-gray-200">이름</span><span class="p-2 border-b border-gray-200">김해커</span></div>
                     <div class="grid grid-cols-[80px_1fr]"><span class="p-2 font-semibold bg-gray-50 border-r border-b border-gray-200">아이디</span><span class="p-2 border-b border-gray-200">lgchem01</span></div>
@@ -172,7 +179,7 @@
 
               <!-- 내부정보 -->
               <div class="pt-4">
-                <h4 class="font-bold text-blue-600">[내부정보]</h4>
+                <h4 class="font-bold text-gray-800">[내부정보]</h4>
                 <div class="grid grid-cols-3 mt-2">
                   <div class="grid grid-cols-[96px_1fr] border-t border-l border-b border-gray-200"><span class="p-2 font-semibold bg-gray-50 border-r border-gray-200">영업 담당자</span><span class="p-2">박지현</span></div>
                   <div class="grid grid-cols-[96px_1fr] border-t border-l border-b border-gray-200"><span class="p-2 font-semibold bg-gray-50 border-r border-gray-200">운영 담당자</span><span class="p-2">김민준</span></div>
@@ -184,29 +191,29 @@
           </div>
           <!-- 기능 메뉴 -->
           <div class="w-1/3 pl-4 border-l">
-            <h3 class="font-semibold text-lg mb-3 text-blue-700">기능 메뉴</h3>
+            <h3 class="font-semibold text-lg mb-3 text-gray-800">기능 메뉴</h3>
             <div class="space-y-2 text-sm">
               <div class="grid grid-cols-2 gap-2">
-              <button id="menuUserInfo" class="w-full text-center px-4 py-2 rounded-lg bg-blue-50 hover:bg-blue-100 transition">
+              <button id="menuUserInfo" class="w-full text-center px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition font-medium text-gray-700">
                 회원 정보
               </button>
-              <button id="menuDeliveryInfo" class="w-full text-center px-4 py-2 rounded-lg bg-blue-50 hover:bg-blue-100 transition">
+              <button id="menuDeliveryInfo" class="w-full text-center px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition font-medium text-gray-700">
                 배송지 정보
               </button>
               </div>
               <div class="grid grid-cols-2 gap-2">
-              <button id="menuAdminSite" class="w-full text-center px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition">
+              <button id="menuAdminSite" class="w-full text-center px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition font-medium text-gray-700">
                 관리자 로그인
               </button>
-              <button id="menuUserSite" class="w-full text-center px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition">
+              <button id="menuUserSite" class="w-full text-center px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition font-medium text-gray-700">
                 학습자ID 로그인
               </button>
               </div>
               <div class="grid grid-cols-4 gap-2">
-              <button id="menuSendSms" class="w-full text-center px-4 py-2 rounded-lg bg-blue-50 hover:bg-blue-100 transition">문자 전송</button>
-              <button id="menuSendEmail" class="w-full text-center px-4 py-2 rounded-lg bg-blue-50 hover:bg-blue-100 transition">이메일 전송</button>
-              <button id="menuSendBiztalk" class="w-full text-center px-4 py-2 rounded-lg bg-blue-50 hover:bg-blue-100 transition">알림톡 전송</button>
-              <button id="openNoteModalBtn" class="w-full text-center px-4 py-2 rounded-lg bg-blue-100 hover:bg-blue-200 transition text-blue-800 font-semibold">쪽지 전송</button>
+              <button id="menuSendSms" class="w-full text-center px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition font-medium text-gray-700">문자</button>
+              <button id="menuSendEmail" class="w-full text-center px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition font-medium text-gray-700">이메일</button>
+              <button id="menuSendBiztalk" class="w-full text-center px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition font-medium text-gray-700">알림톡</button>
+              <button id="openNoteModalBtn" class="w-full text-center px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 transition text-gray-800 font-semibold">쪽지</button>
             </div>
             <div class="grid grid-cols-1 gap-2 mt-2">
               <button id="menuManualLookup" class="w-full text-center px-4 py-2 rounded-lg bg-green-100 hover:bg-green-200 transition text-green-800 font-semibold">메뉴얼 조회</button>
@@ -216,14 +223,14 @@
 
       </section>
 
-      <!-- ✅ 상담이력 -->
+      <!-- ✅ 상담이력 & 고객 메모 -->
       <section class="bg-white rounded-xl shadow p-5 flex space-x-6 h-[500px]">
         <!-- ✅ 좌측: 상담 목록 -->
         <div class="w-1/2 flex flex-col">
-          <h3 class="font-semibold text-lg mb-3 text-blue-700">상담이력</h3>
+          <h3 class="font-semibold text-lg mb-3 text-gray-800">상담이력</h3>
           <div class="overflow-x-auto overflow-y-auto flex-1">
             <table class="w-full text-sm border-collapse table-auto">
-              <thead class="bg-blue-100 text-gray-700">
+              <thead class="bg-gray-100 text-gray-600 sticky top-0">
                 <tr>
                   <th class="p-3">상담일시</th>
                   <th class="p-3">상담채널</th>
@@ -235,28 +242,30 @@
               <tbody id="history-body"></tbody>
             </table>
           </div>
-          <button id="history-more"
-            class="hidden mt-3 bg-blue-100 text-blue-600 px-3 py-1 rounded hover:bg-blue-200 text-sm">
-            더보기
-          </button>
+          <button id="history-more" class="hidden mt-3 bg-gray-100 text-gray-700 px-3 py-1 rounded hover:bg-gray-200 text-sm font-medium">더보기</button>
         </div>
 
-        <!-- ✅ 우측: 상담 상세보기 -->
-        <div id="history-detail"
-          class="w-1/2 hidden bg-blue-50 rounded-lg p-4 border border-blue-200 overflow-y-auto">
-          <p class="text-gray-500 text-sm text-center">상담 내역을 선택하세요.</p>
+        <!-- ✅ 우측: 고객 메모 / 상담 상세보기 패널 -->
+        <div id="right-panel" class="w-1/2 flex flex-col">
+          <!-- 고객 메모 (기본 표시) -->
+          <div id="customer-memo-section" class="h-full flex flex-col">
+            <!-- 메모 내용이 여기에 동적으로 추가됩니다. -->
+          </div>
+
+          <!-- 상담 상세보기 (숨겨져 있음) -->
+          <div id="history-detail-section" class="hidden h-full bg-gray-50 rounded-lg p-4 border border-gray-200 overflow-y-auto">
+            <!-- 상세 내용이 여기에 동적으로 추가됩니다. -->
+          </div>
         </div>
       </section>
 
-
-
       <!-- ✅ 학습관리 -->
       <section class="bg-white rounded-xl shadow p-5 flex flex-col max-h-[500px]">
-        <h3 class="font-semibold text-lg mb-3 text-blue-700">학습관리</h3>
+        <h3 class="font-semibold text-lg mb-3 text-gray-800">학습관리</h3>
 
         <div class="overflow-x-auto overflow-y-auto flex-1">
           <table class="w-full text-sm border-collapse table-auto">
-            <thead class="bg-blue-100 text-gray-700">
+            <thead class="bg-gray-100 text-gray-600">
               <tr>
                 <th class="p-3">학습차수</th>
                 <th class="p-3">강의코드</th>
@@ -284,22 +293,19 @@
         </p>
 
         <button id="study-more"
-          class="hidden mt-3 bg-blue-100 text-blue-600 px-3 py-1 rounded hover:bg-blue-200 text-sm">
+          class="hidden mt-3 bg-gray-100 text-gray-700 px-3 py-1 rounded hover:bg-gray-200 text-sm font-medium">
           더보기
         </button>
       </section>
 
-
-
-
       <!-- ✅ 배송관리 -->
       <section class="bg-white rounded-xl shadow p-5 flex flex-col max-h-[500px]">
-        <h3 class="font-semibold text-lg mb-3 text-blue-700">배송관리</h3>
+        <h3 class="font-semibold text-lg mb-3 text-gray-800">배송관리</h3>
 
         <!-- ✅ 가로 스크롤 감싸기 -->
         <div class="overflow-x-auto overflow-y-auto flex-1">
           <table class="w-full text-sm border-collapse table-auto">
-            <thead class="bg-blue-100 text-gray-700">
+            <thead class="bg-gray-100 text-gray-600">
               <tr>
                 <th class="p-3">주문일</th>
                 <th class="p-3">주문번호</th>
@@ -323,212 +329,241 @@
         </p>
 
         <button id="delivery-more"
-          class="hidden mt-3 bg-blue-100 text-blue-600 px-3 py-1 rounded hover:bg-blue-200 text-sm">
+          class="hidden mt-3 bg-gray-100 text-gray-700 px-3 py-1 rounded hover:bg-gray-200 text-sm font-medium">
           더보기
         </button>
       </section>
 
+      <!-- ✅ 강의결제내역 -->
+      <section class="bg-white rounded-xl shadow p-5">
+        <h3 class="font-semibold text-lg mb-3 text-gray-800">강의결제내역</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm border-collapse table-auto">
+            <thead class="bg-gray-100 text-gray-600">
+              <tr>
+                <th class="p-3">순번</th>
+                <th class="p-3">회사</th>
+                <th class="p-3">강의제목</th>
+                <th class="p-3">결제금액</th>
+                <th class="p-3">수수료</th>
+                <th class="p-3">회원아이디</th>
+                <th class="p-3">주문번호</th>
+                <th class="p-3">주문타입</th>
+                <th class="p-3">주문상태</th>
+                <th class="p-3">등록일</th>
+              </tr>
+            </thead>
+            <tbody id="lecture-payment-body">
+              <!-- JS로 동적 생성 -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
 
-      <!-- ✅ 모달 구조 -->
-      <div id="modalOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-        <div class="bg-white rounded-xl shadow-2xl w-[750px] max-h-[80vh] overflow-y-auto p-6 relative border-4 border-blue-300">
-          <h3 id="modalTitle" class="text-2xl font-bold text-blue-700 mb-4 pb-2 border-b-2 border-blue-200">
-            정보 보기
-          </h3>
-          <div id="modalContent" class="text-sm text-gray-700"></div>
-          <div class="flex justify-end mt-6 space-x-3">
-            <button id="saveBtn" class="hidden bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition font-semibold shadow-md">
-              저장하기
-            </button>
-            <button id="closeBtn" class="bg-gray-400 text-white px-5 py-2 rounded-lg hover:bg-gray-500 transition font-semibold shadow-md">
-              닫기
-            </button>
-          </div>
+  <!-- ✅ 모달 컨테이너 -->
+  <!-- ✅ 모달 구조 -->
+<div id="modalOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4">
+  <div class="bg-white rounded-xl shadow-2xl w-[750px] max-h-[90vh] overflow-y-auto p-6 relative">
+    <h3 id="modalTitle" class="text-xl font-bold text-gray-800 mb-4 pb-3 border-b border-gray-200">
+      정보 보기
+    </h3>
+    <div id="modalContent" class="text-sm text-gray-700"></div>
+    <div class="flex justify-end mt-6 space-x-3">
+      <button id="saveBtn" class="hidden bg-gray-800 text-white px-5 py-2 rounded-lg hover:bg-gray-700 transition font-semibold shadow-sm">
+        저장하기
+      </button>
+      <button id="closeBtn" class="bg-gray-200 text-gray-800 px-5 py-2 rounded-lg hover:bg-gray-300 transition font-semibold">
+        닫기
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ 학습관리 전용 모달 -->
+<div id="studyActionModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4">
+  <div class="bg-white rounded-xl shadow-2xl w-96 p-6 relative">
+    <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">학습 관리</h3>
+    <div class="space-y-3">
+      <button onclick="alert('시험 재응시 기능이 실행됩니다.')" class="w-full bg-white border border-gray-300 text-gray-800 px-5 py-3 rounded-lg hover:bg-gray-100 transition font-semibold shadow-sm text-lg">
+        시험 재응시
+      </button>
+      <button id="openExtendPeriodModalBtn" class="w-full bg-white border border-gray-300 text-gray-800 px-5 py-3 rounded-lg hover:bg-gray-100 transition font-semibold shadow-sm text-lg">
+        수강기간 연장
+      </button>
+      <button onclick="alert('연장 초기화 기능이 실행됩니다.')" class="w-full bg-white border border-gray-300 text-gray-800 px-5 py-3 rounded-lg hover:bg-gray-100 transition font-semibold shadow-sm text-lg">
+        연장 초기화
+      </button>
+      <button onclick="alert('평가시험창 재진입 기능이 실행됩니다.')" class="w-full bg-white border border-gray-300 text-gray-800 px-5 py-3 rounded-lg hover:bg-gray-100 transition font-semibold shadow-sm text-lg">
+        평가시험창 재진입
+      </button>
+      <button onclick="alert('삭제 기능이 실행됩니다.')" class="w-full bg-red-600 text-white px-5 py-3 rounded-lg hover:bg-red-700 transition font-semibold shadow-sm text-lg">
+        삭제
+      </button>
+    </div>
+    <button id="closeStudyModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+  </div>
+</div>
+
+<!-- ✅ 수강기간 연장 전용 모달 -->
+<div id="extendPeriodModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4">
+  <div class="bg-white rounded-xl shadow-2xl w-[600px] p-6 relative">
+    <h3 class="text-xl font-bold text-gray-800 mb-4 pb-3 border-b border-gray-200">수강기간 연장</h3>
+    
+    <!-- 기존 정보 표시 -->
+    <div id="extendCourseInfo" class="text-sm space-y-2 bg-gray-50 p-4 rounded-lg border mb-4">
+      <!-- JS로 내용 채워짐 -->
+    </div>
+
+    <!-- 수정할 정보 입력 -->
+    <div class="space-y-4 text-sm">
+      <div class="grid grid-cols-2 gap-4 items-center">
+        <div>
+          <label class="font-semibold">시작일</label>
+          <input type="date" id="newStartDate" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none">
+        </div>
+        <div>
+          <label class="font-semibold">종료일</label>
+          <input type="date" id="newEndDate" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none">
         </div>
       </div>
-
-      <!-- ✅ 학습관리 전용 모달 -->
-      <div id="studyActionModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-        <div class="bg-white rounded-xl shadow-2xl w-96 p-6 relative border-4 border-blue-300">
-          <h3 class="text-xl font-bold text-blue-700 mb-6 text-center">학습 관리</h3>
-          <div class="space-y-3">
-            <button onclick="alert('시험 재응시 기능이 실행됩니다.')" class="w-full bg-white border border-gray-300 text-gray-800 px-5 py-3 rounded-lg hover:bg-gray-100 transition font-semibold shadow-sm text-lg">
-              시험 재응시
-            </button>
-            <button id="openExtendPeriodModalBtn" class="w-full bg-white border border-gray-300 text-gray-800 px-5 py-3 rounded-lg hover:bg-gray-100 transition font-semibold shadow-sm text-lg">
-              수강기간 연장
-            </button>
-            <button onclick="alert('연장 초기화 기능이 실행됩니다.')" class="w-full bg-white border border-gray-300 text-gray-800 px-5 py-3 rounded-lg hover:bg-gray-100 transition font-semibold shadow-sm text-lg">
-              연장 초기화
-            </button>
-            <button onclick="alert('평가시험창 재진입 기능이 실행됩니다.')" class="w-full bg-white border border-gray-300 text-gray-800 px-5 py-3 rounded-lg hover:bg-gray-100 transition font-semibold shadow-sm text-lg">
-              평가시험창 재진입
-            </button>
-            <button onclick="alert('삭제 기능이 실행됩니다.')" class="w-full bg-red-600 text-white px-5 py-3 rounded-lg hover:bg-red-700 transition font-semibold shadow-sm text-lg">
-              삭제
-            </button>
-          </div>
-          <button id="closeStudyModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+      <div>
+        <label class="font-semibold">적용 대상</label>
+        <div id="periodCheckboxes" class="flex items-center space-x-4 mt-2">
+          <label class="flex items-center"><input type="checkbox" value="수강기간" class="mr-1 h-4 w-4"> 수강기간</label>
+          <label class="flex items-center"><input type="checkbox" value="복습기간" class="mr-1 h-4 w-4"> 복습기간</label>
+          <label class="flex items-center"><input type="checkbox" value="졸업기간" class="mr-1 h-4 w-4"> 졸업기간</label>
         </div>
       </div>
+    </div>
 
-      <!-- ✅ 수강기간 연장 전용 모달 -->
-      <div id="extendPeriodModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-        <div class="bg-white rounded-xl shadow-2xl w-[600px] p-6 relative border-4 border-blue-300">
-          <h3 class="text-xl font-bold text-blue-700 mb-4 pb-2 border-b-2 border-blue-200">수강기간 연장</h3>
-          
-          <!-- 기존 정보 표시 -->
-          <div id="extendCourseInfo" class="text-sm space-y-2 bg-gray-50 p-4 rounded-lg border mb-4">
-            <!-- JS로 내용 채워짐 -->
-          </div>
+    <!-- 버튼 -->
+    <div class="flex justify-end mt-6 space-x-3">
+      <button id="cancelExtendBtn" class="bg-gray-200 text-gray-800 px-5 py-2 rounded-lg hover:bg-gray-300 transition font-semibold">취소</button>
+      <button id="saveExtendBtn" class="bg-gray-800 text-white px-5 py-2 rounded-lg hover:bg-gray-700 transition font-semibold shadow-sm">저장하기</button>
+    </div>
+    <button id="closeExtendPeriodModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+  </div>
+</div>
 
-          <!-- 수정할 정보 입력 -->
-          <div class="space-y-4 text-sm">
-            <div class="grid grid-cols-2 gap-4 items-center">
-              <div>
-                <label class="font-semibold">시작일</label>
-                <input type="date" id="newStartDate" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none">
-              </div>
-              <div>
-                <label class="font-semibold">종료일</label>
-                <input type="date" id="newEndDate" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none">
-              </div>
-            </div>
-            <div>
-              <label class="font-semibold">적용 대상</label>
-              <div id="periodCheckboxes" class="flex items-center space-x-4 mt-2">
-                <label class="flex items-center"><input type="checkbox" value="수강기간" class="mr-1 h-4 w-4"> 수강기간</label>
-                <label class="flex items-center"><input type="checkbox" value="복습기간" class="mr-1 h-4 w-4"> 복습기간</label>
-                <label class="flex items-center"><input type="checkbox" value="졸업기간" class="mr-1 h-4 w-4"> 졸업기간</label>
-              </div>
-            </div>
-          </div>
+<!-- ✅ 문자 발송 모달 -->
+<div id="smsModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4">
+  <div class="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] p-6 relative flex space-x-6">
+    <!-- 좌측: 템플릿 목록 -->
+    <div class="w-1/2 flex flex-col" id="templateSection">
+      <h3 class="text-xl font-bold text-gray-800 mb-4" id="templateTitle">문자 템플릿</h3>
+      <input type="text" id="templateSearch" placeholder="템플릿 제목 검색..." class="w-full border border-gray-300 rounded-lg px-3 py-2 mb-3 text-sm focus:ring-gray-500 focus:border-gray-500 focus:outline-none">
+      <div class="flex-1 overflow-y-auto border rounded-lg">
+        <table class="w-full text-sm">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="p-2 w-16 text-gray-600">연번</th>
+              <th class="p-2 text-left">템플릿 제목</th>
+            </tr>
+          </thead>
+          <tbody id="smsTemplateBody"></tbody>
+        </table>
+      </div>
+      <div id="templatePagination" class="flex justify-center items-center mt-3 space-x-2 text-sm"></div>
+    </div>
+    <!-- 우측: 발송 정보 -->
+    <div class="w-1/2" id="contentSection">
+      <h3 class="text-xl font-bold text-gray-800 mb-4" id="contentTitle">발송 내용</h3>
+      <div class="space-y-4 text-sm">
+        <div id="senderNumberField"><label class="font-semibold">발신번호</label><input type="text" id="smsSender" value="02-000-0000" class="w-full mt-1 bg-gray-100 border border-gray-300 rounded-lg px-3 py-2" readonly></div>
+        <div><label class="font-semibold" id="receiverLabel">수신번호</label><input type="text" id="smsReceiver" class="w-full mt-1 bg-gray-100 border border-gray-300 rounded-lg px-3 py-2" readonly></div>
+        <div><label class="font-semibold" id="contentLabel">내용</label><textarea id="smsContent" rows="10" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" placeholder="문자 내용을 입력하거나 템플릿을 선택하세요."></textarea></div>
+      </div>
+      <div class="flex justify-end mt-6 space-x-3"><button id="sendSmsBtn" class="bg-gray-800 text-white px-5 py-2 rounded-lg hover:bg-gray-700 transition font-semibold shadow-sm">발송하기</button><button id="closeSmsModalBtn" class="bg-gray-200 text-gray-800 px-5 py-2 rounded-lg hover:bg-gray-300 transition font-semibold">닫기</button></div>
+    </div>
+  </div>
+</div>
 
-          <!-- 버튼 -->
-          <div class="flex justify-end mt-6 space-x-3">
-            <button id="cancelExtendBtn" class="bg-gray-400 text-white px-5 py-2 rounded-lg hover:bg-gray-500 transition font-semibold">취소</button>
-            <button id="saveExtendBtn" class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition font-semibold">저장하기</button>
-          </div>
-          <button id="closeExtendPeriodModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+<!-- ✅ 이메일 전송 모달 -->
+<div id="emailModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4">
+  <div class="bg-white rounded-xl shadow-2xl w-96 p-6 relative">
+    <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">이메일 전송</h3>
+    <div class="space-y-3">
+      <button id="sendWebmail" class="w-full bg-white border border-gray-300 text-gray-800 px-5 py-3 rounded-lg hover:bg-gray-100 transition font-semibold shadow-sm text-lg">
+        웹메일 (Biz)
+      </button>
+      <button id="sendPassmail" class="w-full bg-white border border-gray-300 text-gray-800 px-5 py-3 rounded-lg hover:bg-gray-100 transition font-semibold shadow-sm text-lg">
+        패스메일 (fnBiz)
+      </button>
+    </div>
+    <button id="closeEmailModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+  </div>
+</div>
+
+<!-- ✅ 메뉴얼 조회 모달 -->
+<div id="manualLookupModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4">
+  <div class="bg-white rounded-xl shadow-2xl w-full max-w-7xl h-[90vh] flex flex-col p-6 relative">
+    <h3 class="text-xl font-bold text-gray-800 mb-4 pb-3 border-b border-gray-200">
+      메뉴얼 조회 (<span id="lookupCompanyCode"></span>)
+    </h3>
+    <div class="flex-1 flex overflow-hidden space-x-6 mt-4">
+      <!-- 좌측: 검색 필터 -->
+      <div class="w-1/3 lg:w-1/4 flex flex-col space-y-4 pr-6 border-r">
+        <div>
+          <label for="modal-search-title" class="text-sm font-medium text-gray-700">제목</label>
+          <input type="text" id="modal-search-title" placeholder="제목으로 검색" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" />
+        </div>
+        <div>
+          <label for="modal-search-inquiry" class="text-sm font-medium text-gray-700">상황개요</label>
+          <input type="text" id="modal-search-inquiry" placeholder="상황개요로 검색" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" />
+        </div>
+        <div>
+          <label for="modal-search-author" class="text-sm font-medium text-gray-700">작성자</label>
+          <input type="text" id="modal-search-author" placeholder="작성자로 검색" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" />
+        </div>
+        <div class="flex-grow"></div> <!-- 버튼을 아래로 밀기 위한 빈 공간 -->
+        <div class="space-y-2">
+                  <button id="modal-common-manual-btn" class="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-semibold shadow-sm">공통 메뉴얼 조회</button>
+          <button id="modal-search-btn" class="w-full bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition font-semibold shadow-sm">검색</button>
+                  <button id="modal-reset-btn" class="w-full bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition font-semibold">기업 메뉴얼로 초기화</button>
         </div>
       </div>
-
-      <!-- ✅ 문자 발송 모달 -->
-      <div id="smsModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-        <div class="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[80vh] overflow-y-auto p-6 relative border-4 border-blue-300 flex space-x-6">
-          <!-- 좌측: 템플릿 목록 -->
-          <div class="w-1/2 flex flex-col" id="templateSection">
-            <h3 class="text-xl font-bold text-blue-700 mb-4" id="templateTitle">문자 템플릿</h3>
-            <input type="text" id="templateSearch" placeholder="템플릿 제목 검색..." class="w-full border border-gray-300 rounded-lg px-3 py-2 mb-3 text-sm focus:ring-blue-400 focus:outline-none">
-            <div class="flex-1 overflow-y-auto border rounded-lg">
-              <table class="w-full text-sm">
-                <thead class="bg-gray-100">
-                  <tr>
-                    <th class="p-2 w-16">연번</th>
-                    <th class="p-2 text-left">템플릿 제목</th>
-                  </tr>
-                </thead>
-                <tbody id="smsTemplateBody"></tbody>
-              </table>
-            </div>
-            <div id="templatePagination" class="flex justify-center items-center mt-3 space-x-2 text-sm"></div>
-          </div>
-          <!-- 우측: 발송 정보 -->
-          <div class="w-1/2" id="contentSection">
-            <h3 class="text-xl font-bold text-blue-700 mb-4" id="contentTitle">발송 내용</h3>
-            <div class="space-y-4 text-sm">
-              <div id="senderNumberField"><label class="font-semibold">발신번호</label><input type="text" id="smsSender" value="02-000-0000" class="w-full mt-1 bg-gray-100 border border-gray-300 rounded-lg px-3 py-2" readonly></div>
-              <div><label class="font-semibold" id="receiverLabel">수신번호</label><input type="text" id="smsReceiver" class="w-full mt-1 bg-gray-100 border border-gray-300 rounded-lg px-3 py-2" readonly></div>
-              <div><label class="font-semibold" id="contentLabel">내용</label><textarea id="smsContent" rows="10" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" placeholder="문자 내용을 입력하거나 템플릿을 선택하세요."></textarea></div>
-            </div>
-            <div class="flex justify-end mt-6 space-x-3"><button id="sendSmsBtn" class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition font-semibold">발송하기</button><button id="closeSmsModalBtn" class="bg-gray-400 text-white px-5 py-2 rounded-lg hover:bg-gray-500 transition font-semibold">닫기</button></div>
-          </div>
-        </div>
+      <!-- 우측: 테이블 -->
+      <div class="w-2/3 lg:w-3/4 overflow-y-auto">
+        <table class="w-full table-auto border-collapse text-sm text-gray-700">
+          <thead>
+            <tr class="bg-gray-100 border-b text-left text-gray-600">
+              <th class="p-4">등록일시</th>
+              <th class="p-4">기업코드</th>
+              <th class="p-4">기업명</th>
+              <th class="p-4">제목</th>
+              <th class="p-4">영업담당팀</th>
+              <th class="p-4">영업담당자</th>
+              <th class="p-4">작성자</th>
+            </tr>
+          </thead>
+          <tbody id="manualLookupTableBody"></tbody>
+        </table>
       </div>
+    </div>
+    <div class="flex justify-end mt-6 flex-shrink-0">
+      <button id="closeManualLookupModalBtn" class="bg-gray-200 text-gray-800 px-5 py-2 rounded-lg hover:bg-gray-300 transition font-semibold">닫기</button>
+    </div>
+  </div>
+</div>
 
-      <!-- ✅ 이메일 전송 모달 -->
-      <div id="emailModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-        <div class="bg-white rounded-xl shadow-2xl w-96 p-6 relative border-4 border-blue-300">
-          <h3 class="text-xl font-bold text-blue-700 mb-6 text-center">이메일 전송</h3>
-          <div class="space-y-3">
-            <button id="sendWebmail" class="w-full bg-white border border-gray-300 text-gray-800 px-5 py-3 rounded-lg hover:bg-gray-100 transition font-semibold shadow-sm text-lg">
-              웹메일 (Biz)
-            </button>
-            <button id="sendPassmail" class="w-full bg-white border border-gray-300 text-gray-800 px-5 py-3 rounded-lg hover:bg-gray-100 transition font-semibold shadow-sm text-lg">
-              패스메일 (fnBiz)
-            </button>
-          </div>
-          <button id="closeEmailModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
-        </div>
-      </div>
-
-      <!-- ✅ 메뉴얼 조회 모달 -->
-      <div id="manualLookupModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-        <div class="bg-white rounded-xl shadow-2xl w-full max-w-7xl h-[80vh] flex flex-col p-6 relative border-4 border-blue-300">
-          <h3 class="text-2xl font-bold text-blue-700 mb-4 pb-2 border-b-2 border-blue-200">
-            메뉴얼 조회 (<span id="lookupCompanyCode"></span>)
-          </h3>
-          <div class="flex-1 flex overflow-hidden space-x-6 mt-4">
-            <!-- 좌측: 검색 필터 -->
-            <div class="w-1/3 lg:w-1/4 flex flex-col space-y-4 pr-6 border-r">
-              <div>
-                <label for="modal-search-title" class="text-sm font-medium text-gray-700">제목</label>
-                <input type="text" id="modal-search-title" placeholder="제목으로 검색" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" />
-              </div>
-              <div>
-                <label for="modal-search-inquiry" class="text-sm font-medium text-gray-700">상황개요</label>
-                <input type="text" id="modal-search-inquiry" placeholder="상황개요로 검색" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" />
-              </div>
-              <div>
-                <label for="modal-search-author" class="text-sm font-medium text-gray-700">작성자</label>
-                <input type="text" id="modal-search-author" placeholder="작성자로 검색" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" />
-              </div>
-              <div class="flex-grow"></div> <!-- 버튼을 아래로 밀기 위한 빈 공간 -->
-              <div class="space-y-2">
-                <button id="modal-search-btn" class="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-semibold">검색</button>
-                <button id="modal-reset-btn" class="w-full bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition font-semibold">초기화</button>
-              </div>
-            </div>
-            <!-- 우측: 테이블 -->
-            <div class="w-2/3 lg:w-3/4 overflow-y-auto">
-              <table class="w-full table-auto border-collapse text-sm text-gray-700">
-                <thead class="bg-gray-100 sticky top-0"><tr class="border-b text-left text-gray-600"><th class="p-3">등록일시</th><th class="p-3">제목</th><th class="p-3">상황개요</th><th class="p-3">작성자</th></tr></thead>
-                <tbody id="manualLookupTableBody"></tbody>
-              </table>
-            </div>
-          </div>
-          <div class="flex justify-end mt-6 flex-shrink-0">
-            <button id="closeManualLookupModalBtn" class="bg-gray-400 text-white px-5 py-2 rounded-lg hover:bg-gray-500 transition font-semibold shadow-md">닫기</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- ✅ 메뉴얼 상세 보기 모달 (manual_list.html 에서 가져옴) -->
-      <div id="manualDetailModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-        <div class="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto p-8 relative border-4 border-blue-300">
-          <h3 class="text-2xl font-bold text-blue-700 mb-6 pb-2 border-b-2 border-blue-200">메뉴얼 상세 보기</h3>
-          <div id="manualDetailContentArea" class="text-sm text-gray-700 space-y-4"></div>
-          <div class="flex justify-end mt-8 space-x-3"><button id="editManualBtn" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-semibold shadow-md">수정</button><button id="saveManualBtn" class="hidden bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition font-semibold shadow-md">저장</button><button id="closeManualDetailModalBtn" class="bg-gray-400 text-white px-6 py-2 rounded-lg hover:bg-gray-500 transition font-semibold shadow-md">닫기</button></div>
-        </div>
-      </div>
+<!-- ✅ 메뉴얼 상세 보기 모달 (manual_list.html 에서 가져옴) -->
+<div id="manualDetailModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4">
+  <div class="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto p-8 relative">
+    <h3 class="text-xl font-bold text-gray-800 mb-6 pb-3 border-b border-gray-200">메뉴얼 상세 보기</h3>
+    <div id="manualDetailContentArea" class="text-sm text-gray-700 space-y-4"></div>
+    <div class="flex justify-end mt-8 space-x-3"><button id="editManualBtn" class="bg-gray-800 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition font-semibold shadow-sm">수정</button><button id="saveManualBtn" class="hidden bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition font-semibold shadow-sm">저장</button><button id="closeManualDetailModalBtn_customerView" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 transition font-semibold">닫기</button></div>
+  </div>
+</div>
 
       <script>
-        // ✅ 사이드메뉴 토글 (다른 페이지와 동일)
-        const menuToggle1 = document.getElementById("menuToggle1");
-        const menu1 = document.getElementById("menu1");
-        const menuToggle2 = document.getElementById("menuToggle2");
-        const menu2 = document.getElementById("menu2");
-        const menuToggleEmail = document.getElementById("menuToggleEmail");
-        const menuEmail = document.getElementById("menuEmail");
-        const menuToggleBiztalk = document.getElementById("menuToggleBiztalk");
-        const menuBiztalk = document.getElementById("menuBiztalk");
+        // ===================================================================================
+        // ✅ 컴포넌트 로드 및 초기화
+        // ===================================================================================
+        document.addEventListener('DOMContentLoaded', initializeAppScripts);
 
-        menuToggle1.addEventListener("click", () => menu1.classList.toggle("hidden"));
-        menuToggle2.addEventListener("click", () => menu2.classList.toggle("hidden"));
-        menuToggleEmail.addEventListener("click", () => menuEmail.classList.toggle("hidden"));
-        menuToggleBiztalk.addEventListener("click", () => menuBiztalk.classList.toggle("hidden"));
-        menu2.classList.remove("hidden"); // 관리메뉴는 기본으로 열어둠
-
+        function initializeAppScripts() {
         // ✅ 상단 응대 내용 섹션 제어
         const responseFields = [
           document.getElementById('responseManager'),
@@ -548,6 +583,7 @@
             field.disabled = false;
             field.readOnly = false;
             field.classList.remove('bg-gray-100');
+            field.classList.add('bg-white');
           });
           // 수정 버튼은 계속 보이게 하고, 취소 버튼만 나타나게 함
           cancelResponseBtn.classList.remove('hidden');
@@ -558,6 +594,7 @@
             field.disabled = true;
             field.readOnly = true;
             field.classList.add('bg-gray-100');
+            field.classList.remove('bg-white');
           });
           // 취소 버튼 숨김
           cancelResponseBtn.classList.add('hidden');
@@ -605,7 +642,7 @@
         // 1️⃣ --- 더미데이터 (맨 위로 이동해야 함) ---
         
         // ✅ 회원 정보 더미 데이터
-        const dummyConsultationData = {
+        const dummyConsultationData = { // 이 데이터는 현재 상담 건에 대한 데이터입니다.
           manager: "박지현",
           status: "처리완료",
           category: "아이디/비밀번호 문의",
@@ -613,6 +650,20 @@
           inquiryContent: "비밀번호를 잊어버렸습니다. 초기화 부탁드립니다.",
           responseContent: "안녕하세요. 고객님. 요청하신 비밀번호는 아이디와 동일하게 초기화되었습니다. 로그인 후 변경 부탁드립니다."
         };
+        // 이 데이터는 현재 보고 있는 고객의 정보입니다.
+        const dummyMemos = [
+          {
+            datetime: "2025-10-01 11:45:10",
+            content: "고객이 내년도 교육 예산 관련하여 문의함. 11월 중으로 제안서 전달 필요. 박지현 영업 담당자에게 전달 완료.",
+            author: "이현우"
+          },
+          {
+            datetime: "2025-09-15 16:20:03",
+            content: "추석 선물세트 발송 대상. 주소 확인 완료.",
+            author: "김영희"
+          }
+        ].sort((a, b) => new Date(b.datetime) - new Date(a.datetime));
+
 
         const memberData = {
           "기업": "LG화학",
@@ -628,7 +679,7 @@
           "회원가입일": "2023-01-10"
         };
 
-        // ✅ 배송지 정보 더미 데이터
+        // ✅ 배송지 정보 더미 데이터 (현재 고객의 것)
         const deliveryData = {
           "받는사람": "김해커",
           "연락처": "02-3773-1234",
@@ -640,7 +691,7 @@
           "배송지 입력일자": "2023-01-15"
         };
 
-        // ✅ 문자 템플릿 더미 데이터 (20개)
+        // ✅ 문자/알림톡 템플릿 더미 데이터 (공통)
         const smsTemplates = Array.from({ length: 20 }, (_, i) => {
             const type = ["안내", "독려", "이벤트", "공지"][i % 4];
             let content = "";
@@ -656,27 +707,102 @@
             };
         });
 
-        // ✅ 메뉴얼 더미 데이터 (manual_list.html 에서 가져옴)
-        const inquiryExamples = ["비밀번호 초기화 문의", "수강 기간 연장 요청", "강의 환불 절차 문의", "교재 배송 지연 문의", "모바일 앱 오류 신고", "세금계산서 발행 요청", "아이디 변경 요청", "강의 내용 관련 질문", "수료증 발급 문의", "단체 수강 할인 문의", "결제 오류 발생", "사이트 접속 불가", "학습 진도율 반영 오류", "강사에게 질문하기 기능 문의", "기업 전용 강의 개설 문의"];
-        const procedureExamples = ["1. 고객 정보 확인\n2. 관리자 페이지 로그인\n3. 비밀번호 초기화 버튼 클릭\n4. 고객에게 초기화 완료 안내", "1. 수강생 학습 이력 조회\n2. 연장 가능 여부 확인 (정책 확인)\n3. 연장 신청서 접수 및 승인\n4. 시스템에 수강 기간 반영", "1. 환불 규정 안내\n2. 환불 신청서 접수\n3. 학습 진도율 및 수강 기간 확인\n4. 환불 금액 산정 및 처리", "1. 운송장 번호 조회\n2. 택배사 문의 및 배송 현황 확인\n3. 고객에게 배송 지연 사유 및 예상일 안내\n4. 필요 시 재발송 처리", "1. 오류 발생 환경 (기기, OS, 앱 버전) 확인\n2. 재현 경로 확인\n3. 개발팀에 전달 및 처리 요청\n4. 고객에게 진행 상황 안내", "1. 기업 정보 및 사업자등록증 확인\n2. 세금계산서 발행 시스템 접속\n3. 발행 정보 입력 및 발행\n4. 고객에게 발행 완료 안내"];
-        const dummyManuals = Array.from({ length: 20 }, (_, i) => {
-            const companies = [ { name: "삼성전자", code: "samsung" }, { name: "SK하이닉스", code: "skhynix" }, { name: "LG화학", code: "lgchem" }, { name: "현대자동차", code: "hyundai" }, { name: "카카오", code: "kakao" }, { name: "네이버", code: "naver" }, { name: "CJ푸드빌", code: "cjfood" }, { name: "대한항공", code: "koreanair" }, { name: "다우오피스", code: "daou" }, { name: "포스코", code: "posco" }];
+        // ✅ 메뉴얼 더미 데이터 (전체 메뉴얼, 공통)
+        // 공통 메뉴얼 더미 데이터
+        const commonManualsData = [
+            { title: "[공통] 내일배움카드 메뉴얼", regDate: "2025-10-15 14:30:00", author: "박지현", learningMethod: "내일배움카드 신청 및 사용 방법에 대한 상세 안내입니다." },
+            { title: "[공통] 고용노동부 산업안전보건교육 메뉴얼", regDate: "2025-10-14 11:20:00", author: "이현우", learningMethod: "산업안전보건교육 의무이수 과정 운영 가이드입니다." },
+            { title: "[공통] 법정의무교육 메뉴얼", regDate: "2025-10-13 16:45:00", author: "김영희", learningMethod: "법정의무교육 과정 등록 및 수료 절차 안내입니다." },
+            { title: "[공통] 환급 과정 운영 메뉴얼", regDate: "2025-10-12 09:15:00", author: "이하윤", learningMethod: "환급 과정 신청부터 수료 인증까지 전체 프로세스입니다." },
+            { title: "[공통] 온라인 강의 접속 가이드", regDate: "2025-10-11 13:50:00", author: "박지현", learningMethod: "온라인 강의 플랫폼 접속 및 수강 방법 안내입니다." },
+            { title: "[공통] 학습 진도율 관리 가이드", regDate: "2025-10-10 10:30:00", author: "이현우", learningMethod: "학습 진도율 확인 및 관리 방법에 대한 가이드입니다." },
+            { title: "[공통] 수료증 발급 안내", regDate: "2025-10-09 15:20:00", author: "김영희", learningMethod: "과정 수료 후 수료증 발급 절차 및 확인 방법입니다." },
+            { title: "[공통] 모바일 앱 사용 가이드", regDate: "2025-10-08 12:10:00", author: "이하윤", learningMethod: "모바일 앱 설치부터 강의 수강까지 전 과정 안내입니다." },
+        ];
+        
+        const companies = [ { name: "삼성전자", code: "samsung" }, { name: "SK하이닉스", code: "skhynix" }, { name: "LG화학", code: "lgchem" }, { name: "현대자동차", code: "hyundai" }, { name: "카카오", code: "kakao" }, { name: "네이버", code: "naver" }, { name: "CJ푸드빌", code: "cjfood" }, { name: "대한항공", code: "koreanair" }, { name: "다우오피스", code: "daou" }, { name: "포스코", code: "posco" }];
+        const authors = ["박지현", "이현우", "김영희", "이하윤"];
+        const salesTeams = ["전략사업1팀", "전략사업2팀", "전략사업3팀"];
+        const salesManagers = ["박지현", "이현우", "김영희"];
+        const opManagers = ["김민준", "이서연", "박도윤"];
+        const commonSubjects = ["내일배움카드 메뉴얼", "고용노동부 산업안전보건교육 메뉴얼", "법정의무교육 메뉴얼", "환급 과정 운영 메뉴얼", "온라인 강의 접속 가이드", "학습 진도율 관리 가이드", "수료증 발급 안내", "모바일 앱 사용 가이드"];
+        const subjects = ["산업안전기사", "AFPK", "CFP", "회계사", "컴퓨터활용능력 1급"];
+        const periods = ["2025년 상반기", "2025년 하반기", "2024년 11월 교육", "2024년 12월 교육"];
+        
+        // 공통 메뉴얼 FAQ 더미 데이터
+        const commonManualFAQs = [
+            [
+                { order: 1, inquiry: "내일배움카드는 어떻게 신청하나요?", response: "내일배움카드는 고용센터 또는 온라인으로 신청할 수 있습니다. 신청 후 카드 발급까지 약 1-2주 소요됩니다.", note: "신청 방법 안내" },
+                { order: 2, inquiry: "환급 과정 수강 후 환급은 언제 받나요?", response: "과정 수료 후 약 1-2개월 내에 환급이 진행됩니다. 정확한 일정은 고용센터로 문의 바랍니다.", note: "환급 일정" },
+            ],
+            [
+                { order: 1, inquiry: "산업안전보건교육은 필수 수강인가요?", response: "네, 근로기준법에 따라 연간 16시간 이상의 산업안전보건교육을 이수해야 합니다.", note: "법정 의무" },
+                { order: 2, inquiry: "교육 이수 확인은 어떻게 하나요?", response: "교육 이수 후 시스템에서 자동으로 이수 현황이 기록되며, 고용센터에서도 확인 가능합니다.", note: "이수 확인" },
+            ],
+            [
+                { order: 1, inquiry: "법정의무교육 미이수 시 처벌이 있나요?", response: "법정의무교육 미이수 시 고용노동부로부터 행정 처분을 받을 수 있습니다.", note: "처벌 규정" },
+            ],
+            [
+                { order: 1, inquiry: "환급 과정 신청 기간은 언제인가요?", response: "환급 과정 신청 기간은 매월 1일부터 25일까지입니다.", note: "신청 기간" },
+                { order: 2, inquiry: "환급 금액은 얼마인가요?", response: "과정 종류에 따라 다르며, 최대 100만원까지 환급 가능합니다.", note: "환급 금액" },
+            ],
+            [
+                { order: 1, inquiry: "온라인 강의 접속이 안 될 때는 어떻게 하나요?", response: "브라우저 캐시 삭제 후 다시 접속해보시고, 문제가 지속되면 고객센터로 문의 바랍니다.", note: "접속 문제" },
+            ],
+            [
+                { order: 1, inquiry: "학습 진도율은 어디서 확인하나요?", response: "마이페이지 > 학습 현황에서 현재 진도율을 확인할 수 있습니다.", note: "진도율 확인" },
+            ],
+            [
+                { order: 1, inquiry: "수료증은 언제 발급되나요?", response: "과정 수료 후 3일 이내에 수료증이 발급되며, 마이페이지에서 다운로드 가능합니다.", note: "수료증 발급" },
+            ],
+            [
+                { order: 1, inquiry: "모바일 앱은 어디서 다운로드 하나요?", response: "플레이스토어 또는 앱스토어에서 '해커스 B2B'를 검색하여 다운로드하실 수 있습니다.", note: "앱 다운로드" },
+            ],
+        ];
+        
+        // 공통 메뉴얼 데이터 생성
+        const commonManuals = commonManualsData.map((cm, i) => ({
+            regDate: cm.regDate,
+            companyCode: null,
+            companyName: null,
+            title: cm.title,
+            department: "운영지원팀", // 공통 메뉴얼 담당부서
+            faqTable: commonManualFAQs[i % commonManualFAQs.length] || [], // FAQ 테이블 데이터
+            author: cm.author,
+        }));
+        
+        // 기업별 메뉴얼 데이터 생성
+        const companyManuals = Array.from({ length: 12 }, (_, i) => {
             const company = companies[i % companies.length];
-            const authors = ["박지현", "이현우", "김영희", "이하윤"];
+            const subject = subjects[i % subjects.length];
+            const period = periods[i % periods.length];
             return {
                 regDate: `2025-10-${String(20 - i % 20).padStart(2, '0')} ${String(10 + i % 12).padStart(2, '0')}:${String(30 + i % 30).padStart(2, '0')}`,
                 companyCode: company.code,
                 companyName: company.name,
-                title: `[${company.name}] ${inquiryExamples[i % inquiryExamples.length].substring(0, 10)}`, // 제목 추가
-                inquiry: inquiryExamples[i % inquiryExamples.length],
-                procedure: procedureExamples[i % procedureExamples.length],
+                title: `[${company.name}] ${subject} ${period}`,
+                siteUrl: `https://${company.code}.hackers.com`,
+                contractPeriod: `2025-01-01 ~ 2025-12-31`,
+                reviewPeriod: `종료 후 1년`,
+                salesTeam: salesTeams[i % salesTeams.length],
+                salesManager: salesManagers[i % salesManagers.length],
+                opManager: opManagers[i % opManagers.length],
+                reportUrl: `http://internal.wiki/doc/${1000+i}`,
+                targetAudience: `전직원 대상 (임원 제외)`,
+                courses: `1. 비즈니스 영어 회화\n2. 파이썬 데이터 분석`,
+                learningMethod: `온라인 동영상 강의 수강 후, 주 1회 퀴즈 응시`,
+                completionCondition: `진도율 80% 이상, 시험 60점 이상`,
+                encouragement: `월 2회 (첫째, 셋째 주 월요일) 미수강자 대상 독려 메일 발송`,
+                settlement: `교육 종료 후 익월 15일 수료 인원 기준 정산`,
+                faq: `Q. 모바일에서도 수강 가능한가요?\nA. 네, 모바일 앱을 통해 수강 가능합니다.`,
                 author: authors[i % authors.length],
-                customerMessage: `안녕하세요, {고객명}님. 요청하신 비밀번호가 아이디와 동일하게 초기화되었습니다.`,
-                link: `http://internal.wiki/doc/${100+i}`
             };
-        }).sort((a, b) => new Date(b.regDate) - new Date(a.dateB));
+        });
         
-        const categories = [
+        // 전체 메뉴얼 합치기 (공통 메뉴얼 + 기업별 메뉴얼)
+        const dummyManuals = [...commonManuals, ...companyManuals].sort((a, b) => new Date(b.regDate) - new Date(a.regDate));
+        
+        const categories = [ // 상담 분류 카테고리
           "수강신청 기간/방법", "결제 방법/오류", "과정 취소/변경", "수강방법 문의",
           "수강/복습 기간", "아이디/비밀번호 문의", "교재배송", "모바일 수강",
           "동영상 오류", "MP3 관련 문의", "PMP/PC 다운로드", "학습자료 다운로드",
@@ -684,7 +810,7 @@
           "강의 내용", "선생님께 질문하기", "기타문의", "제휴문의"
         ];
 
-        const historyData = Array.from({ length: 10 }, (_, i) => ({
+        const historyData = Array.from({ length: 10 }, (_, i) => ({ // 현재 고객의 상담 이력
           channel: i % 2 === 0 ? "1:1 문의게시판" : "전화상담",
           // categoryMain: ["수강·결제", "수강환경·접속", "학습진행·평가", "강의·강사", "기타·제휴"][i % 5],
           // categorySub: ["결제오류", "로그인문제", "진도율문의", "강사평가", "제휴문의"][i % 5],
@@ -699,7 +825,7 @@
           },
         })).sort((a, b) => new Date(b.datetime) - new Date(a.datetime));
 
-        const studyData = Array.from({ length: 10 }, (_, i) => ({
+        const studyData = Array.from({ length: 10 }, (_, i) => ({ // 현재 고객의 학습 이력
           round: `2025${10 + i}`,
           code: `LGC${100 + i}`,
           subject: `	[2025 하반기] 한 번에 합격하는 자소서 작성법 - 대한항공(일반직) ${i + 1}`,
@@ -718,7 +844,7 @@
           regDate: `2025-09-${15 + i}`,
         })).sort((a, b) => parseInt(b.round) - parseInt(a.round));
 
-        const newDeliveryData = Array.from({ length: 10 }, (_, i) => ({
+        const newDeliveryData = Array.from({ length: 10 }, (_, i) => ({ // 현재 고객의 배송 이력
           orderDate: `2025-09-${String(10 + i).padStart(2, '0')}`,
           orderNo: `ORD${1000 + i}`,
           book: `산업안전 교재 ${i + 1}`,
@@ -730,6 +856,22 @@
           payDate: `2025-09-${String(5 + i).padStart(2, '0')}`,
           deliveryMethod: i % 2 === 0 ? "SAP" : "교보문고",
         })).sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
+
+        // ===================================================================================
+        // ✅ 각 기능별 스크립트 초기화
+        // ===================================================================================
+        // ✅ 각 기능별 스크립트 초기화
+        // ===================================================================================
+
+        // ✅ 사이드메뉴 토글 (다른 페이지와 동일)
+        const menuToggle1 = document.getElementById("menuToggle1");
+        const menu1 = document.getElementById("menu1");
+        const menuToggle2 = document.getElementById("menuToggle2");
+        const menu2 = document.getElementById("menu2");
+        const menuToggleEmail = document.getElementById("menuToggleEmail");
+        const menuEmail = document.getElementById("menuEmail");
+        const menuToggleBiztalk = document.getElementById("menuToggleBiztalk");
+        const menuBiztalk = document.getElementById("menuBiztalk");
 
 
         // ✅ 모달 제어
@@ -761,37 +903,37 @@
         function openModal(title, data, editable = false) {
           modalTitle.textContent = title;
           modalContent.innerHTML = `
-          <div class='bg-blue-50 rounded-lg p-4 border border-blue-200'>
-          <table class='w-full border-collapse text-sm'>
-            <tbody>
-              ${Object.entries(data)
-              .map(([key, val]) => {
-                  if (key === 'Password') {
-                    return `
-                      <tr class='border-b border-blue-100'>
-                        <td class='p-3 bg-blue-400 text-white font-semibold w-36 rounded-l'>Password</td>
-                        <td class='p-3 bg-white'>
-                          <button onclick="resetPassword('${data['아이디']}')" class='text-red-600 font-semibold hover:underline'>비밀번호 초기화</button>
-                          <p class='text-xs text-gray-500 mt-1'>※ 초기화시 아이디와 동일하게 적용되며, 분실시에만 사용 해주세요!</p>
-                        </td>
-                      </tr>
-                    `;
-                  }
-                  return `
-                    <tr class='border-b border-blue-100'>
-                      <td class='p-3 bg-blue-400 text-white font-semibold w-36 rounded-l'>${key}</td>
-                      <td class='p-3 bg-white ${editable ? "editable" : ""}' contenteditable="false">${val}</td>
-                    </tr>
-                  `;
-                }
-              )
-              .join("")}
-            </tbody>
-          </table>
-          </div>
-          ${editable
+            <div class='bg-gray-50 rounded-lg p-4 border border-gray-200'>
+              <table class='w-full border-collapse text-sm'>
+                <tbody>
+                  ${Object.entries(data)
+                  .map(([key, val]) => {
+                      if (key === 'Password') {
+                        return `
+                          <tr class='border-b border-gray-100'>
+                            <td class='p-3 bg-gray-200 text-gray-700 font-semibold w-36 rounded-l-lg'>Password</td>
+                            <td class='p-3 bg-white rounded-r-lg'>
+                              <button onclick="resetPassword('${data['아이디']}')" class='text-red-600 font-semibold hover:underline'>비밀번호 초기화</button>
+                              <p class='text-xs text-gray-500 mt-1'>※ 초기화시 아이디와 동일하게 적용되며, 분실시에만 사용 해주세요!</p>
+                            </td>
+                          </tr>
+                        `;
+                      }
+                      return `
+                        <tr class='border-b border-gray-100'>
+                          <td class='p-3 bg-gray-200 text-gray-700 font-semibold w-36 rounded-l-lg'>${key}</td>
+                          <td class='p-3 bg-white rounded-r-lg ${editable ? "editable" : ""}' contenteditable="false">${val}</td>
+                        </tr>
+                      `;
+                    }
+                  )
+                  .join("")}
+                </tbody>
+              </table>
+            </div>
+            ${editable
               ? `<div class='flex justify-end mt-4'>
-                  <button id='editBtn' class='bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition'>수정하기</button>
+                  <button id='editBtn' class='bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition shadow-sm'>수정하기</button>
                 </div>`
               : ""
             }
@@ -897,13 +1039,13 @@
 
             paginatedTemplates.forEach(template => {
                 const tr = document.createElement("tr");
-                tr.className = "border-t hover:bg-blue-50 cursor-pointer";
+                tr.className = "border-t hover:bg-gray-50 cursor-pointer";
                 tr.innerHTML = `<td class="p-2 text-center">${template.id}</td><td class="p-2">${template.title}</td>`;
                 tr.addEventListener('click', () => {
                     smsContent.value = template.content;
                     // 선택된 행 하이라이트
-                    Array.from(smsTemplateBody.querySelectorAll('tr')).forEach(row => row.classList.remove('bg-blue-100', 'font-semibold'));
-                    tr.classList.add('bg-blue-100', 'font-semibold');
+                    Array.from(smsTemplateBody.querySelectorAll('tr')).forEach(row => row.classList.remove('bg-gray-200', 'font-semibold'));
+                    tr.classList.add('bg-gray-200', 'font-semibold');
                 });
                 smsTemplateBody.appendChild(tr);
             });
@@ -919,7 +1061,7 @@
             for (let i = 1; i <= pageCount; i++) {
                 const pageBtn = document.createElement('button');
                 pageBtn.textContent = i;
-                pageBtn.className = `px-3 py-1 rounded ${currentPage === i ? 'bg-blue-600 text-white' : 'bg-gray-200 hover:bg-gray-300'}`;
+                pageBtn.className = `px-3 py-1 rounded ${currentPage === i ? 'bg-gray-800 text-white' : 'bg-gray-200 hover:bg-gray-300'}`;
                 pageBtn.onclick = () => {
                     currentPage = i;
                     renderSmsTemplates();
@@ -1007,7 +1149,7 @@
             .slice(0, limit)
             .forEach((h) => {
               const tr = document.createElement("tr");
-              tr.className = "border-b hover:bg-blue-50 cursor-pointer";
+              tr.className = "border-b hover:bg-gray-50 cursor-pointer";
               tr.innerHTML = `
                 <td class="p-3">${h.datetime}</td>
                 <td class="p-3">${h.channel}</td>
@@ -1034,55 +1176,226 @@
         });
 
         // ✅ 상담 클릭 시 상세 정보 표시 (선택행 하이라이트 포함)
-        const historyDetail = document.getElementById("history-detail");
+        const customerMemoSection = document.getElementById('customer-memo-section');
+        const historyDetailSection = document.getElementById('history-detail-section');
+
+        function showMemoSection() {
+          historyDetailSection.classList.add("hidden");
+          customerMemoSection.classList.remove("hidden");
+          // 모든 상담이력 하이라이트 제거
+          Array.from(historyBody.querySelectorAll("tr")).forEach((r) =>
+            r.classList.remove("bg-gray-100")
+          );
+        }
 
         historyBody.addEventListener("click", (e) => {
           const row = e.target.closest("tr");
           if (!row || row.querySelector('td[colspan="5"]')) return; // 데이터 없는 행 클릭 방지
 
+          // 다른 행 하이라이트 제거
           Array.from(historyBody.querySelectorAll("tr")).forEach((r) =>
-            r.classList.remove("bg-blue-100")
+            r.classList.remove("bg-gray-100")
           );
-          row.classList.add("bg-blue-100");
+          // 현재 행 하이라이트
+          row.classList.add("bg-gray-100");
 
           const index = Array.from(historyBody.children).indexOf(row);
           const h = historyData.slice(0, shownCount)[index]; // 현재 보여지는 데이터셋에서 인덱스 찾기
           if (!h) return;
 
-          historyDetail.classList.remove("hidden");
-          historyDetail.innerHTML = `
-            <h4 class="font-semibold text-blue-700 text-md mb-3">${h.title}</h4>
+          // 메모 섹션 숨기고 상담 상세 섹션 보이기
+          customerMemoSection.classList.add("hidden");
+          historyDetailSection.classList.remove("hidden");
+
+          historyDetailSection.innerHTML = `
+            <div class="flex justify-between items-center mb-3">
+              <h4 class="font-semibold text-gray-800 text-md">${h.title}</h4>
+              <button id="close-history-detail" class="text-gray-500 hover:text-gray-800 text-2xl font-bold">&times;</button>
+            </div>
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
               <table class="w-full border-separate border-spacing-y-2 text-sm">
                 <tbody>
-                  <tr>
-                    <td class="p-2 bg-gray-50 w-32 font-semibold rounded-l-lg">상담채널</td>
-                    <td class="p-2 rounded-r-lg border border-gray-100">${h.channel}</td>
-                  </tr>
-                  <tr>
-                    <td class="p-2 bg-gray-50 font-semibold rounded-l-lg">분류</td>
-                    <td class="p-2 rounded-r-lg border border-gray-100">${h.category}</td>
-                  </tr>
-                  <tr>
-                    <td class="p-2 bg-gray-50 font-semibold rounded-l-lg">상담일시</td>
-                    <td class="p-2 rounded-r-lg border border-gray-100">${h.datetime}</td>
-                  </tr>
-                  <tr>
-                    <td class="p-2 bg-gray-50 font-semibold rounded-l-lg">담당자</td>
-                    <td class="p-2 rounded-r-lg border border-gray-100">${h.manager}</td>
-                  </tr>
-                  <tr>
-                    <td class="p-2 bg-gray-50 font-semibold rounded-l-lg">진행상태</td>
-                    <td class="p-2 rounded-r-lg border border-gray-100">${h.status}</td>
-                  </tr>
-                  <tr>
-                    <td class="p-2 bg-gray-50 font-semibold rounded-l-lg">답변내용</td>
-                    <td class="p-2 rounded-r-lg border border-gray-100 whitespace-pre-wrap text-gray-700">${h.detail?.reply || "내용 없음"}</td>
-                  </tr>
+                  <tr><td class="p-2 bg-gray-50 w-32 font-semibold rounded-l-lg">상담채널</td><td class="p-2 rounded-r-lg border border-gray-100">${h.channel}</td></tr>
+                  <tr><td class="p-2 bg-gray-50 font-semibold rounded-l-lg">분류</td><td class="p-2 rounded-r-lg border border-gray-100">${h.category}</td></tr>
+                  <tr><td class="p-2 bg-gray-50 font-semibold rounded-l-lg">상담일시</td><td class="p-2 rounded-r-lg border border-gray-100">${h.datetime}</td></tr>
+                  <tr><td class="p-2 bg-gray-50 font-semibold rounded-l-lg">담당자</td><td class="p-2 rounded-r-lg border border-gray-100">${h.manager}</td></tr>
+                  <tr><td class="p-2 bg-gray-50 font-semibold rounded-l-lg">진행상태</td><td class="p-2 rounded-r-lg border border-gray-100">${h.status}</td></tr>
+                  <tr><td class="p-2 bg-gray-50 font-semibold rounded-l-lg">답변내용</td><td class="p-2 rounded-r-lg border border-gray-100 whitespace-pre-wrap text-gray-700">${h.detail?.reply || "내용 없음"}</td></tr>
                 </tbody>
               </table>
             </div>`;
+          
+          // 닫기 버튼에 이벤트 리스너 추가
+          document.getElementById('close-history-detail').addEventListener('click', showMemoSection);
         }); 
+
+        // ✅ 고객 메모 렌더링
+        function renderCustomerMemos() {
+          const isDeleteMode = customerMemoSection.classList.contains('delete-mode');
+          const headerHTML = `
+            <div class="flex justify-between items-center mb-3">
+              <h3 class="font-semibold text-lg text-gray-800">내부 기록</h3>
+              <div class="space-x-2">
+                <button id="add-memo-btn" class="bg-gray-800 text-white px-3 py-1 rounded-lg hover:bg-gray-700 transition text-sm font-semibold shadow-sm">새 기록 작성</button>
+                <button id="delete-memo-toggle-btn" class="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition text-sm font-semibold shadow-sm">삭제</button>
+              </div>
+            </div>
+          `;
+
+          let tableHTML = `
+            <div id="memo-table-container" class="overflow-x-auto overflow-y-auto flex-1 bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <table class="w-full text-sm border-collapse table-auto">
+                <thead class="text-gray-600">
+                  <tr>${isDeleteMode ? '<th class="p-2 w-10"></th>' : ''}<th class="p-2 text-left">일시</th><th class="p-2 text-left">내용</th><th class="p-2 text-left">작성자</th></tr>
+                </thead>
+                <tbody>
+          `;
+          if (dummyMemos.length > 0) {
+            dummyMemos.forEach((memo, index) => {
+              tableHTML += `
+                <tr class="border-t hover:bg-gray-100 cursor-pointer memo-row" data-index="${index}">
+                  ${isDeleteMode ? `<td class="p-2 text-center"><input type="checkbox" class="memo-checkbox" data-index="${index}"></td>` : ''}
+                  <td class="p-2 whitespace-nowrap">${memo.datetime}</td>
+                  <td class="p-2 truncate" style="max-width: 250px;">${memo.content}</td>
+                  <td class="p-2 whitespace-nowrap">${memo.author}</td>
+                </tr>
+              `;
+            });
+          } else {
+            const colspan = isDeleteMode ? 4 : 3;
+            tableHTML += `<tr><td colspan="${colspan}" class="text-center p-5 text-gray-500">작성된 기록이 없습니다.</td></tr>`;
+          }
+          tableHTML += `</tbody></table></div>`;
+
+          const footerHTML = `
+            <div id="memo-delete-footer" class="hidden justify-end items-center mt-3 space-x-2">
+              <button id="confirm-delete-btn" class="bg-red-600 text-white px-4 py-1 rounded-lg hover:bg-red-700 transition text-sm font-semibold">선택 항목 삭제</button>
+              <button id="cancel-delete-btn" class="bg-gray-200 text-gray-800 px-4 py-1 rounded-lg hover:bg-gray-300 transition text-sm font-semibold">취소</button>
+            </div>
+          `;
+
+          customerMemoSection.innerHTML = headerHTML + tableHTML + footerHTML;
+          addMemoEventListeners();
+        }
+
+        // ✅ 내부 기록 상세 보기 모달 열기
+        function openMemoDetail(index) {
+          const memo = dummyMemos[index];
+          if (!memo) return;
+
+          const modalData = {
+            '일시': memo.datetime,
+            '작성자': memo.author,
+            '내용': `<div class="whitespace-pre-wrap bg-white p-3 border rounded-md">${memo.content}</div>`
+          };
+
+          // 기존에 있던 범용 모달을 사용합니다.
+          modalTitle.textContent = "내부 기록 상세";
+          modalContent.innerHTML = `<div class='bg-gray-50 rounded-lg p-4 border border-gray-200'><table class='w-full border-collapse text-sm'><tbody>${Object.entries(modalData).map(([key, val]) => `<tr class='border-b border-gray-100'><td class='p-3 bg-gray-200 text-gray-700 font-semibold w-24 rounded-l-lg'>${key}</td><td class='p-3 bg-white rounded-r-lg'>${val}</td></tr>`).join("")}</tbody></table></div>`;
+          modalOverlay.classList.remove("hidden");
+        }
+
+        // ✅ 내부 기록 관련 이벤트 리스너 추가
+        function addMemoEventListeners() {
+            // 행 클릭 시 상세 보기 (삭제 모드가 아닐 때만)
+            customerMemoSection.querySelectorAll('.memo-row').forEach(row => {
+                row.addEventListener('click', (e) => {
+                    if (customerMemoSection.classList.contains('delete-mode')) {
+                        // 삭제 모드에서는 체크박스 토글
+                        const checkbox = e.currentTarget.querySelector('.memo-checkbox');
+                        if (checkbox && e.target !== checkbox) {
+                            checkbox.checked = !checkbox.checked;
+                        }
+                    } else {
+                        // 일반 모드에서는 상세 보기
+                        openMemoDetail(e.currentTarget.dataset.index);
+                    }
+                });
+            });
+
+            // 새 기록 작성 버튼
+            document.getElementById('add-memo-btn').addEventListener('click', () => {
+                const tableBody = customerMemoSection.querySelector('tbody');
+                const newRow = document.createElement('tr');
+                newRow.className = 'new-memo-form-row';
+                const now = new Date().toISOString().slice(0, 19).replace('T', ' ');
+                const author = "박지현"; // 현재 로그인 사용자 (하드코딩)
+
+                newRow.innerHTML = `
+                    <td class="p-2 whitespace-nowrap text-gray-500 text-sm">${now}</td>
+                    <td class="p-2">
+                        <div class="bg-yellow-50 rounded-lg border border-yellow-400">
+                            <textarea class="w-full bg-transparent focus:outline-none text-sm p-2" rows="3" placeholder="새로운 기록 내용을 입력하세요..."></textarea>
+                        </div>
+                    </td>
+                    <td class="p-2 whitespace-nowrap text-gray-500 text-sm">${author}</td>
+                `;
+                tableBody.prepend(newRow);
+
+                newRow.querySelector('.save-new-memo-btn').addEventListener('click', () => {
+                    const content = newRow.querySelector('textarea').value;
+                    if (!content.trim()) {
+                        alert('내용을 입력해주세요.');
+                        return;
+                    }
+                    const newMemo = {
+                        datetime: now,
+                        content: content,
+                        author: author
+                    };
+                    dummyMemos.unshift(newMemo);
+                    renderCustomerMemos();
+                });
+
+                // 취소 버튼 로직을 위해 임시로 버튼을 만들고 클릭 후 제거
+                const tempCancelBtnContainer = document.createElement('div');
+                tempCancelBtnContainer.className = "flex justify-end mt-2 space-x-2";
+                tempCancelBtnContainer.innerHTML = `<button class="cancel-new-memo-btn bg-gray-200 text-gray-800 px-3 py-1 rounded-lg hover:bg-gray-300 transition text-xs font-semibold">취소</button>`;
+                const textareaCell = newRow.querySelector('td:nth-child(2)');
+                textareaCell.appendChild(tempCancelBtnContainer);
+                
+                tempCancelBtnContainer.querySelector('.cancel-new-memo-btn').addEventListener('click', () => newRow.remove());
+
+                newRow.querySelector('textarea').focus();
+            });
+
+            // 삭제 모드 토글 버튼
+            const deleteToggleBtn = document.getElementById('delete-memo-toggle-btn');
+            const deleteFooter = document.getElementById('memo-delete-footer');
+            deleteToggleBtn.addEventListener('click', () => {
+                customerMemoSection.classList.add('delete-mode');
+                deleteFooter.classList.remove('hidden');
+                renderCustomerMemos();
+            });
+
+            // 삭제 취소 버튼
+            const cancelDeleteBtn = document.getElementById('cancel-delete-btn');
+            if (cancelDeleteBtn) {
+                cancelDeleteBtn.addEventListener('click', () => {
+                    customerMemoSection.classList.remove('delete-mode');
+                    deleteFooter.classList.add('hidden');
+                    renderCustomerMemos();
+                });
+            }
+
+            // 선택 항목 삭제 버튼
+            const confirmDeleteBtn = document.getElementById('confirm-delete-btn');
+            if (confirmDeleteBtn) {
+                confirmDeleteBtn.addEventListener('click', () => {
+                    const checkedBoxes = customerMemoSection.querySelectorAll('.memo-checkbox:checked');
+                    if (checkedBoxes.length === 0) {
+                        alert('삭제할 항목을 선택해주세요.');
+                        return;
+                    }
+                    if (confirm(`${checkedBoxes.length}개의 기록을 삭제하시겠습니까?`)) {
+                        const indicesToDelete = Array.from(checkedBoxes).map(cb => parseInt(cb.dataset.index));
+                        window.dummyMemos = dummyMemos.filter((_, index) => !indicesToDelete.includes(index));
+                        customerMemoSection.classList.remove('delete-mode');
+                        renderCustomerMemos();
+                    }
+                });
+            }
+        }
 
         // ✅ 학습관리 렌더링
         const studyBody = document.getElementById("study-body");
@@ -1099,7 +1412,7 @@
             .slice(0, limit)
             .forEach((s) => {
               const tr = document.createElement("tr");
-              tr.className = "border-b hover:bg-blue-50 cursor-pointer";
+              tr.className = "border-b hover:bg-gray-50 cursor-pointer";
               tr.innerHTML = `
                 <td class="p-3">${s.round}</td>
                 <td class="p-3">${s.code}</td>
@@ -1215,7 +1528,7 @@
           deliveryBody2.innerHTML = "";
           newDeliveryData.slice(0, limit).forEach((d) => {
             const tr = document.createElement("tr");
-            tr.className = "border-b hover:bg-blue-50";
+            tr.className = "border-b hover:bg-gray-50";
             tr.innerHTML = `
               <td class="p-3 whitespace-nowrap">${d.orderDate}</td>
               <td class="p-3 whitespace-nowrap">${d.orderNo}</td>
@@ -1250,10 +1563,10 @@
         // 페이지 로드 시 응대 내용 채우기
         populateResponseData(dummyConsultationData);
 
-      </script>
-
-      <!-- ✅ 메뉴얼 조회 관련 스크립트 -->
-      <script>
+        // 페이지 로드 시 고객 메모 렌더링
+        renderCustomerMemos();
+        
+        // ✅ 메뉴얼 조회 관련 스크립트
         const menuManualLookupBtn = document.getElementById("menuManualLookup");
         const manualLookupModal = document.getElementById("manualLookupModal");
         const closeManualLookupModalBtn = document.getElementById("closeManualLookupModalBtn");
@@ -1266,31 +1579,69 @@
         const modalSearchAuthor = document.getElementById("modal-search-author");
         const modalSearchBtn = document.getElementById("modal-search-btn");
         const modalResetBtn = document.getElementById("modal-reset-btn");
+        const modalCommonManualBtn = document.getElementById("modal-common-manual-btn");
 
         // 메뉴얼 상세 모달 (위에서 복사해 온 모달)
         const manualDetailModal = document.getElementById("manualDetailModal");
         const manualDetailContentArea = document.getElementById("manualDetailContentArea");
-        const closeManualDetailModalBtn = document.getElementById("closeManualDetailModalBtn");
+        const closeManualDetailModalBtn_customerView = document.getElementById("closeManualDetailModalBtn_customerView");
         const editManualBtn = document.getElementById("editManualBtn");
         const saveManualBtn = document.getElementById("saveManualBtn");
         let currentManualIndex = -1;
 
+        let manualLookupMode = 'company'; // 'company' or 'common'
+
         menuManualLookupBtn.addEventListener("click", () => {
           const currentCompanyCode = memberData["기업코드"]; // 현재 고객의 기업코드
           lookupCompanyCodeSpan.textContent = currentCompanyCode;
+          manualLookupMode = 'company'; // 모달 열 때 항상 기업 메뉴얼로 초기화
+          renderManualLookupTable(); 
+          manualLookupModal.classList.remove("hidden");
+        });
 
-          const filteredManuals = dummyManuals.filter(m => m.companyCode === currentCompanyCode);
+        function renderManualLookupTable() {
+          const titleQuery = modalSearchTitle.value.toLowerCase();
+          const inquiryQuery = modalSearchInquiry.value.toLowerCase();
+          const authorQuery = modalSearchAuthor.value.toLowerCase();
+          
+          let filteredManuals;
+
+          if (manualLookupMode === 'company') {
+            const currentCompanyCode = memberData["기업코드"];
+            filteredManuals = dummyManuals.filter(m => 
+              (m.companyCode === currentCompanyCode) && // 해당 기업 메뉴얼만
+              m.title.toLowerCase().includes(titleQuery) &&
+              (m.learningMethod || '').toLowerCase().includes(inquiryQuery) &&
+              m.author.toLowerCase().includes(authorQuery)
+            );
+            // 모달 제목 업데이트
+            lookupCompanyCodeSpan.textContent = currentCompanyCode;
+          } else { // 'common' mode
+            filteredManuals = dummyManuals.filter(m => 
+              (!m.companyCode) && // 공통 메뉴얼만
+              m.title.toLowerCase().includes(titleQuery) &&
+              (m.learningMethod || '').toLowerCase().includes(inquiryQuery) &&
+              m.author.toLowerCase().includes(authorQuery)
+            );
+            // 모달 제목 업데이트
+            lookupCompanyCodeSpan.textContent = '공통';
+          }
+
           manualLookupTableBody.innerHTML = "";
 
           if (filteredManuals.length > 0) {
             filteredManuals.forEach(manual => {
               const row = document.createElement("tr");
-              row.className = "border-b hover:bg-blue-50 transition cursor-pointer";
+              row.className = "border-b hover:bg-gray-50 transition cursor-pointer";
               row.innerHTML = `
-                <td class='p-3 whitespace-nowrap'>${manual.regDate}</td>
-                <td class='p-3 font-semibold'>${manual.title}</td>
-                <td class='p-3'>${manual.inquiry}</td>
-                <td class='p-3'>${manual.author}</td>
+                <!-- 각 td에 데이터 바인딩 -->
+                <td class="p-4">${manual.regDate}</td>
+                <td class="p-4">${manual.companyCode || '-'}</td>
+                <td class="p-4 font-medium">${manual.companyName || '공통'}</td>
+                <td class="p-4">${manual.title}</td>
+                <td class="p-4">${manual.salesTeam}</td>
+                <td class="p-4">${manual.salesManager}</td>
+                <td class="p-4">${manual.author}</td>
               `;
               row.addEventListener("click", () => {
                 openManualDetail(manual);
@@ -1298,10 +1649,9 @@
               manualLookupTableBody.appendChild(row);
             });
           } else {
+            manualLookupTableBody.innerHTML = `<tr><td colspan="7" class="text-center p-5 text-gray-500">검색된 메뉴얼이 없습니다.</td></tr>`;
           }
-
-          manualLookupModal.classList.remove("hidden");
-        });
+        }
 
         closeManualLookupModalBtn.addEventListener("click", () => manualLookupModal.classList.add("hidden"));
         manualLookupModal.addEventListener("click", (e) => {
@@ -1313,27 +1663,115 @@
           modalSearchTitle.value = '';
           modalSearchInquiry.value = '';
           modalSearchAuthor.value = '';
+          manualLookupMode = 'company'; // 초기화 시 기업 메뉴얼 모드로 변경
           renderManualLookupTable();
         });
+        modalCommonManualBtn.addEventListener("click", () => {
+          modalSearchTitle.value = '';
+          modalSearchInquiry.value = '';
+          modalSearchAuthor.value = '';
+          manualLookupMode = 'common';
+          renderManualLookupTable();
+        });
+
         // 엔터 키로 검색
         [modalSearchTitle, modalSearchInquiry, modalSearchAuthor].forEach(input => input.addEventListener('keydown', e => e.key === 'Enter' && renderManualLookupTable()));
 
         // --- 메뉴얼 상세 보기/수정 관련 함수 (manual_list.html 에서 가져옴) ---
         function openManualDetail(manual) {
           currentManualIndex = dummyManuals.findIndex(m => m.regDate === manual.regDate && m.companyCode === manual.companyCode);
-          manualDetailContentArea.innerHTML = `
-            <div class="border border-gray-200 rounded-lg overflow-hidden">
-                <div class="grid grid-cols-[140px_1fr] border-b border-gray-200"><div class="font-semibold text-gray-600 bg-gray-50 p-4">등록일시</div><div class="p-4">${manual.regDate}</div></div>
-                <div class="grid grid-cols-[140px_1fr] border-b border-gray-200"><div class="font-semibold text-gray-600 bg-gray-50 p-4">기업코드</div><div class="p-4 editable-field">${manual.companyCode}</div></div>
-                <div class="grid grid-cols-[140px_1fr] border-b border-gray-200"><div class="font-semibold text-gray-600 bg-gray-50 p-4">기업명</div><div class="p-4 editable-field">${manual.companyName}</div></div>
-                <div class="grid grid-cols-[140px_1fr] border-b border-gray-200"><div class="font-semibold text-gray-600 bg-gray-50 p-4">제목</div><div class="p-4 whitespace-pre-wrap editable-field">${manual.title}</div></div>
-                <div class="grid grid-cols-[140px_1fr] border-b border-gray-200"><div class="font-semibold text-gray-600 bg-gray-50 p-4">상황개요</div><div class="p-4 whitespace-pre-wrap editable-field">${manual.inquiry}</div></div>
-                <div class="grid grid-cols-[140px_1fr] border-b border-gray-200"><div class="font-semibold text-gray-600 bg-gray-50 p-4">응대절차</div><div class="p-4 whitespace-pre-wrap editable-field">${manual.procedure}</div></div>
-                <div class="grid grid-cols-[140px_1fr] border-b border-gray-200"><div class="font-semibold text-gray-600 bg-gray-50 p-4">작성자</div><div class="p-4 editable-field">${manual.author}</div></div>
-                <div class="grid grid-cols-[140px_1fr] border-b border-gray-200"><div class="font-semibold text-gray-600 bg-gray-50 p-4">고객전달문구</div><div class="p-4 whitespace-pre-wrap editable-field">${manual.customerMessage}</div></div>
-                <div class="grid grid-cols-[140px_1fr]"><div class="font-semibold text-gray-600 bg-gray-50 p-4">관련문서/링크</div><div class="p-4 editable-field"><a href="${manual.link}" target="_blank" class="text-blue-600 hover:underline">${manual.link}</a></div></div>
+          
+          // 공통 메뉴얼인지 확인 (companyCode가 null인 경우)
+          const isCommonManual = !manual.companyCode;
+          
+          let contentHTML = '';
+          
+          if (isCommonManual) {
+            // 공통 메뉴얼 형식 (manual_registration.html과 동일)
+            const faqRows = (manual.faqTable || []).map(faq => `
+              <div class="grid grid-cols-[80px_1fr_1fr_1fr_60px] border-t border-gray-200 items-start">
+                <div class="p-2 border-r h-full flex items-center justify-center">
+                  <span class="text-sm">${faq.order || ''}</span>
+                </div>
+                <div class="p-2 border-r h-full">
+                  <div class="text-sm whitespace-pre-wrap">${faq.inquiry || ''}</div>
+                </div>
+                <div class="p-2 border-r h-full">
+                  <div class="text-sm whitespace-pre-wrap">${faq.response || ''}</div>
+                </div>
+                <div class="p-2 h-full">
+                  <div class="text-sm whitespace-pre-wrap">${faq.note || ''}</div>
+                </div>
+                <div class="p-2 flex items-center justify-center h-full"></div>
+              </div>
+            `).join('');
+            
+            contentHTML = `<div class="border border-gray-200 rounded-lg overflow-hidden mb-6">
+              <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center">
+                <div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">제목</div>
+                <div class="p-2"><div class="text-sm">${manual.title || ''}</div></div>
+              </div>
+              <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center">
+                <div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">담당부서</div>
+                <div class="p-2"><div class="text-sm">${manual.department || ''}</div></div>
+              </div>
+              <div class="grid grid-cols-[140px_1fr] items-center">
+                <div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">작성자</div>
+                <div class="p-2"><div class="text-sm">${manual.author || ''}</div></div>
+              </div>
             </div>
-          `;
+
+            <div class="flex justify-between items-center mb-3">
+              <h3 class="text-base font-semibold text-gray-800">문의/응대 내용</h3>
+            </div>
+
+            <div class="border border-gray-200 rounded-lg overflow-hidden">
+              <!-- Table Header -->
+              <div class="grid grid-cols-[80px_1fr_1fr_1fr_60px] bg-gray-50 font-semibold text-gray-600 text-center">
+                <div class="p-3 border-r">순번</div>
+                <div class="p-3 border-r">문의내용</div>
+                <div class="p-3 border-r">응대내용</div>
+                <div class="p-3">비고</div>
+                <div class="p-3 bg-white"></div>
+              </div>
+              <!-- Table Body -->
+              <div id="faq-table-body-view">
+                ${faqRows || '<div class="p-4 text-center text-gray-500">문의/응대 내용이 없습니다.</div>'}
+              </div>
+            </div>`;
+          } else {
+            // 기업별 메뉴얼 형식 (기존 형식)
+            contentHTML = `<div class="border border-gray-200 rounded-lg overflow-hidden text-sm">
+            <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center"><div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">기업명</div><div class="px-4 py-2 editable-field" data-key="companyName">${manual.companyName || ''}</div></div>
+            <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center"><div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">기업코드</div><div class="px-4 py-2 editable-field" data-key="companyCode">${manual.companyCode || ''}</div></div>
+            <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center"><div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">제목</div><div class="px-4 py-2 editable-field" data-key="title">${manual.title || ''}</div></div>
+            <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center"><div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">교육 사이트 주소</div><div class="px-4 py-2 editable-field" data-key="siteUrl">${manual.siteUrl || ''}</div></div>
+            <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-start"><div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">계약 기간</div><div class="px-4 py-2 space-y-2"><div class="editable-field" data-key="contractPeriod" data-placeholder="정규 교육 기간">${manual.contractPeriod || ''}</div><div class="editable-field" data-key="reviewPeriod" data-placeholder="복습 기간">${manual.reviewPeriod || ''}</div></div></div>
+            <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-start"><div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">담당 정보</div><div class="px-4 py-2 grid grid-cols-3 gap-2"><div class="editable-field" data-key="salesTeam" data-placeholder="영업 담당팀">${manual.salesTeam || ''}</div><div class="editable-field" data-key="salesManager" data-placeholder="영업 담당자">${manual.salesManager || ''}</div><div class="editable-field" data-key="opManager" data-placeholder="운영자">${manual.opManager || ''}</div></div></div>
+            <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center"><div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">보고글 히스토리</div><div class="px-4 py-2 editable-field" data-key="reportUrl">${manual.reportUrl || ''}</div></div>
+            <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-start"><div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">교육대상</div><div class="px-4 py-2 editable-field whitespace-pre-wrap" data-key="targetAudience">${manual.targetAudience || ''}</div></div>
+            <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-start"><div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">제공강의</div><div class="px-4 py-2"><div class="editable-field whitespace-pre-wrap" data-key="courses">${manual.courses || ''}</div></div></div>
+            <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-start"><div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">학습방법</div><div class="px-4 py-2 editable-field whitespace-pre-wrap" data-key="learningMethod">${manual.learningMethod || ''}</div></div>
+            <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-start"><div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">수료 조건</div><div class="px-4 py-2 editable-field whitespace-pre-wrap" data-key="completionCondition">${manual.completionCondition || ''}</div></div>
+            <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center"><div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">독려 여부</div><div class="px-4 py-2 editable-field" data-key="encouragement">${manual.encouragement || ''}</div></div>
+            <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-start"><div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">정산 방식</div><div class="px-4 py-2 editable-field whitespace-pre-wrap" data-key="settlement">${manual.settlement || ''}</div></div>
+            <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-start"><div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">교육 FAQ</div><div class="px-4 py-2 editable-field whitespace-pre-wrap" data-key="faq">${manual.faq || ''}</div></div>
+            <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center"><div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">작성자</div><div class="px-4 py-2 editable-field" data-key="author">${manual.author || ''}</div></div>
+        </div>`;
+          }
+          
+          manualDetailContentArea.innerHTML = contentHTML;
+          
+          // 공통 메뉴얼일 때 모달 크기 조정
+          const modalContainer = manualDetailModal.querySelector('.bg-white');
+          if (isCommonManual) {
+            modalContainer.classList.remove('max-w-3xl');
+            modalContainer.classList.add('max-w-5xl', 'w-full');
+          } else {
+            modalContainer.classList.remove('max-w-5xl');
+            modalContainer.classList.add('max-w-3xl');
+          }
+          
           manualDetailModal.classList.remove("hidden");
           exitEditMode();
         }
@@ -1344,17 +1782,44 @@
 
         function enterEditMode() {
           manualDetailContentArea.querySelectorAll('.editable-field').forEach(field => {
-            field.contentEditable = "true";
-            field.classList.add('bg-yellow-50', 'outline-blue-400', 'p-3');
+            const isTextarea = field.classList.contains('whitespace-pre-wrap');
+            if (isTextarea) {
+                const content = field.innerHTML;
+                const key = field.dataset.key;
+                field.outerHTML = `<textarea data-key="${key}" class="editable-field w-full border border-yellow-400 rounded-lg p-2 bg-yellow-50 focus:outline-none focus:ring-2 focus:ring-yellow-500" rows="3">${content}</textarea>`;
+            } else {
+                const placeholder = field.dataset.placeholder || '';
+                const label = placeholder ? `<label class="text-xs text-gray-500">${placeholder}</label>` : '';
+                const content = field.innerHTML;
+                const key = field.dataset.key;
+                field.outerHTML = `
+                    <div class="border border-yellow-400 rounded-lg bg-yellow-50">
+                        ${label}
+                        <div data-key="${key}" data-placeholder="${placeholder}" class="editable-field p-2 focus:outline-none" contenteditable="true">${content}</div>
+                    </div>
+                `;
+            }
           });
           editManualBtn.classList.add('hidden');
           saveManualBtn.classList.remove('hidden');
         }
 
         function exitEditMode() {
-          manualDetailContentArea.querySelectorAll('.editable-field').forEach(field => {
-            field.contentEditable = "false";
-            field.classList.remove('bg-yellow-50', 'outline-blue-400', 'p-3');
+            manualDetailContentArea.querySelectorAll('.editable-field').forEach(field => {
+            if (field.tagName === 'TEXTAREA') {
+                const key = field.dataset.key;
+                const content = field.value;
+                field.outerHTML = `<div data-key="${key}" class="editable-field whitespace-pre-wrap">${content}</div>`;
+            } else if (field.parentElement.classList.contains('border-yellow-400')) {
+                const wrapper = field.parentElement;
+                const key = field.dataset.key;
+                const placeholder = field.dataset.placeholder;
+                const content = field.innerHTML;
+                wrapper.outerHTML = `<div data-key="${key}" data-placeholder="${placeholder}" class="editable-field">${content}</div>`;
+            } else {
+                field.contentEditable = "false";
+                // This case might not be needed anymore
+            }
           });
           editManualBtn.classList.remove('hidden');
           saveManualBtn.classList.add('hidden');
@@ -1366,11 +1831,51 @@
           exitEditMode();
         });
 
-        closeManualDetailModalBtn.addEventListener("click", closeManualDetailModal);
+        closeManualDetailModalBtn_customerView.addEventListener("click", closeManualDetailModal);
         manualDetailModal.addEventListener("click", (e) => {
           if (e.target === manualDetailModal) closeManualDetailModal();
         });
+
+        // ✅ 강의결제내역 렌더링
+        const lecturePaymentData = [
+            { no: 1, company: "LG화학", lectureTitle: "산업안전기사", paymentAmount: 120000, orderType: "신용카드", memberId: "lgchem01", orderNumber: "202510281123456789", orderStatus: "결제완료", regDate: "2025-10-28" },
+            { no: 2, company: "LG화학", lectureTitle: "법정의무교육 11월 3차", paymentAmount: 50000, orderType: "무통장", memberId: "lgchem01", orderNumber: "202510150911223344", orderStatus: "결제대기", regDate: "2025-10-15" },
+            { no: 3, company: "LG화학", lectureTitle: "토익스피킹 : 10일만에 끝내기", paymentAmount: 89000, orderType: "포인트", memberId: "lgchem01", orderNumber: "202509301845001234", orderStatus: "결제완료", regDate: "2025-09-30" },
+            { no: 4, company: "LG화학", lectureTitle: "산업안전기사", paymentAmount: 150000, orderType: "신용카드", memberId: "lgchem01", orderNumber: "202509011005309876", orderStatus: "결제완료", regDate: "2025-09-01" },
+            { no: 5, company: "LG화학", lectureTitle: "법정의무교육 10월 1차", paymentAmount: 50000, orderType: "무통장", memberId: "lgchem01", orderNumber: "202508221420155566", orderStatus: "결제완료", regDate: "2025-08-22" }
+        ];
+
+        // 수수료 계산
+        lecturePaymentData.forEach(item => {
+            item.fee = item.orderType === '신용카드' ? item.paymentAmount * 0.1 : 0;
+        });
+
+        const lecturePaymentBody = document.getElementById("lecture-payment-body");
+        if (lecturePaymentData.length > 0) {
+            lecturePaymentData.forEach(item => {
+                const row = document.createElement("tr");
+                row.className = "border-b hover:bg-gray-50 transition";
+                row.innerHTML = `
+                    <td class="p-3 text-center">${item.no}</td>
+                    <td class="p-3">${item.company}</td>
+                    <td class="p-3">${item.lectureTitle}</td>
+                    <td class="p-3 text-right">${item.paymentAmount.toLocaleString()}원</td>
+                    <td class="p-3 text-right">${item.fee.toLocaleString()}원</td>
+                    <td class="p-3">${item.memberId}</td>
+                    <td class="p-3">${item.orderNumber}</td>
+                    <td class="p-3">${item.orderType}</td>
+                    <td class="p-3 font-semibold ${item.orderStatus === '결제대기' ? 'text-orange-500' : 'text-green-600'}">${item.orderStatus}</td>
+                    <td class="p-3">${item.regDate}</td>
+                `;
+                lecturePaymentBody.appendChild(row);
+            });
+        } else {
+            lecturePaymentBody.innerHTML = `<tr><td colspan="10" class="text-center p-10 text-gray-500">결제 내역이 없습니다.</td></tr>`;
+        }
+      }
+
       </script>
+
 </body>
 
 </html>

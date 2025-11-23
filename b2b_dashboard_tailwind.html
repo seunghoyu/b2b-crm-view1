@@ -12,80 +12,87 @@
 
   <body class="bg-gray-50 h-screen flex overflow-hidden">
     <!-- ✅ 좌측 사이드 메뉴 -->
-    <aside class="w-[230px] bg-blue-800 text-white flex-shrink-0">
-      <a href="b2b_dashboard_tailwind.html" class="block p-5 text-lg font-semibold border-b border-blue-700 hover:bg-blue-700 transition">
+    <aside class="w-[230px] bg-white border-r border-gray-200 text-gray-700 flex-shrink-0">
+      <a href="b2b_dashboard_tailwind.html" class="block p-5 text-lg font-bold text-gray-800 border-b border-gray-200 hover:bg-gray-50 transition">
         B2B CRM 메뉴
       </a>
 
       <nav class="p-3 space-y-2">
+        <!-- 관리메뉴 -->
+        <div>
+          <button
+            id="menuToggle2"
+            class="group w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-gray-100 transition"
+          >
+            <span>관리메뉴</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 text-gray-500 transition-transform group-open:-rotate-180">
+              <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+            </svg>
+          </button>
+          <div id="menu2" class="ml-4 mt-2 space-y-1 text-sm">
+            <a href="b2b_dashboard_tailwind.html" class="block px-3 py-1 bg-gray-100 text-gray-800 rounded font-semibold">상담 현황</a>
+            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">기업 목록</a>
+            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">고객 목록</a>
+            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">수강시간 조회</a>
+            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">학습상담·CS 관리</a>
+            <a href="manual_list.html" class="block px-3 py-1 hover:bg-gray-100 rounded">메뉴얼 관리</a>
+            <a href="customer_search_registration.html" class="block px-3 py-1 hover:bg-gray-100 rounded">고객 검색/등록</a>
+          </div>
+        </div>
         <!-- 문자관리 -->
         <div>
           <button
             id="menuToggle1"
-            class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+            class="group w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-gray-100 transition"
           >
             <span>문자관리</span>
-            <span>▼</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 text-gray-500 transition-transform group-open:-rotate-180">
+              <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+            </svg>
           </button>
           <div id="menu1" class="hidden ml-4 mt-2 space-y-1 text-sm">
-            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">문자발송</a>
-            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">문자설정</a>
-            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회</a>
+            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">문자발송</a>
+            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">문자설정</a>
+            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">발송이력 조회</a>
           </div>
         </div>
 
         <!-- 이메일 관리 -->
         <div>
-          <button id="menuToggleEmail" class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+          <button id="menuToggleEmail" class="group w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-gray-100 transition">
             <span>이메일 관리</span>
-            <span>▼</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 text-gray-500 transition-transform group-open:-rotate-180">
+              <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+            </svg>
           </button>
           <div id="menuEmail" class="hidden ml-4 mt-2 space-y-1 text-sm">
-            <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">웹메일(Biz)</a>
-            <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">패스메일(fnBiz)</a>
+            <a href="#" class="block px-3 py-1 hover:bg-gray-100 rounded">웹메일(Biz)</a>
+            <a href="#" class="block px-3 py-1 hover:bg-gray-100 rounded">패스메일(fnBiz)</a>
           </div>
         </div>
 
         <!-- 비즈톡 관리 -->
         <div>
-          <button id="menuToggleBiztalk" class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+          <button id="menuToggleBiztalk" class="group w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-gray-100 transition">
             <span>비즈톡 관리</span>
-            <span>▼</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 text-gray-500 transition-transform group-open:-rotate-180">
+              <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+            </svg>
           </button>
           <div id="menuBiztalk" class="hidden ml-4 mt-2 space-y-1 text-sm">
-            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">비즈톡발송(강의)</a>
-            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">비즈톡발송(회원)</a>
-            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회(강의)</a>
-            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회(회원)</a>
-          </div>
-        </div>
-
-        <!-- 관리메뉴 -->
-        <div>
-          <button
-            id="menuToggle2"
-            class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition"
-          >
-            <span>관리메뉴</span>
-            <span>▼</span>
-          </button>
-          <div id="menu2" class="ml-4 mt-2 space-y-1 text-sm">
-            <a href="b2b_dashboard_tailwind.html" class="block px-3 py-1 bg-blue-900 rounded font-semibold">상담 현황</a>
-            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">기업 목록</a>
-            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">고객 목록</a>
-            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">수강시간 조회</a>
-            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">학습상담·CS 관리</a>
-            <a href="manual_list.html" class="block px-3 py-1 hover:bg-blue-700 rounded">메뉴얼 관리</a>
-            <a href="customer_search_registration.html" class="block px-3 py-1 hover:bg-blue-700 rounded">고객 검색/등록</a>
+            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">비즈톡발송(강의)</a>
+            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">비즈톡발송(회원)</a>
+            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">발송이력 조회(강의)</a>
+            <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">발송이력 조회(회원)</a>
           </div>
         </div>
       </nav>
     </aside>
 
     <!-- ✅ 메인 영역 -->
-    <div class="flex-1 flex flex-col">
+    <div class="flex-1 flex flex-col bg-gray-50">
       <!-- 상단 헤더 -->
-      <header class="bg-blue-700 text-white py-4 shadow">
+      <header class="bg-white text-gray-800 py-4 shadow-sm border-b border-gray-200">
         <div class="w-full px-10 flex justify-between items-center">
           <h1 class="text-2xl font-semibold">B2B CRM 상담현황</h1>
           <span class="text-sm opacity-90">관리자용 대시보드</span>
@@ -96,9 +103,9 @@
         <!-- 필터 영역 -->
         <section class="bg-white p-6 rounded-xl shadow mb-8 text-sm">
           <div class="flex items-center space-x-2 mb-5">
-            <button id="filter-all" class="filter-btn bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold transition">전체</button>
-            <button id="filter-member" class="filter-btn bg-white text-gray-600 border border-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">회원</button>
-            <button id="filter-non-member" class="filter-btn bg-white text-gray-600 border border-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">비회원</button>
+            <button id="filter-all" class="filter-btn px-4 py-2 rounded-lg font-semibold transition border bg-gray-800 text-white">전체</button>
+            <button id="filter-member" class="filter-btn px-4 py-2 rounded-lg font-semibold transition border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">회원</button>
+            <button id="filter-non-member" class="filter-btn px-4 py-2 rounded-lg font-semibold transition border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">비회원</button>
           </div>
           <hr class="mb-6">
 
@@ -107,14 +114,14 @@
             <div>
               <label class="font-medium text-gray-700">조회기간</label>
               <div class="flex items-center mt-1">
-                <input type="date" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" />
+                <input type="date" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" />
                 <span class="mx-2 text-gray-500">~</span>
-                <input type="date" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" />
+                <input type="date" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" />
               </div>
             </div>
             <div class="md:col-span-2">
               <label class="font-medium text-gray-700">분류</label>
-              <select id="categorySelect" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none">
+              <select id="categorySelect" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none">
                 <option value="">전체</option>
                 <option>수강신청 기간/방법</option>
                 <option>결제 방법/오류</option>
@@ -140,7 +147,7 @@
             </div>
             <div>
               <label class="font-medium text-gray-700">처리상태</label>
-              <select class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none">
+              <select class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none">
                 <option>전체</option>
                 <option>처리대기</option>
                 <option>처리완료</option>
@@ -149,7 +156,7 @@
             <!-- 2행: 기업명, 기업코드 -->
             <div class="md:col-span-2 relative">
               <label class="font-medium text-gray-700">기업명</label>
-              <input type="text" id="company-search" placeholder="기업명을 입력하여 검색" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" autocomplete="off" />
+              <input type="text" id="company-search" placeholder="기업명을 입력하여 검색" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" autocomplete="off" />
               <div id="company-suggestions" class="hidden absolute z-20 mt-1 w-full bg-white rounded-lg shadow-lg border border-gray-200 max-h-60 overflow-y-auto">
                 <!-- JS로 제안 목록 생성 -->
               </div>
@@ -159,13 +166,13 @@
             </div>
             <div>
               <label class="font-medium text-gray-700">기업코드</label>
-              <input type="text" id="company-code" placeholder="기업 선택 시 자동 입력" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none bg-gray-100" readonly />
+              <input type="text" id="company-code" placeholder="기업 선택 시 자동 입력" class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none bg-gray-100" readonly />
             </div>
             <div></div>
             <!-- 3행 -->
             <div>
               <label class="font-medium text-gray-700">회원구분</label>
-              <select class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none">
+              <select class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none">
                 <option value="">전체</option>
                 <option>기업관리자</option>
                 <option>교육담당자</option>
@@ -175,15 +182,15 @@
             </div>
             <div class="md:col-span-2">
               <label class="font-medium text-gray-700">담당자</label> 
-              <select class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none">
+              <select class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none">
                 <option value="">전체</option>
                 <option>박지현</option>
                 <option>이현우</option>
                 <option>김영희</option>
                 <option>이하윤</option>
-              </select>
+              </select> 
             </div>
-            <button class="bg-blue-600 text-white w-full h-[42px] rounded-lg hover:bg-blue-700 transition font-semibold">
+            <button class="bg-gray-800 text-white w-full h-[42px] rounded-lg hover:bg-gray-700 transition font-semibold shadow-sm">
               검색
             </button> 
           </div>
@@ -196,8 +203,8 @@
             <div class="flex items-center space-x-4">
               <button
                 onclick="window.location.href='customer_search_registration.html'"
-                class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm font-semibold"
-              >고객 등록</button>
+                class="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition text-sm font-semibold shadow-sm"
+              >신규 상담 등록</button>
               <span id="count" class="text-sm text-gray-500"></span>
             </div>
           </div>
@@ -233,11 +240,16 @@
       const menuToggleBiztalk = document.getElementById("menuToggleBiztalk");
       const menuBiztalk = document.getElementById("menuBiztalk");
 
-      menuToggle1.addEventListener("click", () => menu1.classList.toggle("hidden"));
-      menuToggle2.addEventListener("click", () => menu2.classList.toggle("hidden"));
-      menuToggleEmail.addEventListener("click", () => menuEmail.classList.toggle("hidden"));
-      menuToggleBiztalk.addEventListener("click", () => menuBiztalk.classList.toggle("hidden"));
+      [menuToggle1, menuToggle2, menuToggleEmail, menuToggleBiztalk].forEach(toggle => {
+        toggle.addEventListener("click", () => {
+          const menu = toggle.nextElementSibling;
+          menu.classList.toggle("hidden");
+          toggle.classList.toggle("group-open");
+        });
+      });
+
       menu2.classList.remove("hidden"); // 관리메뉴는 기본으로 열어둠
+      menuToggle2.classList.add("group-open");
 
       // ✅ 기업명 검색 기능 (customer_registration.html과 유사하게)
       const companyDB = [
@@ -257,12 +269,12 @@
       function highlightItem(index) {
           const items = suggestionsContainer.querySelectorAll("div");
           items.forEach((item, i) => {
-              if (i === index) {
-                  item.classList.add("bg-blue-100");
-                  item.scrollIntoView({ block: 'nearest' });
-              } else {
-                  item.classList.remove("bg-blue-100");
-              }
+            if (i === index) {
+                item.classList.add("bg-gray-100");
+                item.scrollIntoView({ block: 'nearest' });
+            } else {
+                item.classList.remove("bg-gray-100");
+            }
           });
       }
 
@@ -281,7 +293,7 @@
           suggestionsContainer.innerHTML = "";
           filteredCompanies.forEach(company => {
               const item = document.createElement("div");
-              item.className = "px-4 py-2 hover:bg-blue-50 cursor-pointer";
+              item.className = "px-4 py-2 hover:bg-gray-50 cursor-pointer";
               if (company.name === "다우오피스") {
                   item.classList.add("text-blue-600", "font-bold");
               }
@@ -413,14 +425,15 @@
       const filterBtns = document.querySelectorAll('.filter-btn');
       filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
+          // 모든 버튼을 기본 스타일(흰색 배경, 검은 글씨)로 초기화
           filterBtns.forEach(b => {
-            b.classList.remove('bg-blue-600', 'text-white');
-            b.classList.add('bg-white', 'text-gray-600', 'border', 'border-gray-300', 'hover:bg-gray-100');
+            b.classList.remove('bg-gray-800', 'text-white');
+            b.classList.add('bg-white', 'text-gray-700', 'border', 'border-gray-300', 'hover:bg-gray-50');
           });
-          btn.classList.add('bg-blue-600', 'text-white');
-          btn.classList.remove('bg-white', 'text-gray-600', 'border', 'border-gray-300', 'hover:bg-gray-100');
-
-          currentFilterType = btn.id.split('-')[1]; // 'all', 'member', 'non-member'
+          // 클릭된 버튼만 활성 스타일(옅은 회색 배경, 파란 글씨)로 변경
+          btn.classList.add('bg-gray-800', 'text-white');
+          btn.classList.remove('bg-white', 'text-gray-700', 'border', 'border-gray-300', 'hover:bg-gray-50');
+          currentFilterType = btn.id.split('-')[1];
           renderTable();
         });
       });
@@ -443,13 +456,10 @@
 
         dataToShow.forEach((d) => {
           const row = document.createElement("tr");
-          // 비회원은 상세 페이지 이동 불가 (임시 처리)
-          if (d.id) {
-            row.setAttribute("onclick", "window.location.href='customer_view.html'");
-            row.className = "border-b hover:bg-blue-50 cursor-pointer transition";
-          } else {
-            row.className = "border-b bg-gray-50";
-          }
+          // 회원/비회원 모두 상세 페이지로 이동
+          row.setAttribute("onclick", "window.location.href='customer_view.html'");
+          row.className = "border-b hover:bg-gray-50 cursor-pointer transition";
+          
           row.innerHTML = `
           <td class='p-4'>${d.date}</td>
           <td class='p-4'>${d.companyCode || '-'}</td>

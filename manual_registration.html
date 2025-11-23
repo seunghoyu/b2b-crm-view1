@@ -13,65 +13,72 @@
 
 <body class="bg-gray-50 h-screen flex overflow-hidden">
   <!-- ✅ 좌측 사이드 메뉴 (공통) -->
-  <aside class="w-[230px] bg-blue-800 text-white flex-shrink-0">
-    <a href="b2b_dashboard_tailwind.html" class="block p-5 text-lg font-semibold border-b border-blue-700 hover:bg-blue-700 transition">
+  <aside class="w-[230px] bg-white border-r border-gray-200 text-gray-700 flex-shrink-0">
+    <a href="b2b_dashboard_tailwind.html" class="block p-5 text-lg font-bold text-gray-800 border-b border-gray-200 hover:bg-gray-50 transition">
       B2B CRM 메뉴
     </a>
 
     <nav class="p-3 space-y-2">
+      <!-- 관리메뉴 -->
+      <div>
+        <button id="menuToggle2" class="group w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-gray-100 transition">
+          <span>관리메뉴</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 text-gray-500 transition-transform group-open:-rotate-180">
+            <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+          </svg>
+        </button>
+        <div id="menu2" class="ml-4 mt-2 space-y-1 text-sm">
+          <a href="b2b_dashboard_tailwind.html" class="block px-3 py-1 hover:bg-gray-100 rounded">상담 현황</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">기업 목록</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">고객 목록</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">수강시간 조회</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">학습상담·CS 관리</a>
+          <a href="manual_list.html" class="block px-3 py-1 bg-gray-100 text-gray-800 rounded font-semibold">메뉴얼 관리</a>
+          <a href="customer_search_registration.html" class="block px-3 py-1 hover:bg-gray-100 rounded">고객 검색/등록</a>
+        </div>
+      </div>
       <!-- 문자관리 -->
       <div>
-        <button id="menuToggle1" class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+        <button id="menuToggle1" class="group w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-gray-100 transition">
           <span>문자관리</span>
-          <span>▼</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 text-gray-500 transition-transform group-open:-rotate-180">
+            <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+          </svg>
         </button>
         <div id="menu1" class="hidden ml-4 mt-2 space-y-1 text-sm">
-          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">문자발송</a>
-          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">문자설정</a>
-          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">문자발송</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">문자설정</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">발송이력 조회</a>
         </div>
       </div>
 
       <!-- 이메일 관리 -->
       <div>
-        <button id="menuToggleEmail" class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+        <button id="menuToggleEmail" class="group w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-gray-100 transition">
           <span>이메일 관리</span>
-          <span>▼</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 text-gray-500 transition-transform group-open:-rotate-180">
+            <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+          </svg>
         </button>
         <div id="menuEmail" class="hidden ml-4 mt-2 space-y-1 text-sm">
-          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">웹메일(Biz)</a>
-          <a href="#" class="block px-3 py-1 hover:bg-blue-700 rounded">패스메일(fnBiz)</a>
+          <a href="#" class="block px-3 py-1 hover:bg-gray-100 rounded">웹메일(Biz)</a>
+          <a href="#" class="block px-3 py-1 hover:bg-gray-100 rounded">패스메일(fnBiz)</a>
         </div>
       </div>
 
       <!-- 비즈톡 관리 -->
       <div>
-        <button id="menuToggleBiztalk" class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+        <button id="menuToggleBiztalk" class="group w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-gray-100 transition">
           <span>비즈톡 관리</span>
-          <span>▼</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 text-gray-500 transition-transform group-open:-rotate-180">
+            <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+          </svg>
         </button>
         <div id="menuBiztalk" class="hidden ml-4 mt-2 space-y-1 text-sm">
-          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">비즈톡발송(강의)</a>
-          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">비즈톡발송(회원)</a>
-          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회(강의)</a>
-          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">발송이력 조회(회원)</a>
-        </div>
-      </div>
-
-      <!-- 관리메뉴 -->
-      <div>
-        <button id="menuToggle2" class="w-full flex justify-between items-center px-4 py-2 rounded-lg hover:bg-blue-700 transition">
-          <span>관리메뉴</span>
-          <span>▼</span>
-        </button>
-        <div id="menu2" class="ml-4 mt-2 space-y-1 text-sm">
-          <a href="b2b_dashboard_tailwind.html" class="block px-3 py-1 hover:bg-blue-700 rounded">상담 현황</a>
-          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">기업 목록</a>
-          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">고객 목록</a>
-          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">수강시간 조회</a>
-          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-blue-700 rounded">학습상담·CS 관리</a>
-          <a href="manual_list.html" class="block px-3 py-1 bg-blue-900 rounded font-semibold">메뉴얼 관리</a>
-          <a href="customer_search_registration.html" class="block px-3 py-1 hover:bg-blue-700 rounded">고객 검색/등록</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">비즈톡발송(강의)</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">비즈톡발송(회원)</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">발송이력 조회(강의)</a>
+          <a href="#" onclick="alert('챔프B2B운영자(최고운영자)로 이동합니다.')" class="block px-3 py-1 hover:bg-gray-100 rounded">발송이력 조회(회원)</a>
         </div>
       </div>
     </nav>
@@ -80,7 +87,7 @@
   <!-- ✅ 메인 영역 -->
   <div class="flex-1 flex flex-col">
     <!-- 상단 헤더 -->
-    <header class="bg-blue-700 text-white py-4 shadow">
+    <header class="bg-white text-gray-800 py-4 shadow-sm border-b border-gray-200">
       <div class="w-full px-10 flex justify-between items-center">
         <h1 class="text-2xl font-semibold">신규 메뉴얼 등록</h1>
         <span class="text-sm opacity-90">관리자용</span>
@@ -89,87 +96,132 @@
 
     <main class="flex-1 w-full px-10 py-8 overflow-y-auto">
       <section class="bg-white p-8 rounded-xl shadow">
-        <div id="registrationFormArea" class="text-sm text-gray-700 space-y-4">
-          <div class="border border-gray-200 rounded-lg overflow-hidden">
-            <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center">
+        <div class="flex items-center space-x-2 mb-6">
+          <button id="reg-mode-company" class="reg-mode-btn px-4 py-2 rounded-lg font-semibold transition border bg-gray-800 text-white">기업별 메뉴얼 등록</button>
+          <button id="reg-mode-common" class="reg-mode-btn px-4 py-2 rounded-lg font-semibold transition border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">공통 메뉴얼 등록</button>
+        </div>
+
+        <div id="registrationFormArea" class="text-sm text-gray-700">
+          <div id="company-manual-form" class="border border-gray-200 rounded-lg overflow-hidden">
+            <div id="company-name-field" class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center">
               <div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">기업명</div>
               <div class="p-2 relative">
-                <input type="text" id="company-search" placeholder="기업명을 입력하여 검색" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" autocomplete="off" />
+                <input type="text" id="company-search" placeholder="기업명을 입력하여 검색" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" autocomplete="off" />
                 <div id="company-suggestions" class="hidden absolute z-20 mt-1 w-full bg-white rounded-lg shadow-lg border border-gray-200 max-h-48 overflow-y-auto"></div>
                 <div id="daou-notice" class="hidden text-red-600 text-xs mt-1">다우오피스 플랫폼 고객사의 문의가 아닌, 다우오피스 자체문의일 경우에는 대괄호 내의 회사명을 작성하지 않아도 됩니다.</div>
               </div>
             </div>
-            <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center">
+            <div id="company-code-field" class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center">
               <div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">기업코드</div>
-              <div class="p-2"><input type="text" id="reg-company-code" class="w-full bg-gray-100 border border-gray-300 rounded-lg px-3 py-2" readonly placeholder="기업 선택 시 자동 입력"></div>
+              <div class="p-2"><input type="text" id="reg-company-code" class="w-full bg-gray-100 border border-gray-300 rounded-lg px-3 py-2" readonly placeholder="기업 선택 시 자동 입력"/></div>
             </div>
             <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center">
               <div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">제목</div>
-              <div class="p-2"><input type="text" id="reg-title" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" placeholder="메뉴얼의 제목을 입력합니다."></div>
+              <div class="p-2"><input type="text" id="reg-title" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" placeholder="메뉴얼의 제목을 입력합니다."/></div>
             </div>
             <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center">
               <div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">교육 사이트 주소</div>
-              <div class="p-2"><input type="text" id="reg-site-url" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" placeholder="교육 사이트 URL을 입력합니다."></div>
+              <div class="p-2"><input type="text" id="reg-site-url" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" placeholder="교육 사이트 URL을 입력합니다."/></div>
             </div>
             <div class="grid grid-cols-[140px_1fr] border-b border-gray-200">
               <div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">계약 기간</div>
               <div class="p-2 space-y-2">
-                <input type="text" id="reg-contract-period" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" placeholder="정규 교육 기간">
-                <input type="text" id="reg-review-period" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" placeholder="복습 기간">
+                <input type="text" id="reg-contract-period" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" placeholder="정규 교육 기간"/>
+                <input type="text" id="reg-review-period" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" placeholder="복습 기간"/>
               </div>
             </div>
             <div class="grid grid-cols-[140px_1fr] border-b border-gray-200">
               <div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">담당 정보</div>
               <div class="p-2 grid grid-cols-3 gap-2">
-                <input type="text" id="reg-sales-team" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" placeholder="영업 담당팀">
-                <input type="text" id="reg-sales-manager" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" placeholder="영업 담당자">
-                <input type="text" id="reg-op-manager" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" placeholder="운영자">
+                <input type="text" id="reg-sales-team" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" placeholder="영업 담당팀"/>
+                <input type="text" id="reg-sales-manager" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" placeholder="영업 담당자"/>
+                <input type="text" id="reg-op-manager" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" placeholder="운영자"/>
               </div>
             </div>
             <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center">
               <div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">보고글 히스토리</div>
-              <div class="p-2"><input type="text" id="reg-report-url" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" placeholder="보고글 URL을 입력합니다."></div>
+              <div class="p-2"><input type="text" id="reg-report-url" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" placeholder="보고글 URL을 입력합니다."/></div>
             </div>
             <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center">
               <div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">교육대상</div>
-              <div class="p-2"><textarea id="reg-target-audience" rows="2" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" placeholder="교육 대상에 대해 작성합니다."></textarea></div>
+              <div class="p-2"><textarea id="reg-target-audience" rows="2" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" placeholder="교육 대상에 대해 작성합니다."></textarea></div>
             </div>
             <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-start">
               <div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">제공강의</div>
               <div class="p-2">
-                <textarea id="reg-courses" rows="3" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" placeholder="제공하는 강의 목록을 작성합니다."></textarea>
+                <textarea id="reg-courses" rows="3" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" placeholder="제공하는 강의 목록을 작성합니다."></textarea>
                 <p class="text-xs text-gray-500 mt-1">※ 제공하는 강의가 많을 경우 엑셀로 첨부 가능합니다.</p>
               </div>
             </div>
             <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center">
               <div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">학습방법</div>
-              <div class="p-2"><textarea id="reg-learning-method" rows="3" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" placeholder="학습 방법에 대해 작성합니다."></textarea></div>
+              <div class="p-2"><textarea id="reg-learning-method" rows="3" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" placeholder="학습 방법에 대해 작성합니다."></textarea></div>
             </div>
             <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center">
               <div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">수료 조건</div>
-              <div class="p-2"><textarea id="reg-completion-condition" rows="2" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" placeholder="수료 조건에 대해 작성합니다."></textarea></div>
+              <div class="p-2"><textarea id="reg-completion-condition" rows="2" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" placeholder="수료 조건에 대해 작성합니다."></textarea></div>
             </div>
             <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center">
               <div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">독려 여부</div>
-              <div class="p-2"><input type="text" id="reg-encouragement" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" placeholder="독려 진행 여부 및 방식을 작성합니다."></div>
+              <div class="p-2"><input type="text" id="reg-encouragement" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" placeholder="독려 진행 여부 및 방식을 작성합니다."/></div>
             </div>
             <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center">
               <div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">정산 방식</div>
-              <div class="p-2"><textarea id="reg-settlement" rows="2" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" placeholder="정산 방식 및 예상 일정에 대해 작성합니다."></textarea></div>
+              <div class="p-2"><textarea id="reg-settlement" rows="2" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" placeholder="정산 방식 및 예상 일정에 대해 작성합니다."></textarea></div>
             </div>
             <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center">
               <div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">교육 FAQ</div>
-              <div class="p-2"><textarea id="reg-faq" rows="4" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" placeholder="자주 발생하는 특이사항(FAQ)을 작성합니다."></textarea></div>
+              <div class="p-2"><textarea id="reg-faq" rows="4" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" placeholder="자주 발생하는 특이사항(FAQ)을 작성합니다."></textarea></div>
             </div>
             <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center">
               <div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">작성자</div>
-              <div class="p-2"><input type="text" id="reg-author" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-blue-400 focus:outline-none" placeholder="메뉴얼 작성자 이름을 입력합니다."></div>
+              <div class="p-2"><input type="text" id="reg-author" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" placeholder="메뉴얼 작성자 이름을 입력합니다."/></div>
+            </div>
+          </div>
+
+          <!-- ✅ 공통 메뉴얼 등록 폼 -->
+          <div id="common-manual-form" class="hidden">
+            <div class="border border-gray-200 rounded-lg overflow-hidden mb-6">
+              <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center">
+                <div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">제목</div>
+                <div class="p-2"><input type="text" id="common-reg-title" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" placeholder="메뉴얼의 제목을 입력합니다."/></div>
+              </div>
+              <div class="grid grid-cols-[140px_1fr] border-b border-gray-200 items-center">
+                <div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">담당부서</div>
+                <div class="p-2"><input type="text" id="common-reg-department" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" placeholder="담당 부서명을 입력합니다."/></div>
+              </div>
+              <div class="grid grid-cols-[140px_1fr] items-center">
+                <div class="font-semibold text-gray-600 bg-gray-50 p-4 h-full">작성자</div>
+                <div class="p-2"><input type="text" id="common-reg-author" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" placeholder="메뉴얼 작성자 이름을 입력합니다."/></div>
+              </div>
+            </div>
+
+            <div class="flex justify-between items-center mb-3">
+              <h3 class="text-base font-semibold text-gray-800">문의/응대 내용</h3>
+              <button id="add-faq-row" class="flex items-center justify-center w-8 h-8 bg-gray-800 text-white rounded-full hover:bg-gray-700 transition shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5"><path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" /></svg>
+              </button>
+            </div>
+
+            <div class="border border-gray-200 rounded-lg overflow-hidden">
+              <!-- Table Header -->
+              <div class="grid grid-cols-[80px_1fr_1fr_1fr_60px] bg-gray-50 font-semibold text-gray-600 text-center">
+                <div class="p-3 border-r">순번</div>
+                <div class="p-3 border-r">문의내용</div>
+                <div class="p-3 border-r">응대내용</div>
+                <div class="p-3">비고</div>
+                <div class="p-3 bg-white"></div>
+              </div>
+              <!-- Table Body -->
+              <div id="faq-table-body">
+                <!-- FAQ 행이 여기에 동적으로 추가됩니다. -->
+              </div>
             </div>
           </div>
         </div>
         <div class="flex justify-end mt-8 space-x-3">
-          <button onclick="window.location.href='manual_list.html'" class="bg-gray-400 text-white px-6 py-2 rounded-lg hover:bg-gray-500 transition font-semibold shadow-md">취소</button>
-          <button id="saveRegistrationBtn" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-semibold shadow-md">등록하기</button>
+          <button onclick="window.location.href='manual_list.html'" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 transition font-semibold">취소</button>
+          <button id="saveRegistrationBtn" class="bg-gray-800 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition font-semibold shadow-sm">등록하기</button>
         </div>
       </section>
     </main>
@@ -186,28 +238,117 @@
     const menuToggleBiztalk = document.getElementById("menuToggleBiztalk");
     const menuBiztalk = document.getElementById("menuBiztalk");
 
-    menuToggle1.addEventListener("click", () => menu1.classList.toggle("hidden"));
-    menuToggle2.addEventListener("click", () => menu2.classList.toggle("hidden"));
-    menuToggleEmail.addEventListener("click", () => menuEmail.classList.toggle("hidden"));
-    menuToggleBiztalk.addEventListener("click", () => menuBiztalk.classList.toggle("hidden"));
+    [menuToggle1, menuToggle2, menuToggleEmail, menuToggleBiztalk].forEach(toggle => {
+      toggle.addEventListener("click", () => {
+        const menu = toggle.nextElementSibling;
+        menu.classList.toggle("hidden");
+        toggle.classList.toggle("group-open");
+      });
+    });
+
     menu2.classList.remove("hidden"); // 관리메뉴는 기본으로 열어둠
+    menuToggle2.classList.add("group-open");
+
+    // ✅ 등록 모드 변경 (기업별/공통)
+    const regModeBtns = document.querySelectorAll('.reg-mode-btn');
+    const companyManualForm = document.getElementById('company-manual-form');
+    const commonManualForm = document.getElementById('common-manual-form');
+
+    regModeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        regModeBtns.forEach(b => {
+          b.classList.remove('bg-gray-800', 'text-white');
+          b.classList.add('bg-white', 'text-gray-700', 'border', 'border-gray-300', 'hover:bg-gray-50');
+        });
+        btn.classList.add('bg-gray-800', 'text-white');
+        btn.classList.remove('bg-white', 'text-gray-700', 'border', 'border-gray-300', 'hover:bg-gray-50');
+
+        if (btn.id === 'reg-mode-common') {
+          companyManualForm.classList.add('hidden');
+          commonManualForm.classList.remove('hidden');
+        } else {
+          companyManualForm.classList.remove('hidden');
+          commonManualForm.classList.add('hidden');
+        }
+      });
+    });
+
+    // ✅ 공통 메뉴얼 FAQ 행 추가/삭제 기능
+    const addFaqRowBtn = document.getElementById('add-faq-row');
+    const faqTableBody = document.getElementById('faq-table-body');
+
+    function createFaqRow() {
+      const rowDiv = document.createElement('div');
+      rowDiv.className = 'grid grid-cols-[80px_1fr_1fr_1fr_60px] border-t border-gray-200 items-start';
+      
+      rowDiv.innerHTML = `
+        <div class="p-2 border-r h-full flex items-center justify-center">
+          <input type="number" class="w-full text-center border border-gray-300 rounded-md px-1 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" placeholder="순서">
+        </div>
+        <div class="p-2 border-r h-full">
+          <textarea rows="2" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" placeholder="문의내용"></textarea>
+        </div>
+        <div class="p-2 border-r h-full">
+          <textarea rows="2" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" placeholder="응대내용"></textarea>
+        </div>
+        <div class="p-2 h-full">
+          <textarea rows="2" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-gray-500 focus:border-gray-500 focus:outline-none" placeholder="비고"></textarea>
+        </div>
+        <div class="p-2 flex items-center justify-center h-full">
+          <button class="remove-faq-row flex items-center justify-center w-7 h-7 bg-red-500 text-white rounded-full hover:bg-red-600 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5"><path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" /></svg>
+          </button>
+        </div>
+      `;
+
+      faqTableBody.appendChild(rowDiv);
+
+      rowDiv.querySelector('.remove-faq-row').addEventListener('click', () => {
+        rowDiv.remove();
+      });
+    }
+
+    addFaqRowBtn.addEventListener('click', createFaqRow);
+
+    // 페이지 로드 시 기본으로 한 행 추가
+    createFaqRow();
 
     // ✅ 등록 버튼 클릭 이벤트
     document.getElementById('saveRegistrationBtn').addEventListener('click', () => {
+      // 현재 활성화된 폼이 무엇인지 확인
+      const isCommonMode = !commonManualForm.classList.contains('hidden');
+
+      if (isCommonMode) {
+        // 공통 메뉴얼 등록 로직
+        const title = document.getElementById('common-reg-title').value;
+        const author = document.getElementById('common-reg-author').value;
+        if (!title || !author) {
+          alert('제목과 작성자는 필수 항목입니다.');
+          return;
+        }
+      } else {
+        // 기존 기업별 메뉴얼 등록 로직
+        const companyName = document.getElementById('company-search').value;
+        const title = document.getElementById('reg-title').value;
+        const salesTeam = document.getElementById('reg-sales-team').value;
+        const salesManager = document.getElementById('reg-sales-manager').value;
+        const author = document.getElementById('reg-author').value;
+
+        if (!companyName) {
+          alert('고객사명을 선택해야 합니다.');
+          return;
+        }
+        if (!title || !salesTeam || !salesManager || !author) {
+          alert('제목, 영업 담당팀, 영업 담당자, 작성자는 필수 항목입니다.');
+          return;
+        }
+      }
+
       const companyName = document.getElementById('company-search').value;
       const title = document.getElementById('reg-title').value;
       const salesTeam = document.getElementById('reg-sales-team').value;
       const salesManager = document.getElementById('reg-sales-manager').value;
       const author = document.getElementById('reg-author').value;
-
-      if (!companyName) {
-        alert('고객사명을 선택해야 합니다.');
-        return;
-      }
-      if (!title || !salesTeam || !salesManager || !author) {
-        alert('제목, 영업 담당팀, 영업 담당자, 작성자는 필수 항목입니다.');
-        return;
-      }
 
       // 실제로는 여기서 폼 데이터를 서버로 전송합니다.
       // 지금은 성공 알림 후 목록 페이지로 이동합니다.
@@ -234,10 +375,10 @@
         const items = suggestionsContainer.querySelectorAll("div");
         items.forEach((item, i) => {
             if (i === index) {
-                item.classList.add("bg-blue-100");
+                item.classList.add("bg-gray-100");
                 item.scrollIntoView({ block: 'nearest' });
             } else {
-                item.classList.remove("bg-blue-100");
+                item.classList.remove("bg-gray-100");
             }
         });
     }
@@ -257,7 +398,7 @@
         suggestionsContainer.innerHTML = "";
         filteredCompanies.forEach(company => {
             const item = document.createElement("div");
-            item.className = "px-4 py-2 hover:bg-blue-50 cursor-pointer";
+            item.className = "px-4 py-2 hover:bg-gray-50 cursor-pointer";
             item.textContent = company.name;
             item.addEventListener("click", () => {
                 codeInput.value = company.code;
