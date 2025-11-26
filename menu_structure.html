@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>B2B CRM 메뉴 구조도</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT/fonts/variable/woff2/SUIT-Variable.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/lazy-kang/D2Coding/D2Coding.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        body {
+            font-family: 'SUIT Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+            background-color: #f1f5f9; /* slate-100 */
+            padding: 2rem;
+            color: #374151;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            padding-bottom: 12px;
+            color: #111827;
+            white-space: normal; /* 제목은 줄바꿈 허용 */
+        }
+        p {
+            margin-bottom: 24px;
+            color: #6b7280;
+            white-space: normal; /* 설명도 줄바꿈 허용 */
+        }
+        #save-btn {
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+            background-color: #2563eb; /* blue-600 */
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        #save-btn:hover {
+            background-color: #1d4ed8; /* blue-700 */
+        }
+        .tree {
+            display: flex;
+            flex-direction: row;
+            overflow-x: auto;
+            width: 100%; /* 너비를 100%로 설정하여 부모 컨테이너에 맞춤 */
+            padding-bottom: 2rem;
+        }
+        .tree > ul {
+            padding-left: 0;
+        }
+        .tree > ul > li > ul {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            padding-left: 0;
+        }
+        /* 루트 노드와 카테고리를 잇는 수평선 */
+        .tree > ul > li > ul::before {
+            content: '';
+            position: absolute;
+            top: 25.5px; /* 루트 노드의 중앙 */
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #d1d5db;
+        }
+        .tree > ul > li > ul > li {
+            flex-shrink: 0;
+            padding: 0 1rem;
+        }
+        .tree ul ul {
+            list-style: none;
+            padding-left: 30px;
+            position: relative;
+            margin-top: 20px; /* 카테고리 노드와 하위 리스트 사이 간격 */
+        }
+        .tree li {
+            padding: 5px 0;
+            position: relative;
+        }
+        .tree ul ul::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-left: 1px solid #d1d5db;
+            height: 100%;
+        }
+        /* 카테고리와 하위 노드를 잇는 세로선 */
+        .tree > ul > li > ul > li > ul > li > ul::before, .tree > ul > li > ul > li > ul > li > ul > li > ul::before {
+            top: -20px;
+            height: calc(100% + 20px);
+        }
+        .tree ul ul li::before {
+            content: "";
+            position: absolute;
+            top: calc(5px + 8px + 15px / 2); /* li padding-top + node padding-top + node font-size / 2 */
+            left: 0;
+            border-top: 1px solid #d1d5db;
+            width: 30px;
+            height: 0;
+        }
+        /* 마지막 자식 노드의 세로선이 부모 노드 아래로 내려가지 않도록 처리 */
+        .tree ul ul li:last-child::after {
+            content: '';
+            position: absolute;
+            top: calc(5px + 8px + 15px / 2 + 1px); /* li::before top + border-width */
+            left: 0;
+            width: 1px;
+            height: calc(100% - (5px + 8px + 15px / 2));
+            background-color: #f1f5f9; /* 배경색으로 덮어씌워 선을 지움 */
+        }
+        /* 카테고리 노드에서 아래로 내려오는 세로선 */
+        .tree > ul > li > ul > li::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: calc(1rem + 50%); /* li padding + node width/2 */
+            width: 1px;
+            height: 20px; /* 카테고리 노드와 하위 리스트 사이 간격 */
+            background-color: #d1d5db;
+        }
+        .tree .node {
+            position: relative; /* 자식 요소(.page-name)를 위한 position 설정 */
+            display: inline-block;
+            padding: 8px 16px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            font-size: 15px;
+            transition: all 0.2s ease-in-out;
+            margin-left: 10px;
+            white-space: nowrap;
+        }
+        .tree .node-text {
+            display: inline-block;
+            padding: 8px 16px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            font-size: 15px;
+            transition: all 0.2s ease-in-out;
+            margin-left: 10px;
+            white-space: nowrap;
+        }
+        .page-name {
+            position: absolute;
+            top: -18px;
+            left: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            color: cornflowerblue; /* 추천 색상 */
+            white-space: nowrap;
+        }
+        .tree .node:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .tree .node-root {
+            font-weight: 700;
+            font-size: 18px;
+            color: #111827;
+            background-color: #e0f2fe;
+            border-color: #7dd3fc;
+        }
+        .tree .node-category {
+            font-weight: 600;
+            color: #1f2937;
+            background-color: #f0f9ff;
+            border-color: #bae6fd;
+        }
+        .tree .node-area {
+            font-weight: 600;
+            color: #1e40af;
+            background-color: #eef2ff;
+            border-color: #a5b4fc;
+        }
+        .tree .node-leaf {
+            color: #4b5563;
+        }
+        /* 1차 단계 leaf 노드 스타일 */
+        .tree > ul > li > ul > li > ul > li > .node-leaf {
+            color: #1f2937;
+            font-weight: 600;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .tree .node-low-priority {
+            background-color: #fee2e2; /* red-100 */
+            border-color: #fca5a5; /* red-300 */
+            color: #991b1b; /* red-800 */
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <h1>B2B CRM 메뉴 구조도</h1>
+        <button id="save-btn">이미지로 저장</button>
+    </div>
+    <p style="margin-bottom: 20px; color: #6b7280;"></p>
+    <div class="tree">
+        <ul>
+            <li>
+                <span class="node node-root">B2B CRM 시스템</span>
+                <ul>
+                    <li>
+                        <span class="node node-category">공통 영역: 사이드 메뉴</span>
+                        <ul>
+                            <li>
+                                <span class="node node-leaf">관리메뉴</span>
+                                <ul>
+                                    <li><span class="node node-leaf">상담 현황 (b2b_dashboard_tailwind.html)</span></li>
+                                    <li>
+                                        <span class="node node-leaf">기업 목록 (company_list.html)</span>
+                                        <ul>
+                                            <li><span class="node node-leaf">B2B 관리자단 으로 이동</span></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span class="node node-leaf">고객 목록 (customer_list.html)</span>
+                                        <ul>
+                                            <li><span class="node node-leaf">B2B 관리자단 으로 이동</span></li>
+                                        </ul>
+                                    </li>
+                                    <li><span class="node node-leaf">수강시간 조회 (외부 시스템)</span></li>
+                                    <li><span class="node node-leaf">학습상담·CS 관리 (외부 시스템)</span></li>
+                                    <li><span class="node node-leaf">메뉴얼 관리 (manual_list.html)</span></li>
+                                </ul>
+                            </li>
+                            <li><span class="node node-leaf">문자관리 (외부 시스템)</span></li>
+                            <li><span class="node node-leaf">이메일 관리 (외부 시스템)</span></li>
+                            <li><span class="node node-leaf">비즈톡 관리 (외부 시스템)</span></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="node node-area">상담 현황 (b2b_dashboard_tailwind.html)</span>
+                        <ul>
+                            <li><span class="node node-leaf">P01-F02: [전체/회원/비회원] 탭 클릭 → 목록 필터링</span></li>
+                            <li>
+                                <span class="node node-leaf">P01-F03: 상세 검색</span>
+                                <ul>
+                                    <li><span class="node node-leaf">입력: 조회기간, 분류, 처리상태 등</span></li>
+                                    <li><span class="node node-leaf">입력: 기업명 → (P01-F04) 자동완성 목록 표시</span></li>
+                                    <li><span class="node node-leaf">액션: 자동완성 목록에서 기업 선택 → (P01-F05) 기업코드 자동 입력</span></li>
+                                    <li><span class="node node-leaf">액션: [검색] 버튼 클릭 → 목록 필터링</span></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="node node-leaf">P01-F07: 상담 목록에서 특정 행 클릭</span>
+                                <ul>
+                                    <li><span class="node node-leaf">→ 고객 상세/상담 처리(customer_view.html) 페이지로 이동</span></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="node node-leaf">P02-F01: [신규 상담 등록] 버튼 클릭</span>
+                                <ul>
+                                    <li><span class="node node-leaf">→ 고객 검색/등록(customer_search_registration.html) 페이지로 이동</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="node node-area">고객 검색/등록 (customer_search_registration.html)</span>
+                        <ul>
+                            <li><span class="node node-leaf">P02-F02: 페이지 진입 → [통합 고객 검색] 모달 자동 열기</span></li>
+                            <li>
+                                <span class="node node-leaf">P02-F03: 모달 내에서 고객 검색</span>
+                                <ul>
+                                    <li><span class="node node-leaf">입력: 기업명, 이름, 아이디, 연락처 등</span></li>
+                                    <li><span class="node node-leaf">액션: [검색] 버튼 클릭 → (P02-F06) 결과 테이블 표시</span></li>
+                                    <li><span class="node node-leaf">액션: 결과 테이블 행 클릭 → (P02-F08) 고객 상세(customer_view.html)로 이동</span></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="node node-leaf">P02-F09: 모달에서 [비회원으로 상담 기록] 버튼 클릭</span>
+                                <ul>
+                                    <li><span class="node node-leaf">→ 모달 닫고 비회원 상담 폼 활성화</span></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="node node-leaf">P02-F10: 비회원 상담 폼 입력</span>
+                                <ul>
+                                    <li><span class="node node-leaf">입력: 문의자 전화번호(필수), 제목(필수), 문의내용 등</span></li>
+                                    <li><span class="node node-leaf">액션: [상담 내용 저장] 버튼 클릭 → (P02-F13) 대시보드로 이동</span></li>
+                                    <li><span class="node node-leaf">액션: [취소] 버튼 클릭 → (P02-F14) 대시보드로 이동</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="node node-area">고객 상세/상담 처리 (customer_view.html) - 상세</span>
+                        <ul>
+                            <li>
+                                <span class="node node-leaf">P03-F02: [수정] 버튼 클릭 (응대 내용 영역)</span>
+                                <ul>
+                                    <li><span class="node node-leaf">→ 입력 필드 활성화</span></li>
+                                    <li><span class="node node-leaf">입력: 응대 제목, 응대 내용 등</span></li>
+                                    <li><span class="node node-leaf">액션: [저장] 버튼 클릭 → (P03-F03) 내용 저장 및 읽기 모드 전환</span></li>
+                                    <li><span class="node node-leaf">액션: [취소] 버튼 클릭 → (P03-F04) 수정 전으로 복구</span></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="node node-leaf node-low-priority">P03-F06: [회원 정보] 버튼 클릭</span>
+                                <ul>
+                                    <li><span class="node node-leaf node-low-priority">→ 회원 정보 모달 열기</span></li>
+                                    <li><span class="node node-leaf node-low-priority">액션: [수정하기] 버튼 클릭 → (P03-F07) 필드 활성화</span></li>
+                                    <li><span class="node node-leaf node-low-priority">액션: [비밀번호 초기화] 버튼 클릭 → (P03-F08) 비밀번호 초기화</span></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="node node-leaf node-low-priority">P03-F09: [배송지 정보] 버튼 클릭</span>
+                                <ul>
+                                    <li><span class="node node-leaf node-low-priority">→ 배송지 정보 모달 열기</span></li>
+                                    <li><span class="node node-leaf node-low-priority">액션: [수정하기] 버튼 클릭 → (P03-F10) 필드 활성화</span></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="node node-leaf node-low-priority">P03-F11: [문자] 버튼 클릭</span>
+                                <ul>
+                                    <li><span class="node node-leaf node-low-priority">→ 문자 발송 모달 열기</span></li>
+                                    <li><span class="node node-leaf node-low-priority">액션: 템플릿 목록에서 항목 선택 → (P03-F12) 내용 자동 입력</span></li>
+                                    <li><span class="node node-leaf node-low-priority">입력: (필요시) 내용 수정</span></li>
+                                    <li><span class="node node-leaf node-low-priority">액션: [발송하기] 버튼 클릭 → (P03-F13) 문자 발송</span></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="node node-leaf node-low-priority">P03-F14: [알림톡] 버튼 클릭</span>
+                                <ul>
+                                    <li><span class="node node-leaf node-low-priority">→ 알림톡 발송 모달 열기</span></li>
+                                    <li><span class="node node-leaf node-low-priority">액션: 템플릿 선택 및 [발송하기] 버튼 클릭 → (P03-F15) 알림톡 발송</span></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="node node-leaf node-low-priority">P03-F16: [이메일] 버튼 클릭</span>
+                                <ul>
+                                    <li><span class="node node-leaf node-low-priority">→ 웹메일/패스메일 선택 모달 열기</span></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="node node-leaf node-low-priority">P03-F19: [쪽지] 버튼 클릭</span>
+                                <ul>
+                                    <li><span class="node node-leaf node-low-priority">→ 쪽지 모달 열기</span></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="node node-leaf node-low-priority">P03-F36: [메뉴얼 조회] 버튼 클릭</span>
+                                <ul>
+                                    <li><span class="node node-leaf node-low-priority">→ 메뉴얼 조회 모달 열기</span></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="node node-leaf node-low-priority">P03-F26: 학습 관리 목록에서 행 클릭</span>
+                                <ul>
+                                    <li><span class="node node-leaf node-low-priority">→ 학습 관리 액션 모달 열기</span></li>
+                                    <li><span class="node node-leaf node-low-priority">액션: [수강기간 연장] 버튼 클릭 → (P03-F29) 연장 모달 열기</span></li>
+                                    <li><span class="node node-leaf node-low-priority">입력: 시작일, 종료일, 적용 대상 선택</span></li>
+                                    <li><span class="node node-leaf node-low-priority">액션: [저장하기] 버튼 클릭 → (P03-F30) 기간 연장 실행</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="node node-area node-low-priority">메뉴얼 관리 (manual_list.html)</span>
+                        <ul>
+                            <li><span class="node node-leaf node-low-priority">P04-F02: [전체/공통/기업별] 탭 클릭 → 목록 필터링</span></li>
+                            <li>
+                                <span class="node node-leaf node-low-priority">P04-F04: 상세 검색</span>
+                                <ul>
+                                    <li><span class="node node-leaf node-low-priority">입력: 기업명, 제목, 작성자 등</span></li>
+                                    <li><span class="node node-leaf node-low-priority">액션: [검색] 버튼 클릭 → 목록 필터링</span></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="node node-leaf node-low-priority">P04-F09: 메뉴얼 목록에서 행 클릭</span>
+                                <ul>
+                                    <li><span class="node node-leaf node-low-priority">→ 메뉴얼 상세 모달 열기</span></li>
+                                    <li><span class="node node-leaf node-low-priority">액션: [수정] 버튼 클릭 → (P04-F12) 필드 활성화</span></li>
+                                    <li><span class="node node-leaf node-low-priority">입력: 수정할 내용 입력</span></li>
+                                    <li><span class="node node-leaf node-low-priority">액션: [저장] 버튼 클릭 → (P04-F13) 내용 저장</span></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="node node-leaf node-low-priority">P04-F14: [메뉴얼 등록] 버튼 클릭 → manual_registration.html 이동</span>
+                                <ul>
+                                    <li><span class="node node-leaf node-low-priority">P05-F01: [기업별/공통 메뉴얼 등록] 버튼 클릭 → 입력 폼 전환</span></li>
+                                    <li><span class="node node-leaf node-low-priority">P05-F02: 기업별 메뉴얼 정보 입력 (제목, 담당자 등)</span></li>
+                                    <li><span class="node node-leaf node-low-priority">P05-F06: 공통 메뉴얼 정보 입력 및 FAQ 행 추가/삭제</span></li>
+                                    <li><span class="node node-leaf node-low-priority">액션: [등록하기] 버튼 클릭 → 메뉴얼 저장</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const nodes = document.querySelectorAll('.node');
+            const fileRegex = /\(([^)]+\.html)\)/;
+
+            nodes.forEach(node => {
+                const match = node.innerHTML.match(fileRegex);
+
+                if (match) {
+                    const fileName = match[1];
+                    const originalText = node.innerHTML.replace(fileRegex, '').trim();
+
+                    // 기존 텍스트를 감싸는 span과 파일명을 표시하는 span을 새로 생성
+                    node.innerHTML = ''; // 기존 내용 비우기
+                    const pageNameSpan = document.createElement('span');
+                    pageNameSpan.className = 'page-name';
+                    pageNameSpan.textContent = fileName;
+                    node.textContent = originalText;
+                    node.prepend(pageNameSpan);
+                }
+            });
+        });
+
+        document.getElementById('save-btn').addEventListener('click', function() {
+            const treeElement = document.querySelector('.tree');
+            const saveButton = this;
+            if (!treeElement) return;
+
+            // 캡처 전 버튼 비활성화 및 스타일 변경
+            saveButton.disabled = true;
+            saveButton.textContent = '저장 중...';
+            const originalStyle = {
+                overflowX: treeElement.style.overflowX,
+                width: treeElement.style.width
+            };
+            treeElement.style.overflowX = 'visible';
+            treeElement.style.width = 'auto';
+
+            html2canvas(treeElement, {
+                scrollX: 0,
+                scrollY: 0,
+                useCORS: true // 외부 폰트 등을 사용하기 위한 옵션
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'b2b-crm-menu-structure.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            }).finally(() => {
+                // 캡처 후 원래 스타일로 복원 및 버튼 활성화
+                treeElement.style.overflowX = originalStyle.overflowX;
+                treeElement.style.width = originalStyle.width;
+                saveButton.disabled = false;
+                saveButton.textContent = '이미지로 저장';
+            });
+        });
+    </script>
+</body>
+</html>
